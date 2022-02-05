@@ -76,5 +76,7 @@
     "SEARCH"            : "Search",
     "VISIT"             : "Visit",
     "WEEKDAYS"          : "Giorni della settimana",
-    "VIRTUAL_NA"        : "Virtual NA è una risorsa di servizi collaborativi su base globale il cui scopo principale è fornire una ricerca di riunioni per riunioni online e telefoniche di Narcotici Anonimi ospitati da diversi paesi in tutto il mondo"
+    "VIRTUAL_NA"        : "Virtual NA è una risorsa di servizi collaborativi su base globale il cui scopo principale è fornire una ricerca di riunioni per riunioni online e telefoniche di Narcotici Anonimi ospitati da diversi paesi in tutto il mondo",
+    "TEMPCLOSED"        : "Locale temporaneamente chiuso"
+
 }

@@ -76,5 +76,7 @@
     "SEARCH"            : "Pesquisa",
     "VISIT"             : "Visita",
     "WEEKDAYS"          : "Dias da semana",
-    "VIRTUAL_NA"        : "NA Virtual é um recurso de serviço colaborativo com base global, cujo objetivo principal é fornecer uma busca de reuniões para reuniões online e por telefone de Narcóticos Anônimos, hospedadas em diferentes países ao redor do mundo."
+    "VIRTUAL_NA"        : "NA Virtual é um recurso de serviço colaborativo com base global, cujo objetivo principal é fornecer uma busca de reuniões para reuniões online e por telefone de Narcóticos Anônimos, hospedadas em diferentes países ao redor do mundo.",
+    "TEMPCLOSED"        : "Local temporariamente fechado"
+
 }

@@ -76,5 +76,6 @@
     "SEARCH"            : "Søg",
     "VISIT"             : "Besøg",
     "WEEKDAYS"          : "Hverdage",
-    "VIRTUAL_NA"        : "Virtual NA er en globalt baseret samarbejdstjenestesource, hvis primære formål er at levere en mødesøgning til både online- og telefonlinjemøder med anonyme narkotika, der er vært fra forskellige lande rundt om i verden."
+    "VIRTUAL_NA"        : "Virtual NA er en globalt baseret samarbejdstjenestesource, hvis primære formål er at levere en mødesøgning til både online- og telefonlinjemøder med anonyme narkotika, der er vært fra forskellige lande rundt om i verden.",
+    "TEMPCLOSED"        : "Placeringen er midlertidigt lukket"
 }

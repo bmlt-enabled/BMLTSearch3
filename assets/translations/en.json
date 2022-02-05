@@ -76,5 +76,6 @@
     "SEARCH"            : "Search",
     "VISIT"             : "Visit",
     "WEEKDAYS"          : "Weekdays",
-    "VIRTUAL_NA"        : "Virtual NA is a globally based collaborative service resource whose primary purpose is to provide a meeting search for both Online and Phone line meetings of Narcotics Anonymous hosted from different countries around the world. "
+    "VIRTUAL_NA"        : "Virtual NA is a globally based collaborative service resource whose primary purpose is to provide a meeting search for both Online and Phone line meetings of Narcotics Anonymous hosted from different countries around the world. ",
+    "TEMPCLOSED"        : "Location temporarily closed"
 }
