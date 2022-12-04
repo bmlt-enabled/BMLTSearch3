@@ -22872,18 +22872,26 @@ __webpack_require__.r(__webpack_exports__);
 let TomatoFormatsService = class TomatoFormatsService {
     constructor(httpCors) {
         this.httpCors = httpCors;
-        this.tomatoBMLT = 'https://tomato.bmltenabled.org/main_server/client_interface/json/?switcher=GetFormats&show_all=1&format_ids=';
+        this.tomatoBMLT = 'https://tomato.bmltenabled.org/main_server/client_interface/json/';
         this.tomatoREST = 'https://tomato.bmltenabled.org/rest/v1/formats/?id__in=';
     }
     getFormatNamesByID(uniqueIDs, language) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             const formatNamesByID = {};
-            const formatsApi = this.tomatoBMLT + Array.from(uniqueIDs).join(",");
+            const formatsApi = this.tomatoREST + Array.from(uniqueIDs).join(",");
             const data = yield this.httpCors.get(formatsApi, {}, {});
             const jsonData = JSON.parse(data.data);
-            for (const format of jsonData) {
-                if (format.lang === language || (format.lang === 'en' && !formatNamesByID[format.id])) {
-                    formatNamesByID[format.id] = format.name_string;
+            for (const format of jsonData.results) {
+                const urlPieces = format.url.split("/");
+                const formatID = urlPieces[urlPieces.length - 2];
+                let formatName = format.translatedformats.filter(i => i.language === language);
+                if (formatName.length) {
+                    if (formatName[0].name === undefined) {
+                        formatName = format.translatedformats.filter(i => i.language === 'en');
+                    }
+                    if (formatName.length && formatName[0].name) {
+                        formatNamesByID[formatID] = formatName[0].name;
+                    }
                 }
             }
             return formatNamesByID;
