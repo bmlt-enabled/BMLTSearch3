@@ -343,7 +343,10 @@ cordova.define("cordova-plugin-advanced-http.helpers", function(require, exports
 
   function injectFileEntryHandler(cb) {
     return function (response) {
-      cb(createFileEntry(response.file));
+      var fileEntry = createFileEntry(response.file);
+      response.file = fileEntry;
+      response.data = fileEntry;
+      cb(fileEntry, response);
     }
   }
 

@@ -25,7 +25,7 @@ FILESYSTEM_PREFIX = 'file:///';
 
 module.exports = {
     __format__: function (fullPath) {
-        return (FILESYSTEM_PREFIX + this.name + (fullPath[0] === '/' ? '' : '/') + FileSystem.encodeURIPath(fullPath)); // eslint-disable-line no-undef
+        return (FILESYSTEM_PREFIX + this.name + (fullPath[0] === '/' ? '' : '/') + FileSystem.encodeURIPath(fullPath));
     }
 };
 

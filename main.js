@@ -159,6 +159,7 @@ let AppComponent = class AppComponent {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.platform.ready().then(() => {
                 this.statusBar.styleDefault();
+                this.statusBar.overlaysWebView(false);
                 this.splashScreen.hide();
             });
             this.translate.setDefaultLang('en');
