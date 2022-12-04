@@ -22873,7 +22873,6 @@ let TomatoFormatsService = class TomatoFormatsService {
     constructor(httpCors) {
         this.httpCors = httpCors;
         this.tomatoBMLT = 'https://tomato.bmltenabled.org/main_server/client_interface/json/?switcher=GetFormats&show_all=1&format_ids=';
-        this.tomatoREST = 'https://tomato.bmltenabled.org/rest/v1/formats/?id__in=';
     }
     getFormatNamesByID(uniqueIDs, language) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
