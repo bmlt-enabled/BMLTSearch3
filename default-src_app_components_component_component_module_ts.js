@@ -22878,10 +22878,15 @@ let TomatoFormatsService = class TomatoFormatsService {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
             const formatNamesByID = {};
             const formatsApi = this.tomatoBMLT + Array.from(uniqueIDs).join(",");
-            const data = yield this.httpCors.get(formatsApi, {}, {});
-            const jsonData = JSON.parse(data.data);
+            let data = yield this.httpCors.get(formatsApi + '&lang_enum=en', {}, {});
+            let jsonData = JSON.parse(data.data);
             for (const format of jsonData) {
-                if (format.lang === language || (format.lang === 'en' && !formatNamesByID[format.id])) {
+                formatNamesByID[format.id] = format.name_string;
+            }
+            if (language !== 'en') {
+                data = yield this.httpCors.get(formatsApi + '&lang_enum=' + language, {}, {});
+                jsonData = JSON.parse(data.data);
+                for (const format of jsonData) {
                     formatNamesByID[format.id] = format.name_string;
                 }
             }
