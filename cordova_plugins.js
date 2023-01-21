@@ -15,6 +15,20 @@ module.exports = [
         "runs": true
     },
     {
+        "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
+        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
+        "pluginId": "cordova-plugin-splashscreen",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
         "id": "cordova-plugin-statusbar.statusbar",
         "pluginId": "cordova-plugin-statusbar",
@@ -628,28 +642,15 @@ module.exports = [
         "id": "cordova-plugin-advanced-http.http-proxy",
         "pluginId": "cordova-plugin-advanced-http",
         "runs": true
-    },
-    {
-        "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
-        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
-        "pluginId": "cordova-plugin-splashscreen",
-        "runs": true
-    },
-    {
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "pluginId": "cordova-plugin-splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-device": "2.1.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-androidx-adapter": "1.1.3",
+    "cordova-plugin-splashscreen": "6.0.2",
     "cordova-plugin-statusbar": "3.0.0",
     "cordova-plugin-googlemaps": "2.7.1",
     "com-badrit-base64": "0.2.0",
@@ -657,8 +658,7 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "5.0.0",
     "cordova-plugin-geolocation": "4.1.0",
     "cordova-plugin-file": "7.0.0",
-    "cordova-plugin-advanced-http": "3.3.1",
-    "cordova-plugin-splashscreen": "6.0.2"
+    "cordova-plugin-advanced-http": "3.3.1"
 }
 // BOTTOM OF METADATA
 });
