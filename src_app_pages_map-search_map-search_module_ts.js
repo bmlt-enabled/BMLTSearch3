@@ -134,19 +134,19 @@ let MapSearchPage = class MapSearchPage {
     this.base64 = base64;
     this.meetingList = [];
     this.loader = null;
-    this.zoom = 8;
+    this.zoom = 14;
     this.mapLatitude = 34.2359855;
     this.mapLongitude = -118.5656689;
     this.origLocation = {
       lat: 51.899,
       lng: -8.474
     };
-    this.origZoom = 10;
+    this.origZoom = 14;
     this.targLocation = {
       lat: 51.899,
       lng: -8.474
     };
-    this.targZoom = 10;
+    this.targZoom = 14;
     this.formattedAddress = '';
     this.latitude = 0;
     this.longitude = 0;
@@ -249,7 +249,7 @@ let MapSearchPage = class MapSearchPage {
           lat: this.mapLatitude,
           lng: this.mapLongitude
         },
-        zoom: 8
+        zoom: 14
       }
     };
     this.map = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMaps.create('map_canvas', options);
@@ -608,7 +608,7 @@ let MapSearchPage = class MapSearchPage {
       // Move to the position
       this.map.moveCamera({
         target: results[0].position,
-        zoom: 10
+        zoom: 14
       }).then(() => {
         this.searchMarker.showInfoWindow();
       });
