@@ -320,7 +320,7 @@ let MapSearchPage = class MapSearchPage {
       italic: false
     };
     let markerClusterIconOptions;
-    if (this.platform.is('ios')) {
+    if (this.platform.is('ios') || this.platform.is('desktop') || this.platform.is('mobileweb')) {
       markerClusterIconOptions = [{
         min: 3,
         max: 10,
