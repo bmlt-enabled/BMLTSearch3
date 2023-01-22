@@ -371,7 +371,7 @@ let MapSearchPage = class MapSearchPage {
       markerClusterIconOptions = [{
         min: 3,
         max: 10,
-        url: 'assets/markercluster/m1.png',
+        url: this.Base64ClusterMarkerM1,
         anchor: {
           x: 16,
           y: 16
@@ -380,7 +380,7 @@ let MapSearchPage = class MapSearchPage {
       }, {
         min: 11,
         max: 50,
-        url: 'assets/markercluster/m2.png',
+        url: this.Base64ClusterMarkerM2,
         anchor: {
           x: 16,
           y: 16
@@ -389,7 +389,7 @@ let MapSearchPage = class MapSearchPage {
       }, {
         min: 51,
         max: 100,
-        url: 'assets/markercluster/m3.png',
+        url: this.Base64ClusterMarkerM3,
         anchor: {
           x: 24,
           y: 24
@@ -398,7 +398,7 @@ let MapSearchPage = class MapSearchPage {
       }, {
         min: 101,
         max: 500,
-        url: 'assets/markercluster/m4.png',
+        url: this.Base64ClusterMarkerM4,
         anchor: {
           x: 24,
           y: 24
@@ -406,7 +406,7 @@ let MapSearchPage = class MapSearchPage {
         label: markerLabelOptions
       }, {
         min: 501,
-        url: 'assets/markercluster/m5.png',
+        url: this.Base64ClusterMarkerM5,
         anchor: {
           x: 32,
           y: 32
