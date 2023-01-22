@@ -22,4 +22,6 @@
     <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyCeHYVhVc8bf3siRXIyU5dOaUfctEjzGlA" />
     <preference name="android-targetSdkVersion" value="32" />
     <preference name="android-compileSdkVersion" value="32" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="ShowSplashScreen" value="false" />
 </widget>
