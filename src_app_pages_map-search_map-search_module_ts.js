@@ -320,7 +320,8 @@ let MapSearchPage = class MapSearchPage {
       italic: false
     };
     let markerClusterIconOptions;
-    if (this.platform.is('ios') || this.platform.is('desktop') || this.platform.is('mobileweb')) {
+    console.log(this.platform.platforms());
+    if (this.platform.is('ios')) {
       markerClusterIconOptions = [{
         min: 3,
         max: 10,
@@ -360,6 +361,52 @@ let MapSearchPage = class MapSearchPage {
       }, {
         min: 501,
         url: this.Base64ClusterMarkerM5,
+        anchor: {
+          x: 32,
+          y: 32
+        },
+        label: markerLabelOptions
+      }];
+    } else if (this.platform.is('desktop') || this.platform.is('mobileweb')) {
+      markerClusterIconOptions = [{
+        min: 3,
+        max: 10,
+        url: 'assets/markercluster/m1.png',
+        anchor: {
+          x: 16,
+          y: 16
+        },
+        label: markerLabelOptions
+      }, {
+        min: 11,
+        max: 50,
+        url: 'assets/markercluster/m2.png',
+        anchor: {
+          x: 16,
+          y: 16
+        },
+        label: markerLabelOptions
+      }, {
+        min: 51,
+        max: 100,
+        url: 'assets/markercluster/m3.png',
+        anchor: {
+          x: 24,
+          y: 24
+        },
+        label: markerLabelOptions
+      }, {
+        min: 101,
+        max: 500,
+        url: 'assets/markercluster/m4.png',
+        anchor: {
+          x: 24,
+          y: 24
+        },
+        label: markerLabelOptions
+      }, {
+        min: 501,
+        url: 'assets/markercluster/m5.png',
         anchor: {
           x: 32,
           y: 32
