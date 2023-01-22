@@ -368,51 +368,7 @@ let MapSearchPage = class MapSearchPage {
         label: markerLabelOptions
       }];
     } else if (this.platform.is('desktop') || this.platform.is('mobileweb')) {
-      markerClusterIconOptions = [{
-        min: 3,
-        max: 10,
-        url: this.Base64ClusterMarkerM1,
-        anchor: {
-          x: 16,
-          y: 16
-        },
-        label: markerLabelOptions
-      }, {
-        min: 11,
-        max: 50,
-        url: this.Base64ClusterMarkerM2,
-        anchor: {
-          x: 16,
-          y: 16
-        },
-        label: markerLabelOptions
-      }, {
-        min: 51,
-        max: 100,
-        url: this.Base64ClusterMarkerM3,
-        anchor: {
-          x: 24,
-          y: 24
-        },
-        label: markerLabelOptions
-      }, {
-        min: 101,
-        max: 500,
-        url: this.Base64ClusterMarkerM4,
-        anchor: {
-          x: 24,
-          y: 24
-        },
-        label: markerLabelOptions
-      }, {
-        min: 501,
-        url: this.Base64ClusterMarkerM5,
-        anchor: {
-          x: 32,
-          y: 32
-        },
-        label: markerLabelOptions
-      }];
+      markerClusterIconOptions = [];
     } else {
       markerClusterIconOptions = [{
         min: 3,
