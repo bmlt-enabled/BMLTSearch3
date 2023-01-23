@@ -15,20 +15,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
-        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
-        "pluginId": "cordova-plugin-splashscreen",
-        "runs": true
-    },
-    {
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "pluginId": "cordova-plugin-splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
         "id": "cordova-plugin-statusbar.statusbar",
         "pluginId": "cordova-plugin-statusbar",
@@ -164,6 +150,24 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-googlemaps/www/LocationService.js",
         "id": "cordova-plugin-googlemaps.LocationService",
+        "pluginId": "cordova-plugin-googlemaps",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-googlemaps/www/ElevationService.js",
+        "id": "cordova-plugin-googlemaps.ElevationService",
+        "pluginId": "cordova-plugin-googlemaps",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-googlemaps/www/DirectionsService.js",
+        "id": "cordova-plugin-googlemaps.DirectionsService",
+        "pluginId": "cordova-plugin-googlemaps",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-googlemaps/www/DirectionsRenderer.js",
+        "id": "cordova-plugin-googlemaps.DirectionsRenderer",
         "pluginId": "cordova-plugin-googlemaps",
         "runs": true
     },
@@ -340,6 +344,18 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-googlemaps/src/browser/PluginLocationService.js",
         "id": "cordova-plugin-googlemaps.PluginLocationService",
+        "pluginId": "cordova-plugin-googlemaps",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-googlemaps/src/browser/PluginElevationService.js",
+        "id": "cordova-plugin-googlemaps.PluginElevationService",
+        "pluginId": "cordova-plugin-googlemaps",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-googlemaps/src/browser/PluginDirectionsService.js",
+        "id": "cordova-plugin-googlemaps.PluginDirectionsService",
         "pluginId": "cordova-plugin-googlemaps",
         "runs": true
     },
@@ -642,6 +658,20 @@ module.exports = [
         "id": "cordova-plugin-advanced-http.http-proxy",
         "pluginId": "cordova-plugin-advanced-http",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
+        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
+        "pluginId": "cordova-plugin-splashscreen",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -650,15 +680,15 @@ module.exports.metadata =
     "cordova-plugin-device": "2.1.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-androidx-adapter": "1.1.3",
-    "cordova-plugin-splashscreen": "6.0.2",
     "cordova-plugin-statusbar": "3.0.0",
-    "cordova-plugin-googlemaps": "2.7.1",
+    "cordova-plugin-googlemaps": "2.8.0-20200709-2008",
     "com-badrit-base64": "0.2.0",
     "cordova-plugin-ionic-webview": "5.0.0",
     "cordova-plugin-inappbrowser": "5.0.0",
     "cordova-plugin-geolocation": "4.1.0",
     "cordova-plugin-file": "7.0.0",
-    "cordova-plugin-advanced-http": "3.3.1"
+    "cordova-plugin-advanced-http": "3.3.1",
+    "cordova-plugin-splashscreen": "6.0.2"
 }
 // BOTTOM OF METADATA
 });

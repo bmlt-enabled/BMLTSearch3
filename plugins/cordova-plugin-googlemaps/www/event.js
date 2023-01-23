@@ -1,4 +1,6 @@
-cordova.define("cordova-plugin-googlemaps.event", function(require, exports, module) { module.exports = {
+cordova.define("cordova-plugin-googlemaps.event", function(require, exports, module) { 
+
+module.exports = {
   MAP_READY: 'map_ready',
   MAP_CLICK: 'map_click',
   MAP_LONG_CLICK: 'map_long_click',
@@ -31,7 +33,8 @@ cordova.define("cordova-plugin-googlemaps.event", function(require, exports, mod
   PANORAMA_READY: 'panorama_ready',
   PANORAMA_CAMERA_CHANGE: 'panorama_camera_change',
   PANORAMA_LOCATION_CHANGE: 'panorama_location_change',
-  PANORAMA_CLICK: 'panorama_click'
+  PANORAMA_CLICK: 'panorama_click',
+  DIRECTIONS_CHANGED: 'directions_changed'
 };
 
 });
