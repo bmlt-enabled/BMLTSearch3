@@ -249,7 +249,13 @@ let MapSearchPage = class MapSearchPage {
           lat: this.mapLatitude,
           lng: this.mapLongitude
         },
-        zoom: 14
+        zoom: 12
+      },
+      preferences: {
+        zoom: {
+          minZoom: 12,
+          maxZoom: 22
+        }
       }
     };
     this.map = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMaps.create('map_canvas', options);
@@ -367,9 +373,7 @@ let MapSearchPage = class MapSearchPage {
         },
         label: markerLabelOptions
       }];
-    } else if (this.platform.is('desktop') || this.platform.is('mobileweb')) {
-      markerClusterIconOptions = [];
-    } else {
+    } else if (this.platform.is('android')) {
       markerClusterIconOptions = [{
         min: 3,
         max: 10,
@@ -415,6 +419,8 @@ let MapSearchPage = class MapSearchPage {
         },
         label: markerLabelOptions
       }];
+    } else {
+      markerClusterIconOptions = [];
     }
     const markerClusterOptions = {
       markers: this.markers,
