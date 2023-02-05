@@ -6498,8 +6498,8 @@ class AngularDelegate {
     this.zone = zone;
     this.appRef = appRef;
   }
-  create(resolverOrInjector, injector, location) {
-    return new AngularFrameworkDelegate(resolverOrInjector, injector, location, this.appRef, this.zone);
+  create(resolverOrInjector, injector, location, elementReferenceKey) {
+    return new AngularFrameworkDelegate(resolverOrInjector, injector, location, this.appRef, this.zone, elementReferenceKey);
   }
 }
 /** @nocollapse */
@@ -6523,19 +6523,32 @@ AngularDelegate.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_2
   }, null);
 })();
 class AngularFrameworkDelegate {
-  constructor(resolverOrInjector, injector, location, appRef, zone) {
+  constructor(resolverOrInjector, injector, location, appRef, zone, elementReferenceKey) {
     this.resolverOrInjector = resolverOrInjector;
     this.injector = injector;
     this.location = location;
     this.appRef = appRef;
     this.zone = zone;
+    this.elementReferenceKey = elementReferenceKey;
     this.elRefMap = new WeakMap();
     this.elEventsMap = new WeakMap();
   }
   attachViewToDom(container, component, params, cssClasses) {
     return this.zone.run(() => {
       return new Promise(resolve => {
-        const el = attachView(this.zone, this.resolverOrInjector, this.injector, this.location, this.appRef, this.elRefMap, this.elEventsMap, container, component, params, cssClasses);
+        const componentProps = Object.assign({}, params);
+        /**
+         * Ionic Angular passes a reference to a modal
+         * or popover that can be accessed using a
+         * variable in the overlay component. If
+         * elementReferenceKey is defined, then we should
+         * pass a reference to the component using
+         * elementReferenceKey as the key.
+         */
+        if (this.elementReferenceKey !== undefined) {
+          componentProps[this.elementReferenceKey] = container;
+        }
+        const el = attachView(this.zone, this.resolverOrInjector, this.injector, this.location, this.appRef, this.elRefMap, this.elEventsMap, container, component, componentProps, cssClasses);
         resolve(el);
       });
     });
@@ -9179,7 +9192,7 @@ class ModalController extends OverlayBaseController {
   create(opts) {
     var _a;
     return super.create(Object.assign(Object.assign({}, opts), {
-      delegate: this.angularDelegate.create((_a = this.resolver) !== null && _a !== void 0 ? _a : this.environmentInjector, this.injector)
+      delegate: this.angularDelegate.create((_a = this.resolver) !== null && _a !== void 0 ? _a : this.environmentInjector, this.injector, undefined, 'modal')
     }));
   }
 }
@@ -9223,7 +9236,7 @@ class PopoverController extends OverlayBaseController {
   create(opts) {
     var _a;
     return super.create(Object.assign(Object.assign({}, opts), {
-      delegate: this.angularDelegate.create((_a = this.resolver) !== null && _a !== void 0 ? _a : this.environmentInjector, this.injector)
+      delegate: this.angularDelegate.create((_a = this.resolver) !== null && _a !== void 0 ? _a : this.environmentInjector, this.injector, undefined, 'popover')
     }));
   }
 }
@@ -24260,6 +24273,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet),
 /* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
 /* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__esDecorate": () => (/* binding */ __esDecorate),
 /* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
 /* harmony export */   "__extends": () => (/* binding */ __extends),
 /* harmony export */   "__generator": () => (/* binding */ __generator),
@@ -24268,8 +24282,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
 /* harmony export */   "__metadata": () => (/* binding */ __metadata),
 /* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__propKey": () => (/* binding */ __propKey),
 /* harmony export */   "__read": () => (/* binding */ __read),
 /* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__runInitializers": () => (/* binding */ __runInitializers),
+/* harmony export */   "__setFunctionName": () => (/* binding */ __setFunctionName),
 /* harmony export */   "__spread": () => (/* binding */ __spread),
 /* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
 /* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
@@ -24339,6 +24356,51 @@ function __decorate(decorators, target, key, desc) {
 function __param(paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 }
+
+function __esDecorate(ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
+    function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
+    var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
+    var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
+    var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
+    var _, done = false;
+    for (var i = decorators.length - 1; i >= 0; i--) {
+        var context = {};
+        for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
+        for (var p in contextIn.access) context.access[p] = contextIn.access[p];
+        context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
+        var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
+        if (kind === "accessor") {
+            if (result === void 0) continue;
+            if (result === null || typeof result !== "object") throw new TypeError("Object expected");
+            if (_ = accept(result.get)) descriptor.get = _;
+            if (_ = accept(result.set)) descriptor.set = _;
+            if (_ = accept(result.init)) initializers.push(_);
+        }
+        else if (_ = accept(result)) {
+            if (kind === "field") initializers.push(_);
+            else descriptor[key] = _;
+        }
+    }
+    if (target) Object.defineProperty(target, contextIn.name, descriptor);
+    done = true;
+};
+
+function __runInitializers(thisArg, initializers, value) {
+    var useValue = arguments.length > 2;
+    for (var i = 0; i < initializers.length; i++) {
+        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
+    }
+    return useValue ? value : void 0;
+};
+
+function __propKey(x) {
+    return typeof x === "symbol" ? x : "".concat(x);
+};
+
+function __setFunctionName(f, name, prefix) {
+    if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
+    return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
+};
 
 function __metadata(metadataKey, metadataValue) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
@@ -24472,7 +24534,7 @@ function __asyncGenerator(thisArg, _arguments, generator) {
 function __asyncDelegator(o) {
     var i, p;
     return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
-    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: false } : f ? f(v) : v; } : f; }
 }
 
 function __asyncValues(o) {
@@ -24638,7 +24700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -29980,25 +30042,6 @@ PercentPipe.ɵpipe = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["
  * that determine group sizing and separator, decimal-point character,
  * and other locale-specific configurations.
  *
- * {@a currency-code-deprecation}
- * <div class="alert is-helpful">
- *
- * **Deprecation notice:**
- *
- * The default currency code is currently always `USD` but this is deprecated from v9.
- *
- * **In v11 the default currency code will be taken from the current locale identified by
- * the `LOCALE_ID` token. See the [i18n guide](guide/i18n-common-locale-id) for
- * more information.**
- *
- * If you need the previous behavior then set it by creating a `DEFAULT_CURRENCY_CODE` provider in
- * your application `NgModule`:
- *
- * ```ts
- * {provide: DEFAULT_CURRENCY_CODE, useValue: 'USD'}
- * ```
- *
- * </div>
  *
  * @see `getCurrencySymbol()`
  * @see `formatCurrency()`
@@ -30271,7 +30314,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.1');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.3');
 
 /**
  * Defines a scroll position manager. Implemented by `BrowserViewportScroller`.
@@ -31298,6 +31341,7 @@ class NgOptimizedImage {
         assertNoComplexSizes(this);
       }
       assertNotMissingBuiltInLoader(this.ngSrc, this.imageLoader);
+      assertNoNgSrcsetWithoutLoader(this, this.imageLoader);
       if (this.priority) {
         const checker = this.injector.get(PreconnectLinkChecker);
         checker.assertPreconnect(this.getRewrittenSrc(), this.ngSrc);
@@ -31769,6 +31813,14 @@ function assertNotMissingBuiltInLoader(ngSrc, imageLoader) {
     }
   }
 }
+/**
+ * Warns if ngSrcset is present and no loader is configured (i.e. the default one is being used).
+ */
+function assertNoNgSrcsetWithoutLoader(dir, imageLoader) {
+  if (dir.ngSrcset && imageLoader === noopImageLoader) {
+    console.warn((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵformatRuntimeError"])(2963 /* RuntimeErrorCode.NGSRCSET_WITHOUT_LOADER */, `${imgDirectiveDetails(dir.ngSrc)} the \`ngSrcset\` attribute is present but ` + `no image loader is configured (i.e. the default one is being used), ` + `which would result in the same image being used for all configured sizes. ` + `To fix this, provide a loader or remove the \`ngSrcset\` attribute from the image.`));
+  }
+}
 
 // These exports represent the set of symbols exposed as a public API.
 
@@ -31846,7 +31898,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 9151);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 6942);
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -34585,7 +34637,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "visitAll": () => (/* binding */ visitAll)
 /* harmony export */ });
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -42108,7 +42160,7 @@ class _AstToIrVisitor {
         return null;
       },
       visitNonNullAssert(ast) {
-        return null;
+        return visit(this, ast.expression);
       },
       visitPropertyRead(ast) {
         return visit(this, ast.receiver);
@@ -42469,6 +42521,7 @@ const animationKeywords = new Set([
 */
 class ShadowCss {
   constructor() {
+    // TODO: Is never re-assigned, could be removed.
     this.strictStyling = true;
     /**
      * Regular expression used to extrapolate the possible keyframes from an
@@ -42956,6 +43009,13 @@ class ShadowCss {
     while ((res = sep.exec(selector)) !== null) {
       const separator = res[1];
       const part = selector.slice(startIndex, res.index).trim();
+      // A space following an escaped hex value and followed by another hex character
+      // (ie: ".\fc ber" for ".über") is not a separator between 2 selectors
+      // also keep in mind that backslashes are replaced by a placeholder by SafeSelector
+      // These escaped selectors happen for example when esbuild runs with optimization.minify.
+      if (part.match(_placeholderRe) && selector[res.index + 1]?.match(/[a-fA-F\d]/)) {
+        continue;
+      }
       shouldScope = shouldScope || part.indexOf(_polyfillHostNoCombinator) > -1;
       const scopedPart = shouldScope ? _scopeSelectorPart(part) : part;
       scopedSelector += `${scopedPart} ${separator} `;
@@ -42994,7 +43054,7 @@ class SafeSelector {
     });
   }
   restore(content) {
-    return content.replace(/__ph-(\d+)__/g, (_ph, index) => this.placeholders[+index]);
+    return content.replace(_placeholderRe, (_ph, index) => this.placeholders[+index]);
   }
   content() {
     return this._content;
@@ -43036,6 +43096,7 @@ const _polyfillHostRe = /-shadowcsshost/gim;
 const _colonHostRe = /:host/gim;
 const _colonHostContextRe = /:host-context/gim;
 const _commentRe = /\/\*[\s\S]*?\*\//g;
+const _placeholderRe = /__ph-(\d+)__/g;
 function stripComments(input) {
   return input.replace(_commentRe, '');
 }
@@ -54587,7 +54648,7 @@ function publishFacade(global) {
  * @description
  * Entry point for all public APIs of the compiler package.
  */
-const VERSION = new Version('15.1.1');
+const VERSION = new Version('15.1.3');
 class CompilerConfig {
   constructor({
     defaultEncapsulation = ViewEncapsulation.Emulated,
@@ -56590,7 +56651,7 @@ const MINIMUM_PARTIAL_LINKER_VERSION$6 = '12.0.0';
 function compileDeclareClassMetadata(metadata) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$6));
-  definitionMap.set('version', literal('15.1.1'));
+  definitionMap.set('version', literal('15.1.3'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', metadata.type);
   definitionMap.set('decorators', metadata.decorators);
@@ -56698,7 +56759,7 @@ function compileDeclareDirectiveFromMetadata(meta) {
 function createDirectiveDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$5));
-  definitionMap.set('version', literal('15.1.1'));
+  definitionMap.set('version', literal('15.1.3'));
   // e.g. `type: MyDirective`
   definitionMap.set('type', meta.internalType);
   if (meta.isStandalone) {
@@ -56928,7 +56989,7 @@ const MINIMUM_PARTIAL_LINKER_VERSION$4 = '12.0.0';
 function compileDeclareFactoryFunction(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$4));
-  definitionMap.set('version', literal('15.1.1'));
+  definitionMap.set('version', literal('15.1.3'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   definitionMap.set('deps', compileDependencies(meta.deps));
@@ -56967,7 +57028,7 @@ function compileDeclareInjectableFromMetadata(meta) {
 function createInjectableDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$3));
-  definitionMap.set('version', literal('15.1.1'));
+  definitionMap.set('version', literal('15.1.3'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   // Only generate providedIn property if it has a non-null value
@@ -57022,7 +57083,7 @@ function compileDeclareInjectorFromMetadata(meta) {
 function createInjectorDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$2));
-  definitionMap.set('version', literal('15.1.1'));
+  definitionMap.set('version', literal('15.1.3'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   definitionMap.set('providers', meta.providers);
@@ -57056,7 +57117,7 @@ function compileDeclareNgModuleFromMetadata(meta) {
 function createNgModuleDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$1));
-  definitionMap.set('version', literal('15.1.1'));
+  definitionMap.set('version', literal('15.1.3'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   // We only generate the keys in the metadata if the arrays contain values.
@@ -57111,7 +57172,7 @@ function compileDeclarePipeFromMetadata(meta) {
 function createPipeDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION));
-  definitionMap.set('version', literal('15.1.1'));
+  definitionMap.set('version', literal('15.1.3'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   // e.g. `type: MyPipe`
   definitionMap.set('type', meta.internalType);
@@ -57532,7 +57593,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 8623);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 4514);
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -65709,7 +65770,7 @@ class Version {
 /**
  * @publicApi
  */
-const VERSION = new Version('15.1.1');
+const VERSION = new Version('15.1.3');
 
 // This default value is when checking the hierarchy for a token.
 //
@@ -84641,7 +84702,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 4350);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 6942);
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -92524,7 +92585,7 @@ UntypedFormBuilder.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.1');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.3');
 
 /**
  * Exports the required providers and directives for template-driven forms,
@@ -92684,7 +92745,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -92890,7 +92951,7 @@ class CachedResourceLoader extends _angular_compiler__WEBPACK_IMPORTED_MODULE_0_
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.1.1');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.1.3');
 
 /**
  * @publicApi
@@ -92978,7 +93039,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -95207,7 +95268,7 @@ DomSanitizerImpl.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.1.1');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.1.3');
 
 /**
  * @module
@@ -95337,7 +95398,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! rxjs/operators */ 6675);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /**
- * @license Angular v15.1.1
+ * @license Angular v15.1.3
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -96411,6 +96472,29 @@ function updateSegmentGroupChildren(segmentGroup, startIndex, commands) {
   } else {
     const outlets = getOutlets(commands);
     const children = {};
+    // If the set of commands does not apply anything to the primary outlet and the child segment is
+    // an empty path primary segment on its own, we want to skip applying the commands at this
+    // level. Imagine the following config:
+    //
+    // {path: '', children: [{path: '**', outlet: 'popup'}]}.
+    //
+    // Navigation to /(popup:a) will activate the child outlet correctly Given a follow-up
+    // navigation with commands
+    // ['/', {outlets: {'popup': 'b'}}], we _would not_ want to apply the outlet commands to the
+    // root segment because that would result in
+    // //(popup:a)(popup:b) since the outlet command got applied one level above where it appears in
+    // the `ActivatedRoute` rather than updating the existing one.
+    //
+    // Because empty paths do not appear in the URL segments and the fact that the segments used in
+    // the output `UrlTree` are squashed to eliminate these empty paths where possible
+    // https://github.com/angular/angular/blob/13f10de40e25c6900ca55bd83b36bd533dacfa9e/packages/router/src/url_tree.ts#L755
+    // it can be hard to determine what is the right thing to do when applying commands to a
+    // `UrlSegmentGroup` that is created from an "unsquashed"/expanded `ActivatedRoute` tree.
+    // This code effectively "squashes" empty path primary routes when they have no siblings on
+    // the same level of the tree.
+    if (!outlets[PRIMARY_OUTLET] && segmentGroup.children[PRIMARY_OUTLET] && segmentGroup.numberOfChildren === 1 && segmentGroup.children[PRIMARY_OUTLET].segments.length === 0) {
+      return updateSegmentGroupChildren(segmentGroup.children[PRIMARY_OUTLET], startIndex, commands);
+    }
     forEach(outlets, (commands, outlet) => {
       if (typeof commands === 'string') {
         commands = [commands];
@@ -101112,8 +101196,8 @@ class RouterLink {
     this.commands = null;
     /** @internal */
     this.onChanges = new rxjs__WEBPACK_IMPORTED_MODULE_30__.Subject();
-    const tagName = el.nativeElement.tagName;
-    this.isAnchorElement = tagName === 'A' || tagName === 'AREA';
+    const tagName = el.nativeElement.tagName?.toLowerCase();
+    this.isAnchorElement = tagName === 'a' || tagName === 'area';
     if (this.isAnchorElement) {
       this.subscription = router.events.subscribe(s => {
         if (s instanceof NavigationEnd) {
@@ -102580,7 +102664,7 @@ function provideRouterInitializer() {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.1');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.3');
 
 /**
  * @module
