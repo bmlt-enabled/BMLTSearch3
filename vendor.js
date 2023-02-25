@@ -12549,6 +12549,182 @@ const now = ev => {
 
 /***/ }),
 
+/***/ 1128:
+/*!*************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/index-6661fe90.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "I": () => (/* binding */ IonicSafeString),
+/* harmony export */   "s": () => (/* binding */ sanitizeDOMString)
+/* harmony export */ });
+/*!
+ * (C) Ionic http://ionicframework.com - MIT License
+ */
+/**
+ * Does a simple sanitization of all elements
+ * in an untrusted string
+ */
+const sanitizeDOMString = untrustedString => {
+  try {
+    if (untrustedString instanceof IonicSafeString) {
+      return untrustedString.value;
+    }
+    if (!isSanitizerEnabled() || typeof untrustedString !== 'string' || untrustedString === '') {
+      return untrustedString;
+    }
+    /**
+     * onload is fired when appending to a document
+     * fragment in Chrome. If a string
+     * contains onload then we should not
+     * attempt to add this to the fragment.
+     */
+    if (untrustedString.includes('onload=')) {
+      return '';
+    }
+    /**
+     * Create a document fragment
+     * separate from the main DOM,
+     * create a div to do our work in
+     */
+    const documentFragment = document.createDocumentFragment();
+    const workingDiv = document.createElement('div');
+    documentFragment.appendChild(workingDiv);
+    workingDiv.innerHTML = untrustedString;
+    /**
+     * Remove any elements
+     * that are blocked
+     */
+    blockedTags.forEach(blockedTag => {
+      const getElementsToRemove = documentFragment.querySelectorAll(blockedTag);
+      for (let elementIndex = getElementsToRemove.length - 1; elementIndex >= 0; elementIndex--) {
+        const element = getElementsToRemove[elementIndex];
+        if (element.parentNode) {
+          element.parentNode.removeChild(element);
+        } else {
+          documentFragment.removeChild(element);
+        }
+        /**
+         * We still need to sanitize
+         * the children of this element
+         * as they are left behind
+         */
+        const childElements = getElementChildren(element);
+        /* eslint-disable-next-line */
+        for (let childIndex = 0; childIndex < childElements.length; childIndex++) {
+          sanitizeElement(childElements[childIndex]);
+        }
+      }
+    });
+    /**
+     * Go through remaining elements and remove
+     * non-allowed attribs
+     */
+    // IE does not support .children on document fragments, only .childNodes
+    const dfChildren = getElementChildren(documentFragment);
+    /* eslint-disable-next-line */
+    for (let childIndex = 0; childIndex < dfChildren.length; childIndex++) {
+      sanitizeElement(dfChildren[childIndex]);
+    }
+    // Append document fragment to div
+    const fragmentDiv = document.createElement('div');
+    fragmentDiv.appendChild(documentFragment);
+    // First child is always the div we did our work in
+    const getInnerDiv = fragmentDiv.querySelector('div');
+    return getInnerDiv !== null ? getInnerDiv.innerHTML : fragmentDiv.innerHTML;
+  } catch (err) {
+    console.error(err);
+    return '';
+  }
+};
+/**
+ * Clean up current element based on allowed attributes
+ * and then recursively dig down into any child elements to
+ * clean those up as well
+ */
+// TODO(FW-2832): type (using Element triggers other type errors as well)
+const sanitizeElement = element => {
+  // IE uses childNodes, so ignore nodes that are not elements
+  if (element.nodeType && element.nodeType !== 1) {
+    return;
+  }
+  /**
+   * If attributes is not a NamedNodeMap
+   * then we should remove the element entirely.
+   * This helps avoid DOM Clobbering attacks where
+   * attributes is overridden.
+   */
+  if (typeof NamedNodeMap !== 'undefined' && !(element.attributes instanceof NamedNodeMap)) {
+    element.remove();
+    return;
+  }
+  for (let i = element.attributes.length - 1; i >= 0; i--) {
+    const attribute = element.attributes.item(i);
+    const attributeName = attribute.name;
+    // remove non-allowed attribs
+    if (!allowedAttributes.includes(attributeName.toLowerCase())) {
+      element.removeAttribute(attributeName);
+      continue;
+    }
+    // clean up any allowed attribs
+    // that attempt to do any JS funny-business
+    const attributeValue = attribute.value;
+    /**
+     * We also need to check the property value
+     * as javascript: can allow special characters
+     * such as &Tab; and still be valid (i.e. java&Tab;script)
+     */
+    const propertyValue = element[attributeName];
+    /* eslint-disable */
+    if (attributeValue != null && attributeValue.toLowerCase().includes('javascript:') || propertyValue != null && propertyValue.toLowerCase().includes('javascript:')) {
+      element.removeAttribute(attributeName);
+    }
+    /* eslint-enable */
+  }
+  /**
+   * Sanitize any nested children
+   */
+  const childElements = getElementChildren(element);
+  /* eslint-disable-next-line */
+  for (let i = 0; i < childElements.length; i++) {
+    sanitizeElement(childElements[i]);
+  }
+};
+/**
+ * IE doesn't always support .children
+ * so we revert to .childNodes instead
+ */
+// TODO(FW-2832): type
+const getElementChildren = el => {
+  return el.children != null ? el.children : el.childNodes;
+};
+const isSanitizerEnabled = () => {
+  var _a;
+  const win = window;
+  const config = (_a = win === null || win === void 0 ? void 0 : win.Ionic) === null || _a === void 0 ? void 0 : _a.config;
+  if (config) {
+    if (config.get) {
+      return config.get('sanitizerEnabled', true);
+    } else {
+      return config.sanitizerEnabled === true || config.sanitizerEnabled === undefined;
+    }
+  }
+  return true;
+};
+const allowedAttributes = ['class', 'id', 'href', 'src', 'name', 'slot'];
+const blockedTags = ['script', 'style', 'iframe', 'meta', 'link', 'object', 'embed'];
+class IonicSafeString {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+
+/***/ }),
+
 /***/ 1559:
 /*!*************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/index-8e692445.js ***!
@@ -14774,156 +14950,6 @@ const Build = {
 
 /***/ }),
 
-/***/ 3148:
-/*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-eda38007.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "I": () => (/* binding */ IonicSafeString),
-/* harmony export */   "s": () => (/* binding */ sanitizeDOMString)
-/* harmony export */ });
-/*!
- * (C) Ionic http://ionicframework.com - MIT License
- */
-/**
- * Does a simple sanitization of all elements
- * in an untrusted string
- */
-const sanitizeDOMString = untrustedString => {
-  try {
-    if (untrustedString instanceof IonicSafeString) {
-      return untrustedString.value;
-    }
-    if (!isSanitizerEnabled() || typeof untrustedString !== 'string' || untrustedString === '') {
-      return untrustedString;
-    }
-    /**
-     * Create a document fragment
-     * separate from the main DOM,
-     * create a div to do our work in
-     */
-    const documentFragment = document.createDocumentFragment();
-    const workingDiv = document.createElement('div');
-    documentFragment.appendChild(workingDiv);
-    workingDiv.innerHTML = untrustedString;
-    /**
-     * Remove any elements
-     * that are blocked
-     */
-    blockedTags.forEach(blockedTag => {
-      const getElementsToRemove = documentFragment.querySelectorAll(blockedTag);
-      for (let elementIndex = getElementsToRemove.length - 1; elementIndex >= 0; elementIndex--) {
-        const element = getElementsToRemove[elementIndex];
-        if (element.parentNode) {
-          element.parentNode.removeChild(element);
-        } else {
-          documentFragment.removeChild(element);
-        }
-        /**
-         * We still need to sanitize
-         * the children of this element
-         * as they are left behind
-         */
-        const childElements = getElementChildren(element);
-        /* eslint-disable-next-line */
-        for (let childIndex = 0; childIndex < childElements.length; childIndex++) {
-          sanitizeElement(childElements[childIndex]);
-        }
-      }
-    });
-    /**
-     * Go through remaining elements and remove
-     * non-allowed attribs
-     */
-    // IE does not support .children on document fragments, only .childNodes
-    const dfChildren = getElementChildren(documentFragment);
-    /* eslint-disable-next-line */
-    for (let childIndex = 0; childIndex < dfChildren.length; childIndex++) {
-      sanitizeElement(dfChildren[childIndex]);
-    }
-    // Append document fragment to div
-    const fragmentDiv = document.createElement('div');
-    fragmentDiv.appendChild(documentFragment);
-    // First child is always the div we did our work in
-    const getInnerDiv = fragmentDiv.querySelector('div');
-    return getInnerDiv !== null ? getInnerDiv.innerHTML : fragmentDiv.innerHTML;
-  } catch (err) {
-    console.error(err);
-    return '';
-  }
-};
-/**
- * Clean up current element based on allowed attributes
- * and then recursively dig down into any child elements to
- * clean those up as well
- */
-// TODO(FW-2832): type (using Element triggers other type errors as well)
-const sanitizeElement = element => {
-  // IE uses childNodes, so ignore nodes that are not elements
-  if (element.nodeType && element.nodeType !== 1) {
-    return;
-  }
-  for (let i = element.attributes.length - 1; i >= 0; i--) {
-    const attribute = element.attributes.item(i);
-    const attributeName = attribute.name;
-    // remove non-allowed attribs
-    if (!allowedAttributes.includes(attributeName.toLowerCase())) {
-      element.removeAttribute(attributeName);
-      continue;
-    }
-    // clean up any allowed attribs
-    // that attempt to do any JS funny-business
-    const attributeValue = attribute.value;
-    /* eslint-disable-next-line */
-    if (attributeValue != null && attributeValue.toLowerCase().includes('javascript:')) {
-      element.removeAttribute(attributeName);
-    }
-  }
-  /**
-   * Sanitize any nested children
-   */
-  const childElements = getElementChildren(element);
-  /* eslint-disable-next-line */
-  for (let i = 0; i < childElements.length; i++) {
-    sanitizeElement(childElements[i]);
-  }
-};
-/**
- * IE doesn't always support .children
- * so we revert to .childNodes instead
- */
-// TODO(FW-2832): type
-const getElementChildren = el => {
-  return el.children != null ? el.children : el.childNodes;
-};
-const isSanitizerEnabled = () => {
-  var _a;
-  const win = window;
-  const config = (_a = win === null || win === void 0 ? void 0 : win.Ionic) === null || _a === void 0 ? void 0 : _a.config;
-  if (config) {
-    if (config.get) {
-      return config.get('sanitizerEnabled', true);
-    } else {
-      return config.sanitizerEnabled === true || config.sanitizerEnabled === undefined;
-    }
-  }
-  return true;
-};
-const allowedAttributes = ['class', 'id', 'href', 'src', 'name', 'slot'];
-const blockedTags = ['script', 'style', 'iframe', 'meta', 'link', 'object', 'embed'];
-class IonicSafeString {
-  constructor(value) {
-    this.value = value;
-  }
-}
-
-
-/***/ }),
-
 /***/ 6710:
 /*!****************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/index.js ***!
@@ -14933,7 +14959,7 @@ class IonicSafeString {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IonicSafeString": () => (/* reexport safe */ _index_eda38007_js__WEBPACK_IMPORTED_MODULE_7__.I),
+/* harmony export */   "IonicSafeString": () => (/* reexport safe */ _index_6661fe90_js__WEBPACK_IMPORTED_MODULE_7__.I),
 /* harmony export */   "IonicSlides": () => (/* binding */ IonicSlides),
 /* harmony export */   "IonicSwiper": () => (/* binding */ IonicSwiper),
 /* harmony export */   "LIFECYCLE_DID_ENTER": () => (/* reexport safe */ _index_27c7e5c4_js__WEBPACK_IMPORTED_MODULE_8__.a),
@@ -14968,7 +14994,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_422b6e83_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./index-422b6e83.js */ 8759);
 /* harmony import */ var _ionic_global_c74e4951_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ionic-global-c74e4951.js */ 5823);
 /* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
-/* harmony import */ var _index_eda38007_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index-eda38007.js */ 3148);
+/* harmony import */ var _index_6661fe90_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index-6661fe90.js */ 1128);
 /* harmony import */ var _index_27c7e5c4_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./index-27c7e5c4.js */ 919);
 /* harmony import */ var _index_2b839939_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./index-2b839939.js */ 7351);
 /* harmony import */ var _overlays_5fc09c9a_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./overlays-5fc09c9a.js */ 7580);
@@ -15984,7 +16010,7 @@ const defineCustomElements = (win, options) => {
   if (typeof window === 'undefined') return Promise.resolve();
   return patchEsm().then(() => {
     (0,_app_globals_a49ec076_js__WEBPACK_IMPORTED_MODULE_1__.g)();
-    return (0,_index_8e692445_js__WEBPACK_IMPORTED_MODULE_0__.b)(JSON.parse("[[\"ion-menu_3\",[[33,\"ion-menu-button\",{\"color\":[513],\"disabled\":[4],\"menu\":[1],\"autoHide\":[4,\"auto-hide\"],\"type\":[1],\"visible\":[32]},[[16,\"ionMenuChange\",\"visibilityChanged\"],[16,\"ionSplitPaneVisible\",\"visibilityChanged\"]]],[33,\"ion-menu\",{\"contentId\":[513,\"content-id\"],\"menuId\":[513,\"menu-id\"],\"type\":[1025],\"disabled\":[1028],\"side\":[513],\"swipeGesture\":[4,\"swipe-gesture\"],\"maxEdgeStart\":[2,\"max-edge-start\"],\"isPaneVisible\":[32],\"isEndSide\":[32],\"isOpen\":[64],\"isActive\":[64],\"open\":[64],\"close\":[64],\"toggle\":[64],\"setOpen\":[64]},[[16,\"ionSplitPaneVisible\",\"onSplitPaneChanged\"],[2,\"click\",\"onBackdropClick\"],[0,\"keydown\",\"onKeydown\"]]],[1,\"ion-menu-toggle\",{\"menu\":[1],\"autoHide\":[4,\"auto-hide\"],\"visible\":[32]},[[16,\"ionMenuChange\",\"visibilityChanged\"],[16,\"ionSplitPaneVisible\",\"visibilityChanged\"]]]]],[\"ion-fab_3\",[[33,\"ion-fab-button\",{\"color\":[513],\"activated\":[4],\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"target\":[1],\"show\":[4],\"translucent\":[4],\"type\":[1],\"size\":[1],\"closeIcon\":[1,\"close-icon\"]}],[1,\"ion-fab\",{\"horizontal\":[1],\"vertical\":[1],\"edge\":[4],\"activated\":[1028],\"close\":[64],\"toggle\":[64]}],[1,\"ion-fab-list\",{\"activated\":[4],\"side\":[1]}]]],[\"ion-refresher_2\",[[0,\"ion-refresher-content\",{\"pullingIcon\":[1025,\"pulling-icon\"],\"pullingText\":[1,\"pulling-text\"],\"refreshingSpinner\":[1025,\"refreshing-spinner\"],\"refreshingText\":[1,\"refreshing-text\"]}],[32,\"ion-refresher\",{\"pullMin\":[2,\"pull-min\"],\"pullMax\":[2,\"pull-max\"],\"closeDuration\":[1,\"close-duration\"],\"snapbackDuration\":[1,\"snapback-duration\"],\"pullFactor\":[2,\"pull-factor\"],\"disabled\":[4],\"nativeRefresher\":[32],\"state\":[32],\"complete\":[64],\"cancel\":[64],\"getProgress\":[64]}]]],[\"ion-back-button\",[[33,\"ion-back-button\",{\"color\":[513],\"defaultHref\":[1025,\"default-href\"],\"disabled\":[516],\"icon\":[1],\"text\":[1],\"type\":[1],\"routerAnimation\":[16]}]]],[\"ion-toast\",[[33,\"ion-toast\",{\"overlayIndex\":[2,\"overlay-index\"],\"color\":[513],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"cssClass\":[1,\"css-class\"],\"duration\":[2],\"header\":[1],\"message\":[1],\"keyboardClose\":[4,\"keyboard-close\"],\"position\":[1],\"buttons\":[16],\"translucent\":[4],\"animated\":[4],\"icon\":[1],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-card_5\",[[33,\"ion-card\",{\"color\":[513],\"button\":[4],\"type\":[1],\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"target\":[1]}],[32,\"ion-card-content\"],[33,\"ion-card-header\",{\"color\":[513],\"translucent\":[4]}],[33,\"ion-card-subtitle\",{\"color\":[513]}],[33,\"ion-card-title\",{\"color\":[513]}]]],[\"ion-item-option_3\",[[33,\"ion-item-option\",{\"color\":[513],\"disabled\":[4],\"download\":[1],\"expandable\":[4],\"href\":[1],\"rel\":[1],\"target\":[1],\"type\":[1]}],[32,\"ion-item-options\",{\"side\":[1],\"fireSwipeEvent\":[64]}],[0,\"ion-item-sliding\",{\"disabled\":[4],\"state\":[32],\"getOpenAmount\":[64],\"getSlidingRatio\":[64],\"open\":[64],\"close\":[64],\"closeOpened\":[64]}]]],[\"ion-accordion_2\",[[49,\"ion-accordion\",{\"value\":[1],\"disabled\":[4],\"readonly\":[4],\"toggleIcon\":[1,\"toggle-icon\"],\"toggleIconSlot\":[1,\"toggle-icon-slot\"],\"state\":[32],\"isNext\":[32],\"isPrevious\":[32]}],[33,\"ion-accordion-group\",{\"animated\":[4],\"multiple\":[4],\"value\":[1025],\"disabled\":[4],\"readonly\":[4],\"expand\":[1],\"requestAccordionToggle\":[64],\"getAccordions\":[64]},[[0,\"keydown\",\"onKeydown\"]]]]],[\"ion-breadcrumb_2\",[[33,\"ion-breadcrumb\",{\"collapsed\":[4],\"last\":[4],\"showCollapsedIndicator\":[4,\"show-collapsed-indicator\"],\"color\":[1],\"active\":[4],\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"separator\":[4],\"target\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16]}],[33,\"ion-breadcrumbs\",{\"color\":[1],\"maxItems\":[2,\"max-items\"],\"itemsBeforeCollapse\":[2,\"items-before-collapse\"],\"itemsAfterCollapse\":[2,\"items-after-collapse\"],\"collapsed\":[32],\"activeChanged\":[32]},[[0,\"collapsedClick\",\"onCollapsedClick\"]]]]],[\"ion-infinite-scroll_2\",[[32,\"ion-infinite-scroll-content\",{\"loadingSpinner\":[1025,\"loading-spinner\"],\"loadingText\":[1,\"loading-text\"]}],[0,\"ion-infinite-scroll\",{\"threshold\":[1],\"disabled\":[4],\"position\":[1],\"isLoading\":[32],\"complete\":[64]}]]],[\"ion-reorder_2\",[[33,\"ion-reorder\",null,[[2,\"click\",\"onClick\"]]],[0,\"ion-reorder-group\",{\"disabled\":[4],\"state\":[32],\"complete\":[64]}]]],[\"ion-segment_2\",[[33,\"ion-segment-button\",{\"disabled\":[4],\"layout\":[1],\"type\":[1],\"value\":[1],\"checked\":[32],\"setFocus\":[64]}],[33,\"ion-segment\",{\"color\":[513],\"disabled\":[4],\"scrollable\":[4],\"swipeGesture\":[4,\"swipe-gesture\"],\"value\":[1025],\"selectOnFocus\":[4,\"select-on-focus\"],\"activated\":[32]},[[0,\"keydown\",\"onKeyDown\"]]]]],[\"ion-tab-bar_2\",[[33,\"ion-tab-button\",{\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"layout\":[1025],\"selected\":[1028],\"tab\":[1],\"target\":[1]},[[8,\"ionTabBarChanged\",\"onTabBarChanged\"]]],[33,\"ion-tab-bar\",{\"color\":[513],\"selectedTab\":[1,\"selected-tab\"],\"translucent\":[4],\"keyboardVisible\":[32]}]]],[\"ion-chip\",[[1,\"ion-chip\",{\"color\":[513],\"outline\":[4],\"disabled\":[4]}]]],[\"ion-datetime-button\",[[33,\"ion-datetime-button\",{\"color\":[513],\"disabled\":[516],\"datetime\":[1],\"datetimePresentation\":[32],\"dateText\":[32],\"timeText\":[32],\"datetimeActive\":[32],\"selectedButton\":[32]}]]],[\"ion-input\",[[34,\"ion-input\",{\"fireFocusEvents\":[4,\"fire-focus-events\"],\"color\":[513],\"accept\":[1],\"autocapitalize\":[1],\"autocomplete\":[1],\"autocorrect\":[1],\"autofocus\":[4],\"clearInput\":[4,\"clear-input\"],\"clearOnEdit\":[4,\"clear-on-edit\"],\"debounce\":[2],\"disabled\":[4],\"enterkeyhint\":[1],\"inputmode\":[1],\"max\":[8],\"maxlength\":[2],\"min\":[8],\"minlength\":[2],\"multiple\":[4],\"name\":[1],\"pattern\":[1],\"placeholder\":[1],\"readonly\":[4],\"required\":[4],\"spellcheck\":[4],\"step\":[1],\"size\":[2],\"type\":[1],\"value\":[1032],\"hasFocus\":[32],\"setFocus\":[64],\"setBlur\":[64],\"getInputElement\":[64]}]]],[\"ion-searchbar\",[[34,\"ion-searchbar\",{\"color\":[513],\"animated\":[4],\"autocomplete\":[1],\"autocorrect\":[1],\"cancelButtonIcon\":[1,\"cancel-button-icon\"],\"cancelButtonText\":[1,\"cancel-button-text\"],\"clearIcon\":[1,\"clear-icon\"],\"debounce\":[2],\"disabled\":[4],\"inputmode\":[1],\"enterkeyhint\":[1],\"placeholder\":[1],\"searchIcon\":[1,\"search-icon\"],\"showCancelButton\":[1,\"show-cancel-button\"],\"showClearButton\":[1,\"show-clear-button\"],\"spellcheck\":[4],\"type\":[1],\"value\":[1025],\"focused\":[32],\"noAnimate\":[32],\"setFocus\":[64],\"getInputElement\":[64]}]]],[\"ion-toggle\",[[33,\"ion-toggle\",{\"color\":[513],\"name\":[1],\"checked\":[1028],\"disabled\":[4],\"value\":[1],\"enableOnOffLabels\":[4,\"enable-on-off-labels\"],\"activated\":[32]}]]],[\"ion-avatar_3\",[[33,\"ion-avatar\"],[33,\"ion-badge\",{\"color\":[513]}],[1,\"ion-thumbnail\"]]],[\"ion-textarea\",[[34,\"ion-textarea\",{\"fireFocusEvents\":[4,\"fire-focus-events\"],\"color\":[513],\"autocapitalize\":[1],\"autofocus\":[4],\"clearOnEdit\":[1028,\"clear-on-edit\"],\"debounce\":[2],\"disabled\":[4],\"inputmode\":[1],\"enterkeyhint\":[1],\"maxlength\":[2],\"minlength\":[2],\"name\":[1],\"placeholder\":[1],\"readonly\":[4],\"required\":[4],\"spellcheck\":[4],\"cols\":[2],\"rows\":[2],\"wrap\":[1],\"autoGrow\":[516,\"auto-grow\"],\"value\":[1025],\"hasFocus\":[32],\"setFocus\":[64],\"setBlur\":[64],\"getInputElement\":[64]}]]],[\"ion-backdrop\",[[33,\"ion-backdrop\",{\"visible\":[4],\"tappable\":[4],\"stopPropagation\":[4,\"stop-propagation\"]},[[2,\"click\",\"onMouseDown\"]]]]],[\"ion-loading\",[[34,\"ion-loading\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"message\":[1],\"cssClass\":[1,\"css-class\"],\"duration\":[2],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"showBackdrop\":[4,\"show-backdrop\"],\"spinner\":[1025],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-modal\",[[33,\"ion-modal\",{\"hasController\":[4,\"has-controller\"],\"overlayIndex\":[2,\"overlay-index\"],\"delegate\":[16],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"breakpoints\":[16],\"initialBreakpoint\":[2,\"initial-breakpoint\"],\"backdropBreakpoint\":[2,\"backdrop-breakpoint\"],\"handle\":[4],\"handleBehavior\":[1,\"handle-behavior\"],\"component\":[1],\"componentProps\":[16],\"cssClass\":[1,\"css-class\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"showBackdrop\":[4,\"show-backdrop\"],\"animated\":[4],\"swipeToClose\":[4,\"swipe-to-close\"],\"presentingElement\":[16],\"htmlAttributes\":[16],\"isOpen\":[4,\"is-open\"],\"trigger\":[1],\"keepContentsMounted\":[4,\"keep-contents-mounted\"],\"canDismiss\":[4,\"can-dismiss\"],\"presented\":[32],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64],\"setCurrentBreakpoint\":[64],\"getCurrentBreakpoint\":[64]}]]],[\"ion-route_4\",[[0,\"ion-route\",{\"url\":[1],\"component\":[1],\"componentProps\":[16],\"beforeLeave\":[16],\"beforeEnter\":[16]}],[0,\"ion-route-redirect\",{\"from\":[1],\"to\":[1]}],[0,\"ion-router\",{\"root\":[1],\"useHash\":[4,\"use-hash\"],\"canTransition\":[64],\"push\":[64],\"back\":[64],\"printDebug\":[64],\"navChanged\":[64]},[[8,\"popstate\",\"onPopState\"],[4,\"ionBackButton\",\"onBackButton\"]]],[1,\"ion-router-link\",{\"color\":[513],\"href\":[1],\"rel\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"target\":[1]}]]],[\"ion-col_3\",[[1,\"ion-col\",{\"offset\":[1],\"offsetXs\":[1,\"offset-xs\"],\"offsetSm\":[1,\"offset-sm\"],\"offsetMd\":[1,\"offset-md\"],\"offsetLg\":[1,\"offset-lg\"],\"offsetXl\":[1,\"offset-xl\"],\"pull\":[1],\"pullXs\":[1,\"pull-xs\"],\"pullSm\":[1,\"pull-sm\"],\"pullMd\":[1,\"pull-md\"],\"pullLg\":[1,\"pull-lg\"],\"pullXl\":[1,\"pull-xl\"],\"push\":[1],\"pushXs\":[1,\"push-xs\"],\"pushSm\":[1,\"push-sm\"],\"pushMd\":[1,\"push-md\"],\"pushLg\":[1,\"push-lg\"],\"pushXl\":[1,\"push-xl\"],\"size\":[1],\"sizeXs\":[1,\"size-xs\"],\"sizeSm\":[1,\"size-sm\"],\"sizeMd\":[1,\"size-md\"],\"sizeLg\":[1,\"size-lg\"],\"sizeXl\":[1,\"size-xl\"]},[[9,\"resize\",\"onResize\"]]],[1,\"ion-grid\",{\"fixed\":[4]}],[1,\"ion-row\"]]],[\"ion-nav_2\",[[1,\"ion-nav\",{\"delegate\":[16],\"swipeGesture\":[1028,\"swipe-gesture\"],\"animated\":[4],\"animation\":[16],\"rootParams\":[16],\"root\":[1],\"push\":[64],\"insert\":[64],\"insertPages\":[64],\"pop\":[64],\"popTo\":[64],\"popToRoot\":[64],\"removeIndex\":[64],\"setRoot\":[64],\"setPages\":[64],\"setRouteId\":[64],\"getRouteId\":[64],\"getActive\":[64],\"getByIndex\":[64],\"canGoBack\":[64],\"getPrevious\":[64]}],[0,\"ion-nav-link\",{\"component\":[1],\"componentProps\":[16],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16]}]]],[\"ion-slide_2\",[[0,\"ion-slide\"],[36,\"ion-slides\",{\"options\":[8],\"pager\":[4],\"scrollbar\":[4],\"update\":[64],\"updateAutoHeight\":[64],\"slideTo\":[64],\"slideNext\":[64],\"slidePrev\":[64],\"getActiveIndex\":[64],\"getPreviousIndex\":[64],\"length\":[64],\"isEnd\":[64],\"isBeginning\":[64],\"startAutoplay\":[64],\"stopAutoplay\":[64],\"lockSwipeToNext\":[64],\"lockSwipeToPrev\":[64],\"lockSwipes\":[64],\"getSwiper\":[64]}]]],[\"ion-tab_2\",[[1,\"ion-tab\",{\"active\":[1028],\"delegate\":[16],\"tab\":[1],\"component\":[1],\"setActive\":[64]}],[1,\"ion-tabs\",{\"useRouter\":[1028,\"use-router\"],\"selectedTab\":[32],\"select\":[64],\"getTab\":[64],\"getSelected\":[64],\"setRouteId\":[64],\"getRouteId\":[64]}]]],[\"ion-img\",[[1,\"ion-img\",{\"alt\":[1],\"src\":[1],\"loadSrc\":[32],\"loadError\":[32]}]]],[\"ion-progress-bar\",[[33,\"ion-progress-bar\",{\"type\":[1],\"reversed\":[4],\"value\":[2],\"buffer\":[2],\"color\":[513]}]]],[\"ion-range\",[[33,\"ion-range\",{\"color\":[513],\"debounce\":[2],\"name\":[1],\"dualKnobs\":[4,\"dual-knobs\"],\"min\":[2],\"max\":[2],\"pin\":[4],\"pinFormatter\":[16],\"snaps\":[4],\"step\":[2],\"ticks\":[4],\"activeBarStart\":[1026,\"active-bar-start\"],\"disabled\":[4],\"value\":[1026],\"ratioA\":[32],\"ratioB\":[32],\"pressedKnob\":[32]}]]],[\"ion-split-pane\",[[33,\"ion-split-pane\",{\"contentId\":[513,\"content-id\"],\"disabled\":[4],\"when\":[8],\"visible\":[32]}]]],[\"ion-text\",[[1,\"ion-text\",{\"color\":[513]}]]],[\"ion-virtual-scroll\",[[0,\"ion-virtual-scroll\",{\"approxItemHeight\":[2,\"approx-item-height\"],\"approxHeaderHeight\":[2,\"approx-header-height\"],\"approxFooterHeight\":[2,\"approx-footer-height\"],\"headerFn\":[16],\"footerFn\":[16],\"items\":[16],\"itemHeight\":[16],\"headerHeight\":[16],\"footerHeight\":[16],\"renderItem\":[16],\"renderHeader\":[16],\"renderFooter\":[16],\"nodeRender\":[16],\"domRender\":[16],\"totalHeight\":[32],\"positionForItem\":[64],\"checkRange\":[64],\"checkEnd\":[64]},[[9,\"resize\",\"onResize\"]]]]],[\"ion-picker-column-internal\",[[33,\"ion-picker-column-internal\",{\"items\":[16],\"value\":[1032],\"color\":[513],\"numericInput\":[4,\"numeric-input\"],\"isActive\":[32],\"scrollActiveItemIntoView\":[64],\"setValue\":[64]}]]],[\"ion-picker-internal\",[[33,\"ion-picker-internal\",{\"exitInputMode\":[64]},[[1,\"touchstart\",\"preventTouchStartPropagation\"]]]]],[\"ion-radio_2\",[[33,\"ion-radio\",{\"color\":[513],\"name\":[1],\"disabled\":[4],\"value\":[8],\"checked\":[32],\"buttonTabindex\":[32],\"setFocus\":[64],\"setButtonTabindex\":[64]}],[0,\"ion-radio-group\",{\"allowEmptySelection\":[4,\"allow-empty-selection\"],\"name\":[1],\"value\":[1032]},[[4,\"keydown\",\"onKeydown\"]]]]],[\"ion-ripple-effect\",[[1,\"ion-ripple-effect\",{\"type\":[1],\"addRipple\":[64]}]]],[\"ion-button_2\",[[33,\"ion-button\",{\"color\":[513],\"buttonType\":[1025,\"button-type\"],\"disabled\":[516],\"expand\":[513],\"fill\":[1537],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"download\":[1],\"href\":[1],\"rel\":[1],\"shape\":[513],\"size\":[513],\"strong\":[4],\"target\":[1],\"type\":[1],\"form\":[1]}],[1,\"ion-icon\",{\"mode\":[1025],\"color\":[1],\"ios\":[1],\"md\":[1],\"flipRtl\":[4,\"flip-rtl\"],\"name\":[513],\"src\":[1],\"icon\":[8],\"size\":[1],\"lazy\":[4],\"sanitize\":[4],\"svgContent\":[32],\"isVisible\":[32],\"ariaLabel\":[32]}]]],[\"ion-datetime_3\",[[33,\"ion-datetime\",{\"color\":[1],\"name\":[1],\"disabled\":[4],\"readonly\":[4],\"isDateEnabled\":[16],\"min\":[1025],\"max\":[1025],\"presentation\":[1],\"cancelText\":[1,\"cancel-text\"],\"doneText\":[1,\"done-text\"],\"clearText\":[1,\"clear-text\"],\"yearValues\":[8,\"year-values\"],\"monthValues\":[8,\"month-values\"],\"dayValues\":[8,\"day-values\"],\"hourValues\":[8,\"hour-values\"],\"minuteValues\":[8,\"minute-values\"],\"locale\":[1],\"firstDayOfWeek\":[2,\"first-day-of-week\"],\"titleSelectedDatesFormatter\":[16],\"multiple\":[4],\"value\":[1025],\"showDefaultTitle\":[4,\"show-default-title\"],\"showDefaultButtons\":[4,\"show-default-buttons\"],\"showClearButton\":[4,\"show-clear-button\"],\"showDefaultTimeLabel\":[4,\"show-default-time-label\"],\"hourCycle\":[1,\"hour-cycle\"],\"size\":[1],\"preferWheel\":[4,\"prefer-wheel\"],\"showMonthAndYear\":[32],\"activeParts\":[32],\"workingParts\":[32],\"isPresented\":[32],\"isTimePopoverOpen\":[32],\"confirm\":[64],\"reset\":[64],\"cancel\":[64]}],[34,\"ion-picker\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"buttons\":[16],\"columns\":[16],\"cssClass\":[1,\"css-class\"],\"duration\":[2],\"showBackdrop\":[4,\"show-backdrop\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"animated\":[4],\"htmlAttributes\":[16],\"presented\":[32],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64],\"getColumn\":[64]}],[32,\"ion-picker-column\",{\"col\":[16]}]]],[\"ion-action-sheet\",[[34,\"ion-action-sheet\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"buttons\":[16],\"cssClass\":[1,\"css-class\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"header\":[1],\"subHeader\":[1,\"sub-header\"],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-alert\",[[34,\"ion-alert\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"cssClass\":[1,\"css-class\"],\"header\":[1],\"subHeader\":[1,\"sub-header\"],\"message\":[1],\"buttons\":[16],\"inputs\":[1040],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]},[[4,\"keydown\",\"onKeydown\"]]]]],[\"ion-popover\",[[33,\"ion-popover\",{\"hasController\":[4,\"has-controller\"],\"delegate\":[16],\"overlayIndex\":[2,\"overlay-index\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"component\":[1],\"componentProps\":[16],\"keyboardClose\":[4,\"keyboard-close\"],\"cssClass\":[1,\"css-class\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"event\":[8],\"showBackdrop\":[4,\"show-backdrop\"],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"triggerAction\":[1,\"trigger-action\"],\"trigger\":[1],\"size\":[1],\"dismissOnSelect\":[4,\"dismiss-on-select\"],\"reference\":[1],\"side\":[1],\"alignment\":[1025],\"arrow\":[4],\"isOpen\":[4,\"is-open\"],\"keyboardEvents\":[4,\"keyboard-events\"],\"keepContentsMounted\":[4,\"keep-contents-mounted\"],\"presented\":[32],\"presentFromTrigger\":[64],\"present\":[64],\"dismiss\":[64],\"getParentPopover\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-checkbox\",[[33,\"ion-checkbox\",{\"color\":[513],\"name\":[1],\"checked\":[1028],\"indeterminate\":[1028],\"disabled\":[4],\"value\":[8]}]]],[\"ion-select_3\",[[33,\"ion-select\",{\"disabled\":[4],\"cancelText\":[1,\"cancel-text\"],\"okText\":[1,\"ok-text\"],\"placeholder\":[1],\"name\":[1],\"selectedText\":[1,\"selected-text\"],\"multiple\":[4],\"interface\":[1],\"interfaceOptions\":[8,\"interface-options\"],\"compareWith\":[1,\"compare-with\"],\"value\":[1032],\"isExpanded\":[32],\"open\":[64]}],[1,\"ion-select-option\",{\"disabled\":[4],\"value\":[8]}],[34,\"ion-select-popover\",{\"header\":[1],\"subHeader\":[1,\"sub-header\"],\"message\":[1],\"multiple\":[4],\"options\":[16]},[[0,\"ionChange\",\"onSelect\"]]]]],[\"ion-app_8\",[[0,\"ion-app\",{\"setFocus\":[64]}],[1,\"ion-content\",{\"color\":[513],\"fullscreen\":[4],\"forceOverscroll\":[1028,\"force-overscroll\"],\"scrollX\":[4,\"scroll-x\"],\"scrollY\":[4,\"scroll-y\"],\"scrollEvents\":[4,\"scroll-events\"],\"getScrollElement\":[64],\"getBackgroundElement\":[64],\"scrollToTop\":[64],\"scrollToBottom\":[64],\"scrollByPoint\":[64],\"scrollToPoint\":[64]},[[8,\"appload\",\"onAppLoad\"]]],[36,\"ion-footer\",{\"collapse\":[1],\"translucent\":[4],\"keyboardVisible\":[32]}],[36,\"ion-header\",{\"collapse\":[1],\"translucent\":[4]}],[1,\"ion-router-outlet\",{\"mode\":[1025],\"delegate\":[16],\"animated\":[4],\"animation\":[16],\"swipeHandler\":[16],\"commit\":[64],\"setRouteId\":[64],\"getRouteId\":[64]}],[33,\"ion-title\",{\"color\":[513],\"size\":[1]}],[33,\"ion-toolbar\",{\"color\":[513]},[[0,\"ionStyle\",\"childrenStyle\"]]],[34,\"ion-buttons\",{\"collapse\":[4]}]]],[\"ion-spinner\",[[1,\"ion-spinner\",{\"color\":[513],\"duration\":[2],\"name\":[1],\"paused\":[4]}]]],[\"ion-item_8\",[[33,\"ion-item-divider\",{\"color\":[513],\"sticky\":[4]}],[32,\"ion-item-group\"],[1,\"ion-skeleton-text\",{\"animated\":[4]}],[32,\"ion-list\",{\"lines\":[1],\"inset\":[4],\"closeSlidingItems\":[64]}],[33,\"ion-list-header\",{\"color\":[513],\"lines\":[1]}],[49,\"ion-item\",{\"color\":[513],\"button\":[4],\"detail\":[4],\"detailIcon\":[1,\"detail-icon\"],\"disabled\":[4],\"download\":[1],\"fill\":[1],\"shape\":[1],\"href\":[1],\"rel\":[1],\"lines\":[1],\"counter\":[4],\"routerAnimation\":[16],\"routerDirection\":[1,\"router-direction\"],\"target\":[1],\"type\":[1],\"counterFormatter\":[16],\"multipleInputs\":[32],\"focusable\":[32],\"counterString\":[32]},[[0,\"ionChange\",\"handleIonChange\"],[0,\"ionColor\",\"labelColorChanged\"],[0,\"ionStyle\",\"itemStyle\"]]],[34,\"ion-label\",{\"color\":[513],\"position\":[1],\"noAnimate\":[32]}],[33,\"ion-note\",{\"color\":[513]}]]]]"), options);
+    return (0,_index_8e692445_js__WEBPACK_IMPORTED_MODULE_0__.b)(JSON.parse("[[\"ion-menu_3\",[[33,\"ion-menu-button\",{\"color\":[513],\"disabled\":[4],\"menu\":[1],\"autoHide\":[4,\"auto-hide\"],\"type\":[1],\"visible\":[32]},[[16,\"ionMenuChange\",\"visibilityChanged\"],[16,\"ionSplitPaneVisible\",\"visibilityChanged\"]]],[33,\"ion-menu\",{\"contentId\":[513,\"content-id\"],\"menuId\":[513,\"menu-id\"],\"type\":[1025],\"disabled\":[1028],\"side\":[513],\"swipeGesture\":[4,\"swipe-gesture\"],\"maxEdgeStart\":[2,\"max-edge-start\"],\"isPaneVisible\":[32],\"isEndSide\":[32],\"isOpen\":[64],\"isActive\":[64],\"open\":[64],\"close\":[64],\"toggle\":[64],\"setOpen\":[64]},[[16,\"ionSplitPaneVisible\",\"onSplitPaneChanged\"],[2,\"click\",\"onBackdropClick\"],[0,\"keydown\",\"onKeydown\"]]],[1,\"ion-menu-toggle\",{\"menu\":[1],\"autoHide\":[4,\"auto-hide\"],\"visible\":[32]},[[16,\"ionMenuChange\",\"visibilityChanged\"],[16,\"ionSplitPaneVisible\",\"visibilityChanged\"]]]]],[\"ion-fab_3\",[[33,\"ion-fab-button\",{\"color\":[513],\"activated\":[4],\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"target\":[1],\"show\":[4],\"translucent\":[4],\"type\":[1],\"size\":[1],\"closeIcon\":[1,\"close-icon\"]}],[1,\"ion-fab\",{\"horizontal\":[1],\"vertical\":[1],\"edge\":[4],\"activated\":[1028],\"close\":[64],\"toggle\":[64]}],[1,\"ion-fab-list\",{\"activated\":[4],\"side\":[1]}]]],[\"ion-refresher_2\",[[0,\"ion-refresher-content\",{\"pullingIcon\":[1025,\"pulling-icon\"],\"pullingText\":[1,\"pulling-text\"],\"refreshingSpinner\":[1025,\"refreshing-spinner\"],\"refreshingText\":[1,\"refreshing-text\"]}],[32,\"ion-refresher\",{\"pullMin\":[2,\"pull-min\"],\"pullMax\":[2,\"pull-max\"],\"closeDuration\":[1,\"close-duration\"],\"snapbackDuration\":[1,\"snapback-duration\"],\"pullFactor\":[2,\"pull-factor\"],\"disabled\":[4],\"nativeRefresher\":[32],\"state\":[32],\"complete\":[64],\"cancel\":[64],\"getProgress\":[64]}]]],[\"ion-back-button\",[[33,\"ion-back-button\",{\"color\":[513],\"defaultHref\":[1025,\"default-href\"],\"disabled\":[516],\"icon\":[1],\"text\":[1],\"type\":[1],\"routerAnimation\":[16]}]]],[\"ion-toast\",[[33,\"ion-toast\",{\"overlayIndex\":[2,\"overlay-index\"],\"color\":[513],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"cssClass\":[1,\"css-class\"],\"duration\":[2],\"header\":[1],\"message\":[1],\"keyboardClose\":[4,\"keyboard-close\"],\"position\":[1],\"buttons\":[16],\"translucent\":[4],\"animated\":[4],\"icon\":[1],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-card_5\",[[33,\"ion-card\",{\"color\":[513],\"button\":[4],\"type\":[1],\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"target\":[1]}],[32,\"ion-card-content\"],[33,\"ion-card-header\",{\"color\":[513],\"translucent\":[4]}],[33,\"ion-card-subtitle\",{\"color\":[513]}],[33,\"ion-card-title\",{\"color\":[513]}]]],[\"ion-item-option_3\",[[33,\"ion-item-option\",{\"color\":[513],\"disabled\":[4],\"download\":[1],\"expandable\":[4],\"href\":[1],\"rel\":[1],\"target\":[1],\"type\":[1]}],[32,\"ion-item-options\",{\"side\":[1],\"fireSwipeEvent\":[64]}],[0,\"ion-item-sliding\",{\"disabled\":[4],\"state\":[32],\"getOpenAmount\":[64],\"getSlidingRatio\":[64],\"open\":[64],\"close\":[64],\"closeOpened\":[64]}]]],[\"ion-accordion_2\",[[49,\"ion-accordion\",{\"value\":[1],\"disabled\":[4],\"readonly\":[4],\"toggleIcon\":[1,\"toggle-icon\"],\"toggleIconSlot\":[1,\"toggle-icon-slot\"],\"state\":[32],\"isNext\":[32],\"isPrevious\":[32]}],[33,\"ion-accordion-group\",{\"animated\":[4],\"multiple\":[4],\"value\":[1025],\"disabled\":[4],\"readonly\":[4],\"expand\":[1],\"requestAccordionToggle\":[64],\"getAccordions\":[64]},[[0,\"keydown\",\"onKeydown\"]]]]],[\"ion-breadcrumb_2\",[[33,\"ion-breadcrumb\",{\"collapsed\":[4],\"last\":[4],\"showCollapsedIndicator\":[4,\"show-collapsed-indicator\"],\"color\":[1],\"active\":[4],\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"separator\":[4],\"target\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16]}],[33,\"ion-breadcrumbs\",{\"color\":[1],\"maxItems\":[2,\"max-items\"],\"itemsBeforeCollapse\":[2,\"items-before-collapse\"],\"itemsAfterCollapse\":[2,\"items-after-collapse\"],\"collapsed\":[32],\"activeChanged\":[32]},[[0,\"collapsedClick\",\"onCollapsedClick\"]]]]],[\"ion-infinite-scroll_2\",[[32,\"ion-infinite-scroll-content\",{\"loadingSpinner\":[1025,\"loading-spinner\"],\"loadingText\":[1,\"loading-text\"]}],[0,\"ion-infinite-scroll\",{\"threshold\":[1],\"disabled\":[4],\"position\":[1],\"isLoading\":[32],\"complete\":[64]}]]],[\"ion-reorder_2\",[[33,\"ion-reorder\",null,[[2,\"click\",\"onClick\"]]],[0,\"ion-reorder-group\",{\"disabled\":[4],\"state\":[32],\"complete\":[64]}]]],[\"ion-segment_2\",[[33,\"ion-segment-button\",{\"disabled\":[4],\"layout\":[1],\"type\":[1],\"value\":[1],\"checked\":[32],\"setFocus\":[64]}],[33,\"ion-segment\",{\"color\":[513],\"disabled\":[4],\"scrollable\":[4],\"swipeGesture\":[4,\"swipe-gesture\"],\"value\":[1025],\"selectOnFocus\":[4,\"select-on-focus\"],\"activated\":[32]},[[0,\"keydown\",\"onKeyDown\"]]]]],[\"ion-tab-bar_2\",[[33,\"ion-tab-button\",{\"disabled\":[4],\"download\":[1],\"href\":[1],\"rel\":[1],\"layout\":[1025],\"selected\":[1028],\"tab\":[1],\"target\":[1]},[[8,\"ionTabBarChanged\",\"onTabBarChanged\"]]],[33,\"ion-tab-bar\",{\"color\":[513],\"selectedTab\":[1,\"selected-tab\"],\"translucent\":[4],\"keyboardVisible\":[32]}]]],[\"ion-chip\",[[1,\"ion-chip\",{\"color\":[513],\"outline\":[4],\"disabled\":[4]}]]],[\"ion-datetime-button\",[[33,\"ion-datetime-button\",{\"color\":[513],\"disabled\":[516],\"datetime\":[1],\"datetimePresentation\":[32],\"dateText\":[32],\"timeText\":[32],\"datetimeActive\":[32],\"selectedButton\":[32]}]]],[\"ion-input\",[[34,\"ion-input\",{\"fireFocusEvents\":[4,\"fire-focus-events\"],\"color\":[513],\"accept\":[1],\"autocapitalize\":[1],\"autocomplete\":[1],\"autocorrect\":[1],\"autofocus\":[4],\"clearInput\":[4,\"clear-input\"],\"clearOnEdit\":[4,\"clear-on-edit\"],\"debounce\":[2],\"disabled\":[4],\"enterkeyhint\":[1],\"inputmode\":[1],\"max\":[8],\"maxlength\":[2],\"min\":[8],\"minlength\":[2],\"multiple\":[4],\"name\":[1],\"pattern\":[1],\"placeholder\":[1],\"readonly\":[4],\"required\":[4],\"spellcheck\":[4],\"step\":[1],\"size\":[2],\"type\":[1],\"value\":[1032],\"hasFocus\":[32],\"setFocus\":[64],\"setBlur\":[64],\"getInputElement\":[64]}]]],[\"ion-searchbar\",[[34,\"ion-searchbar\",{\"color\":[513],\"animated\":[4],\"autocomplete\":[1],\"autocorrect\":[1],\"cancelButtonIcon\":[1,\"cancel-button-icon\"],\"cancelButtonText\":[1,\"cancel-button-text\"],\"clearIcon\":[1,\"clear-icon\"],\"debounce\":[2],\"disabled\":[4],\"inputmode\":[1],\"enterkeyhint\":[1],\"placeholder\":[1],\"searchIcon\":[1,\"search-icon\"],\"showCancelButton\":[1,\"show-cancel-button\"],\"showClearButton\":[1,\"show-clear-button\"],\"spellcheck\":[4],\"type\":[1],\"value\":[1025],\"focused\":[32],\"noAnimate\":[32],\"setFocus\":[64],\"getInputElement\":[64]}]]],[\"ion-toggle\",[[33,\"ion-toggle\",{\"color\":[513],\"name\":[1],\"checked\":[1028],\"disabled\":[4],\"value\":[1],\"enableOnOffLabels\":[4,\"enable-on-off-labels\"],\"activated\":[32]}]]],[\"ion-avatar_3\",[[33,\"ion-avatar\"],[33,\"ion-badge\",{\"color\":[513]}],[1,\"ion-thumbnail\"]]],[\"ion-textarea\",[[34,\"ion-textarea\",{\"fireFocusEvents\":[4,\"fire-focus-events\"],\"color\":[513],\"autocapitalize\":[1],\"autofocus\":[4],\"clearOnEdit\":[1028,\"clear-on-edit\"],\"debounce\":[2],\"disabled\":[4],\"inputmode\":[1],\"enterkeyhint\":[1],\"maxlength\":[2],\"minlength\":[2],\"name\":[1],\"placeholder\":[1],\"readonly\":[4],\"required\":[4],\"spellcheck\":[4],\"cols\":[2],\"rows\":[2],\"wrap\":[1],\"autoGrow\":[516,\"auto-grow\"],\"value\":[1025],\"hasFocus\":[32],\"setFocus\":[64],\"setBlur\":[64],\"getInputElement\":[64]}]]],[\"ion-backdrop\",[[33,\"ion-backdrop\",{\"visible\":[4],\"tappable\":[4],\"stopPropagation\":[4,\"stop-propagation\"]},[[2,\"click\",\"onMouseDown\"]]]]],[\"ion-loading\",[[34,\"ion-loading\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"message\":[1],\"cssClass\":[1,\"css-class\"],\"duration\":[2],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"showBackdrop\":[4,\"show-backdrop\"],\"spinner\":[1025],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-modal\",[[33,\"ion-modal\",{\"hasController\":[4,\"has-controller\"],\"overlayIndex\":[2,\"overlay-index\"],\"delegate\":[16],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"breakpoints\":[16],\"initialBreakpoint\":[2,\"initial-breakpoint\"],\"backdropBreakpoint\":[2,\"backdrop-breakpoint\"],\"handle\":[4],\"handleBehavior\":[1,\"handle-behavior\"],\"component\":[1],\"componentProps\":[16],\"cssClass\":[1,\"css-class\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"showBackdrop\":[4,\"show-backdrop\"],\"animated\":[4],\"swipeToClose\":[4,\"swipe-to-close\"],\"presentingElement\":[16],\"htmlAttributes\":[16],\"isOpen\":[4,\"is-open\"],\"trigger\":[1],\"keepContentsMounted\":[4,\"keep-contents-mounted\"],\"canDismiss\":[4,\"can-dismiss\"],\"presented\":[32],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64],\"setCurrentBreakpoint\":[64],\"getCurrentBreakpoint\":[64]}]]],[\"ion-route_4\",[[0,\"ion-route\",{\"url\":[1],\"component\":[1],\"componentProps\":[16],\"beforeLeave\":[16],\"beforeEnter\":[16]}],[0,\"ion-route-redirect\",{\"from\":[1],\"to\":[1]}],[0,\"ion-router\",{\"root\":[1],\"useHash\":[4,\"use-hash\"],\"canTransition\":[64],\"push\":[64],\"back\":[64],\"printDebug\":[64],\"navChanged\":[64]},[[8,\"popstate\",\"onPopState\"],[4,\"ionBackButton\",\"onBackButton\"]]],[1,\"ion-router-link\",{\"color\":[513],\"href\":[1],\"rel\":[1],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"target\":[1]}]]],[\"ion-col_3\",[[1,\"ion-col\",{\"offset\":[1],\"offsetXs\":[1,\"offset-xs\"],\"offsetSm\":[1,\"offset-sm\"],\"offsetMd\":[1,\"offset-md\"],\"offsetLg\":[1,\"offset-lg\"],\"offsetXl\":[1,\"offset-xl\"],\"pull\":[1],\"pullXs\":[1,\"pull-xs\"],\"pullSm\":[1,\"pull-sm\"],\"pullMd\":[1,\"pull-md\"],\"pullLg\":[1,\"pull-lg\"],\"pullXl\":[1,\"pull-xl\"],\"push\":[1],\"pushXs\":[1,\"push-xs\"],\"pushSm\":[1,\"push-sm\"],\"pushMd\":[1,\"push-md\"],\"pushLg\":[1,\"push-lg\"],\"pushXl\":[1,\"push-xl\"],\"size\":[1],\"sizeXs\":[1,\"size-xs\"],\"sizeSm\":[1,\"size-sm\"],\"sizeMd\":[1,\"size-md\"],\"sizeLg\":[1,\"size-lg\"],\"sizeXl\":[1,\"size-xl\"]},[[9,\"resize\",\"onResize\"]]],[1,\"ion-grid\",{\"fixed\":[4]}],[1,\"ion-row\"]]],[\"ion-nav_2\",[[1,\"ion-nav\",{\"delegate\":[16],\"swipeGesture\":[1028,\"swipe-gesture\"],\"animated\":[4],\"animation\":[16],\"rootParams\":[16],\"root\":[1],\"push\":[64],\"insert\":[64],\"insertPages\":[64],\"pop\":[64],\"popTo\":[64],\"popToRoot\":[64],\"removeIndex\":[64],\"setRoot\":[64],\"setPages\":[64],\"setRouteId\":[64],\"getRouteId\":[64],\"getActive\":[64],\"getByIndex\":[64],\"canGoBack\":[64],\"getPrevious\":[64]}],[0,\"ion-nav-link\",{\"component\":[1],\"componentProps\":[16],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16]}]]],[\"ion-slide_2\",[[0,\"ion-slide\"],[36,\"ion-slides\",{\"options\":[8],\"pager\":[4],\"scrollbar\":[4],\"update\":[64],\"updateAutoHeight\":[64],\"slideTo\":[64],\"slideNext\":[64],\"slidePrev\":[64],\"getActiveIndex\":[64],\"getPreviousIndex\":[64],\"length\":[64],\"isEnd\":[64],\"isBeginning\":[64],\"startAutoplay\":[64],\"stopAutoplay\":[64],\"lockSwipeToNext\":[64],\"lockSwipeToPrev\":[64],\"lockSwipes\":[64],\"getSwiper\":[64]}]]],[\"ion-tab_2\",[[1,\"ion-tab\",{\"active\":[1028],\"delegate\":[16],\"tab\":[1],\"component\":[1],\"setActive\":[64]}],[1,\"ion-tabs\",{\"useRouter\":[1028,\"use-router\"],\"selectedTab\":[32],\"select\":[64],\"getTab\":[64],\"getSelected\":[64],\"setRouteId\":[64],\"getRouteId\":[64]}]]],[\"ion-img\",[[1,\"ion-img\",{\"alt\":[1],\"src\":[1],\"loadSrc\":[32],\"loadError\":[32]}]]],[\"ion-progress-bar\",[[33,\"ion-progress-bar\",{\"type\":[1],\"reversed\":[4],\"value\":[2],\"buffer\":[2],\"color\":[513]}]]],[\"ion-range\",[[33,\"ion-range\",{\"color\":[513],\"debounce\":[2],\"name\":[1],\"dualKnobs\":[4,\"dual-knobs\"],\"min\":[2],\"max\":[2],\"pin\":[4],\"pinFormatter\":[16],\"snaps\":[4],\"step\":[2],\"ticks\":[4],\"activeBarStart\":[1026,\"active-bar-start\"],\"disabled\":[4],\"value\":[1026],\"ratioA\":[32],\"ratioB\":[32],\"pressedKnob\":[32]}]]],[\"ion-split-pane\",[[33,\"ion-split-pane\",{\"contentId\":[513,\"content-id\"],\"disabled\":[4],\"when\":[8],\"visible\":[32]}]]],[\"ion-text\",[[1,\"ion-text\",{\"color\":[513]}]]],[\"ion-virtual-scroll\",[[0,\"ion-virtual-scroll\",{\"approxItemHeight\":[2,\"approx-item-height\"],\"approxHeaderHeight\":[2,\"approx-header-height\"],\"approxFooterHeight\":[2,\"approx-footer-height\"],\"headerFn\":[16],\"footerFn\":[16],\"items\":[16],\"itemHeight\":[16],\"headerHeight\":[16],\"footerHeight\":[16],\"renderItem\":[16],\"renderHeader\":[16],\"renderFooter\":[16],\"nodeRender\":[16],\"domRender\":[16],\"totalHeight\":[32],\"positionForItem\":[64],\"checkRange\":[64],\"checkEnd\":[64]},[[9,\"resize\",\"onResize\"]]]]],[\"ion-picker-column-internal\",[[33,\"ion-picker-column-internal\",{\"items\":[16],\"value\":[1032],\"color\":[513],\"numericInput\":[4,\"numeric-input\"],\"isActive\":[32],\"scrollActiveItemIntoView\":[64],\"setValue\":[64]}]]],[\"ion-picker-internal\",[[33,\"ion-picker-internal\",{\"exitInputMode\":[64]},[[1,\"touchstart\",\"preventTouchStartPropagation\"]]]]],[\"ion-radio_2\",[[33,\"ion-radio\",{\"color\":[513],\"name\":[1],\"disabled\":[4],\"value\":[8],\"checked\":[32],\"buttonTabindex\":[32],\"setFocus\":[64],\"setButtonTabindex\":[64]}],[0,\"ion-radio-group\",{\"allowEmptySelection\":[4,\"allow-empty-selection\"],\"name\":[1],\"value\":[1032]},[[4,\"keydown\",\"onKeydown\"]]]]],[\"ion-ripple-effect\",[[1,\"ion-ripple-effect\",{\"type\":[1],\"addRipple\":[64]}]]],[\"ion-button_2\",[[33,\"ion-button\",{\"color\":[513],\"buttonType\":[1025,\"button-type\"],\"disabled\":[516],\"expand\":[513],\"fill\":[1537],\"routerDirection\":[1,\"router-direction\"],\"routerAnimation\":[16],\"download\":[1],\"href\":[1],\"rel\":[1],\"shape\":[513],\"size\":[513],\"strong\":[4],\"target\":[1],\"type\":[1],\"form\":[1]}],[1,\"ion-icon\",{\"mode\":[1025],\"color\":[1],\"ios\":[1],\"md\":[1],\"flipRtl\":[4,\"flip-rtl\"],\"name\":[513],\"src\":[1],\"icon\":[8],\"size\":[1],\"lazy\":[4],\"sanitize\":[4],\"svgContent\":[32],\"isVisible\":[32],\"ariaLabel\":[32]}]]],[\"ion-datetime_3\",[[33,\"ion-datetime\",{\"color\":[1],\"name\":[1],\"disabled\":[4],\"readonly\":[4],\"isDateEnabled\":[16],\"min\":[1025],\"max\":[1025],\"presentation\":[1],\"cancelText\":[1,\"cancel-text\"],\"doneText\":[1,\"done-text\"],\"clearText\":[1,\"clear-text\"],\"yearValues\":[8,\"year-values\"],\"monthValues\":[8,\"month-values\"],\"dayValues\":[8,\"day-values\"],\"hourValues\":[8,\"hour-values\"],\"minuteValues\":[8,\"minute-values\"],\"locale\":[1],\"firstDayOfWeek\":[2,\"first-day-of-week\"],\"titleSelectedDatesFormatter\":[16],\"multiple\":[4],\"value\":[1025],\"showDefaultTitle\":[4,\"show-default-title\"],\"showDefaultButtons\":[4,\"show-default-buttons\"],\"showClearButton\":[4,\"show-clear-button\"],\"showDefaultTimeLabel\":[4,\"show-default-time-label\"],\"hourCycle\":[1,\"hour-cycle\"],\"size\":[1],\"preferWheel\":[4,\"prefer-wheel\"],\"showMonthAndYear\":[32],\"activeParts\":[32],\"workingParts\":[32],\"isPresented\":[32],\"isTimePopoverOpen\":[32],\"confirm\":[64],\"reset\":[64],\"cancel\":[64]}],[34,\"ion-picker\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"buttons\":[16],\"columns\":[16],\"cssClass\":[1,\"css-class\"],\"duration\":[2],\"showBackdrop\":[4,\"show-backdrop\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"animated\":[4],\"htmlAttributes\":[16],\"presented\":[32],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64],\"getColumn\":[64]}],[32,\"ion-picker-column\",{\"col\":[16]}]]],[\"ion-action-sheet\",[[34,\"ion-action-sheet\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"buttons\":[16],\"cssClass\":[1,\"css-class\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"header\":[1],\"subHeader\":[1,\"sub-header\"],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-alert\",[[34,\"ion-alert\",{\"overlayIndex\":[2,\"overlay-index\"],\"keyboardClose\":[4,\"keyboard-close\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"cssClass\":[1,\"css-class\"],\"header\":[1],\"subHeader\":[1,\"sub-header\"],\"message\":[1],\"buttons\":[16],\"inputs\":[1040],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"present\":[64],\"dismiss\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]},[[4,\"keydown\",\"onKeydown\"]]]]],[\"ion-popover\",[[33,\"ion-popover\",{\"hasController\":[4,\"has-controller\"],\"delegate\":[16],\"overlayIndex\":[2,\"overlay-index\"],\"enterAnimation\":[16],\"leaveAnimation\":[16],\"component\":[1],\"componentProps\":[16],\"keyboardClose\":[4,\"keyboard-close\"],\"cssClass\":[1,\"css-class\"],\"backdropDismiss\":[4,\"backdrop-dismiss\"],\"event\":[8],\"showBackdrop\":[4,\"show-backdrop\"],\"translucent\":[4],\"animated\":[4],\"htmlAttributes\":[16],\"triggerAction\":[1,\"trigger-action\"],\"trigger\":[1],\"size\":[1],\"dismissOnSelect\":[4,\"dismiss-on-select\"],\"reference\":[1],\"side\":[1],\"alignment\":[1025],\"arrow\":[4],\"isOpen\":[4,\"is-open\"],\"keyboardEvents\":[4,\"keyboard-events\"],\"keepContentsMounted\":[4,\"keep-contents-mounted\"],\"presented\":[32],\"presentFromTrigger\":[64],\"present\":[64],\"dismiss\":[64],\"getParentPopover\":[64],\"onDidDismiss\":[64],\"onWillDismiss\":[64]}]]],[\"ion-checkbox\",[[33,\"ion-checkbox\",{\"color\":[513],\"name\":[1],\"checked\":[1028],\"indeterminate\":[1028],\"disabled\":[4],\"value\":[8]}]]],[\"ion-select_3\",[[33,\"ion-select\",{\"disabled\":[4],\"cancelText\":[1,\"cancel-text\"],\"okText\":[1,\"ok-text\"],\"placeholder\":[1],\"name\":[1],\"selectedText\":[1,\"selected-text\"],\"multiple\":[4],\"interface\":[1],\"interfaceOptions\":[8,\"interface-options\"],\"compareWith\":[1,\"compare-with\"],\"value\":[1032],\"isExpanded\":[32],\"open\":[64]}],[1,\"ion-select-option\",{\"disabled\":[4],\"value\":[8]}],[34,\"ion-select-popover\",{\"header\":[1],\"subHeader\":[1,\"sub-header\"],\"message\":[1],\"multiple\":[4],\"options\":[16]},[[0,\"ionChange\",\"onSelect\"]]]]],[\"ion-app_8\",[[0,\"ion-app\",{\"setFocus\":[64]}],[1,\"ion-content\",{\"color\":[513],\"fullscreen\":[4],\"forceOverscroll\":[1028,\"force-overscroll\"],\"scrollX\":[4,\"scroll-x\"],\"scrollY\":[4,\"scroll-y\"],\"scrollEvents\":[4,\"scroll-events\"],\"getScrollElement\":[64],\"getBackgroundElement\":[64],\"scrollToTop\":[64],\"scrollToBottom\":[64],\"scrollByPoint\":[64],\"scrollToPoint\":[64]},[[8,\"appload\",\"onAppLoad\"],[9,\"resize\",\"onResize\"]]],[36,\"ion-footer\",{\"collapse\":[1],\"translucent\":[4],\"keyboardVisible\":[32]}],[36,\"ion-header\",{\"collapse\":[1],\"translucent\":[4]}],[1,\"ion-router-outlet\",{\"mode\":[1025],\"delegate\":[16],\"animated\":[4],\"animation\":[16],\"swipeHandler\":[16],\"commit\":[64],\"setRouteId\":[64],\"getRouteId\":[64]}],[33,\"ion-title\",{\"color\":[513],\"size\":[1]}],[33,\"ion-toolbar\",{\"color\":[513]},[[0,\"ionStyle\",\"childrenStyle\"]]],[34,\"ion-buttons\",{\"collapse\":[4]}]]],[\"ion-spinner\",[[1,\"ion-spinner\",{\"color\":[513],\"duration\":[2],\"name\":[1],\"paused\":[4]}]]],[\"ion-item_8\",[[33,\"ion-item-divider\",{\"color\":[513],\"sticky\":[4]}],[32,\"ion-item-group\"],[1,\"ion-skeleton-text\",{\"animated\":[4]}],[32,\"ion-list\",{\"lines\":[1],\"inset\":[4],\"closeSlidingItems\":[64]}],[33,\"ion-list-header\",{\"color\":[513],\"lines\":[1]}],[49,\"ion-item\",{\"color\":[513],\"button\":[4],\"detail\":[4],\"detailIcon\":[1,\"detail-icon\"],\"disabled\":[4],\"download\":[1],\"fill\":[1],\"shape\":[1],\"href\":[1],\"rel\":[1],\"lines\":[1],\"counter\":[4],\"routerAnimation\":[16],\"routerDirection\":[1,\"router-direction\"],\"target\":[1],\"type\":[1],\"counterFormatter\":[16],\"multipleInputs\":[32],\"focusable\":[32],\"counterString\":[32]},[[0,\"ionChange\",\"handleIonChange\"],[0,\"ionColor\",\"labelColorChanged\"],[0,\"ionStyle\",\"itemStyle\"]]],[34,\"ion-label\",{\"color\":[513],\"position\":[1],\"noAnimate\":[32]}],[33,\"ion-note\",{\"color\":[513]}]]]]"), options);
   });
 };
 
@@ -24700,7 +24726,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -30314,7 +30340,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.3');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.2.0');
 
 /**
  * Defines a scroll position manager. Implemented by `BrowserViewportScroller`.
@@ -31342,6 +31368,7 @@ class NgOptimizedImage {
       }
       assertNotMissingBuiltInLoader(this.ngSrc, this.imageLoader);
       assertNoNgSrcsetWithoutLoader(this, this.imageLoader);
+      assertNoLoaderParamsWithoutLoader(this, this.imageLoader);
       if (this.priority) {
         const checker = this.injector.get(PreconnectLinkChecker);
         checker.assertPreconnect(this.getRewrittenSrc(), this.ngSrc);
@@ -31398,8 +31425,15 @@ class NgOptimizedImage {
   /** @nodoc */
   ngOnChanges(changes) {
     if (ngDevMode) {
-      assertNoPostInitInputChange(this, changes, ['ngSrc', 'ngSrcset', 'width', 'height', 'priority', 'fill', 'loading', 'sizes', 'disableOptimizedSrcset']);
+      assertNoPostInitInputChange(this, changes, ['ngSrc', 'ngSrcset', 'width', 'height', 'priority', 'fill', 'loading', 'sizes', 'loaderParams', 'disableOptimizedSrcset']);
     }
+  }
+  callImageLoader(configWithoutCustomParams) {
+    let augmentedConfig = configWithoutCustomParams;
+    if (this.loaderParams) {
+      augmentedConfig.loaderParams = this.loaderParams;
+    }
+    return this.imageLoader(augmentedConfig);
   }
   getLoadingBehavior() {
     if (!this.priority && this.loading !== undefined) {
@@ -31419,7 +31453,7 @@ class NgOptimizedImage {
         src: this.ngSrc
       };
       // Cache calculated image src to reuse it later in the code.
-      this._renderedSrc = this.imageLoader(imgConfig);
+      this._renderedSrc = this.callImageLoader(imgConfig);
     }
     return this._renderedSrc;
   }
@@ -31428,7 +31462,7 @@ class NgOptimizedImage {
     const finalSrcs = this.ngSrcset.split(',').filter(src => src !== '').map(srcStr => {
       srcStr = srcStr.trim();
       const width = widthSrcSet ? parseFloat(srcStr) : parseFloat(srcStr) * this.width;
-      return `${this.imageLoader({
+      return `${this.callImageLoader({
         src: this.ngSrc,
         width
       })} ${srcStr}`;
@@ -31452,14 +31486,14 @@ class NgOptimizedImage {
       // breakpoints with full viewport widths.
       filteredBreakpoints = breakpoints.filter(bp => bp >= VIEWPORT_BREAKPOINT_CUTOFF);
     }
-    const finalSrcs = filteredBreakpoints.map(bp => `${this.imageLoader({
+    const finalSrcs = filteredBreakpoints.map(bp => `${this.callImageLoader({
       src: this.ngSrc,
       width: bp
     })} ${bp}w`);
     return finalSrcs.join(', ');
   }
   getFixedSrcset() {
-    const finalSrcs = DENSITY_SRCSET_MULTIPLIERS.map(multiplier => `${this.imageLoader({
+    const finalSrcs = DENSITY_SRCSET_MULTIPLIERS.map(multiplier => `${this.callImageLoader({
       src: this.ngSrc,
       width: this.width * multiplier
     })} ${multiplier}x`);
@@ -31500,6 +31534,7 @@ NgOptimizedImage.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
     height: "height",
     loading: "loading",
     priority: "priority",
+    loaderParams: "loaderParams",
     disableOptimizedSrcset: "disableOptimizedSrcset",
     fill: "fill",
     src: "src",
@@ -31541,6 +31576,9 @@ NgOptimizedImage.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0
       type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
     }],
     priority: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
+    }],
+    loaderParams: [{
       type: _angular_core__WEBPACK_IMPORTED_MODULE_0__.Input
     }],
     disableOptimizedSrcset: [{
@@ -31818,7 +31856,16 @@ function assertNotMissingBuiltInLoader(ngSrc, imageLoader) {
  */
 function assertNoNgSrcsetWithoutLoader(dir, imageLoader) {
   if (dir.ngSrcset && imageLoader === noopImageLoader) {
-    console.warn((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵformatRuntimeError"])(2963 /* RuntimeErrorCode.NGSRCSET_WITHOUT_LOADER */, `${imgDirectiveDetails(dir.ngSrc)} the \`ngSrcset\` attribute is present but ` + `no image loader is configured (i.e. the default one is being used), ` + `which would result in the same image being used for all configured sizes. ` + `To fix this, provide a loader or remove the \`ngSrcset\` attribute from the image.`));
+    console.warn((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵformatRuntimeError"])(2963 /* RuntimeErrorCode.MISSING_NECESSARY_LOADER */, `${imgDirectiveDetails(dir.ngSrc)} the \`ngSrcset\` attribute is present but ` + `no image loader is configured (i.e. the default one is being used), ` + `which would result in the same image being used for all configured sizes. ` + `To fix this, provide a loader or remove the \`ngSrcset\` attribute from the image.`));
+  }
+}
+/**
+ * Warns if loaderParams is present and no loader is configured (i.e. the default one is being
+ * used).
+ */
+function assertNoLoaderParamsWithoutLoader(dir, imageLoader) {
+  if (dir.loaderParams && imageLoader === noopImageLoader) {
+    console.warn((0,_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵformatRuntimeError"])(2963 /* RuntimeErrorCode.MISSING_NECESSARY_LOADER */, `${imgDirectiveDetails(dir.ngSrc)} the \`loaderParams\` attribute is present but ` + `no image loader is configured (i.e. the default one is being used), ` + `which means that the loaderParams data will not be consumed and will not affect the URL. ` + `To fix this, provide a custom loader or remove the \`loaderParams\` attribute from the image.`));
   }
 }
 
@@ -31898,7 +31945,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 9151);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 6942);
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -34358,10 +34405,7 @@ HttpClientModule.ɵmod = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4
   type: HttpClientModule
 });
 HttpClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({
-  providers: [provideHttpClient(withInterceptorsFromDi(), withXsrfConfiguration({
-    cookieName: XSRF_DEFAULT_COOKIE_NAME,
-    headerName: XSRF_DEFAULT_HEADER_NAME
-  }))]
+  providers: [provideHttpClient(withInterceptorsFromDi())]
 });
 (function () {
   (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵsetClassMetadata"](HttpClientModule, [{
@@ -34371,10 +34415,7 @@ HttpClientModule.ɵinj = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_4
        * Configures the [dependency injector](guide/glossary#injector) where it is imported
        * with supporting services for HTTP communications.
        */
-      providers: [provideHttpClient(withInterceptorsFromDi(), withXsrfConfiguration({
-        cookieName: XSRF_DEFAULT_COOKIE_NAME,
-        headerName: XSRF_DEFAULT_HEADER_NAME
-      }))]
+      providers: [provideHttpClient(withInterceptorsFromDi())]
     }]
   }], null, null);
 })();
@@ -34637,7 +34678,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "visitAll": () => (/* binding */ visitAll)
 /* harmony export */ });
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -42396,9 +42437,8 @@ const animationKeywords = new Set([
 // `steps()` function
 'end', 'jump-both', 'jump-end', 'jump-none', 'jump-start', 'start']);
 /**
- * The following class is a port of shadowCSS from webcomponents.js to TypeScript.
- *
- * Please make sure to keep to edits in sync with the source file.
+ * The following class has its origin from a port of shadowCSS from webcomponents.js to TypeScript.
+ * It has since diverge in many ways to tailor Angular's needs.
  *
  * Source:
  * https://github.com/webcomponents/webcomponentsjs/blob/4efecd7e0e/src/ShadowCSS/ShadowCSS.js
@@ -42438,28 +42478,8 @@ const animationKeywords = new Set([
     }
 
   * encapsulation: Styles defined within ShadowDOM, apply only to
-  dom inside the ShadowDOM. Polymer uses one of two techniques to implement
-  this feature.
-
-  By default, rules are prefixed with the host element tag name
-  as a descendant selector. This ensures styling does not leak out of the 'top'
-  of the element's ShadowDOM. For example,
-
-  div {
-      font-weight: bold;
-    }
-
-  becomes:
-
-  x-foo div {
-      font-weight: bold;
-    }
-
-  becomes:
-
-
-  Alternatively, if WebComponents.ShadowCSS.strictStyling is set to true then
-  selectors are scoped by adding an attribute selector suffix to each
+  dom inside the ShadowDOM.
+  The selectors are scoped by adding an attribute selector suffix to each
   simple selector that contains the host element tag name. Each element
   in the element's ShadowDOM template is also given the scope attribute.
   Thus, these rules match only elements that have the scope attribute.
@@ -42521,8 +42541,6 @@ const animationKeywords = new Set([
 */
 class ShadowCss {
   constructor() {
-    // TODO: Is never re-assigned, could be removed.
-    this.strictStyling = true;
     /**
      * Regular expression used to extrapolate the possible keyframes from an
      * animation declaration (with possibly multiple animation definitions)
@@ -42540,12 +42558,10 @@ class ShadowCss {
     this._animationDeclarationKeyframesRe = /(^|\s+)(?:(?:(['"])((?:\\\\|\\\2|(?!\2).)+)\2)|(-?[A-Za-z][\w\-]*))(?=[,\s]|$)/g;
   }
   /*
-   * Shim some cssText with the given selector. Returns cssText that can
-   * be included in the document via WebComponents.ShadowCSS.addCssToDocument(css).
+   * Shim some cssText with the given selector. Returns cssText that can be included in the document
    *
-   * When strictStyling is true:
-   * - selector is the attribute added to all elements inside the host,
-   * - hostSelector is the attribute added to the host itself.
+   * The selector is the attribute added to all elements inside the host,
+   * The hostSelector is the attribute added to the host itself.
    */
   shimCssText(cssText, selector, hostSelector = '') {
     const commentsWithHash = extractCommentsWithHash(cssText);
@@ -42707,7 +42723,6 @@ class ShadowCss {
    *
    **/
   _insertPolyfillDirectivesInCssText(cssText) {
-    // Difference with webcomponents.js: does not handle comments
     return cssText.replace(_cssContentNextSelectorRe, function (...m) {
       return m[2] + '{';
     });
@@ -42728,7 +42743,6 @@ class ShadowCss {
    *
    **/
   _insertPolyfillRulesInCssText(cssText) {
-    // Difference with webcomponents.js: does not handle comments
     return cssText.replace(_cssContentRuleRe, (...m) => {
       const rule = m[0].replace(m[1], '').replace(m[2], '');
       return m[4] + rule;
@@ -42772,7 +42786,6 @@ class ShadowCss {
    *
    **/
   _extractUnscopedRulesFromCssText(cssText) {
-    // Difference with webcomponents.js: does not handle comments
     let r = '';
     let m;
     _cssContentUnscopedRuleRe.lastIndex = 0;
@@ -42884,7 +42897,7 @@ class ShadowCss {
       let selector = rule.selector;
       let content = rule.content;
       if (rule.selector[0] !== '@') {
-        selector = this._scopeSelector(rule.selector, scopeSelector, hostSelector, this.strictStyling);
+        selector = this._scopeSelector(rule.selector, scopeSelector, hostSelector);
       } else if (rule.selector.startsWith('@media') || rule.selector.startsWith('@supports') || rule.selector.startsWith('@document') || rule.selector.startsWith('@layer') || rule.selector.startsWith('@container')) {
         content = this._scopeSelectors(rule.content, scopeSelector, hostSelector);
       } else if (rule.selector.startsWith('@font-face') || rule.selector.startsWith('@page')) {
@@ -42920,12 +42933,12 @@ class ShadowCss {
       return new CssRule(selector, rule.content);
     });
   }
-  _scopeSelector(selector, scopeSelector, hostSelector, strict) {
+  _scopeSelector(selector, scopeSelector, hostSelector) {
     return selector.split(',').map(part => part.trim().split(_shadowDeepSelectors)).map(deepParts => {
       const [shallowPart, ...otherParts] = deepParts;
       const applyScope = shallowPart => {
         if (this._selectorNeedsScoping(shallowPart, scopeSelector)) {
-          return strict ? this._applyStrictSelectorScope(shallowPart, scopeSelector, hostSelector) : this._applySelectorScope(shallowPart, scopeSelector, hostSelector);
+          return this._applySelectorScope(shallowPart, scopeSelector, hostSelector);
         } else {
           return shallowPart;
         }
@@ -42943,16 +42956,12 @@ class ShadowCss {
     scopeSelector = scopeSelector.replace(lre, '\\[').replace(rre, '\\]');
     return new RegExp('^(' + scopeSelector + ')' + _selectorReSuffix, 'm');
   }
-  _applySelectorScope(selector, scopeSelector, hostSelector) {
-    // Difference from webcomponents.js: scopeSelector could not be an array
-    return this._applySimpleSelectorScope(selector, scopeSelector, hostSelector);
-  }
   // scope via name and [is=name]
   _applySimpleSelectorScope(selector, scopeSelector, hostSelector) {
     // In Android browser, the lastIndex is not reset when the regex is used in String.replace()
     _polyfillHostRe.lastIndex = 0;
     if (_polyfillHostRe.test(selector)) {
-      const replaceBy = this.strictStyling ? `[${hostSelector}]` : scopeSelector;
+      const replaceBy = `[${hostSelector}]`;
       return selector.replace(_polyfillHostNoCombinatorRe, (hnc, selector) => {
         return selector.replace(/([^:]*)(:*)(.*)/, (_, before, colon, after) => {
           return before + replaceBy + colon + after;
@@ -42963,7 +42972,7 @@ class ShadowCss {
   }
   // return a selector with [name] suffix on each simple selector
   // e.g. .foo.bar > .zot becomes .foo[name].bar[name] > .zot[name]  /** @internal */
-  _applyStrictSelectorScope(selector, scopeSelector, hostSelector) {
+  _applySelectorScope(selector, scopeSelector, hostSelector) {
     const isRe = /\[is=([^\]]*)\]/g;
     scopeSelector = scopeSelector.replace(isRe, (_, ...parts) => parts[0]);
     const attrName = '[' + scopeSelector + ']';
@@ -54648,7 +54657,7 @@ function publishFacade(global) {
  * @description
  * Entry point for all public APIs of the compiler package.
  */
-const VERSION = new Version('15.1.3');
+const VERSION = new Version('15.2.0');
 class CompilerConfig {
   constructor({
     defaultEncapsulation = ViewEncapsulation.Emulated,
@@ -56421,7 +56430,6 @@ class TemplateBinder extends RecursiveAstVisitor {
     this.scope = scope;
     this.template = template;
     this.level = level;
-    this.pipesUsed = [];
     // Save a bit of processing time by constructing this closure in advance.
     this.visitNode = node => node.visit(this);
   }
@@ -56651,7 +56659,7 @@ const MINIMUM_PARTIAL_LINKER_VERSION$6 = '12.0.0';
 function compileDeclareClassMetadata(metadata) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$6));
-  definitionMap.set('version', literal('15.1.3'));
+  definitionMap.set('version', literal('15.2.0'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', metadata.type);
   definitionMap.set('decorators', metadata.decorators);
@@ -56759,7 +56767,7 @@ function compileDeclareDirectiveFromMetadata(meta) {
 function createDirectiveDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$5));
-  definitionMap.set('version', literal('15.1.3'));
+  definitionMap.set('version', literal('15.2.0'));
   // e.g. `type: MyDirective`
   definitionMap.set('type', meta.internalType);
   if (meta.isStandalone) {
@@ -56989,7 +56997,7 @@ const MINIMUM_PARTIAL_LINKER_VERSION$4 = '12.0.0';
 function compileDeclareFactoryFunction(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$4));
-  definitionMap.set('version', literal('15.1.3'));
+  definitionMap.set('version', literal('15.2.0'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   definitionMap.set('deps', compileDependencies(meta.deps));
@@ -57028,7 +57036,7 @@ function compileDeclareInjectableFromMetadata(meta) {
 function createInjectableDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$3));
-  definitionMap.set('version', literal('15.1.3'));
+  definitionMap.set('version', literal('15.2.0'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   // Only generate providedIn property if it has a non-null value
@@ -57083,7 +57091,7 @@ function compileDeclareInjectorFromMetadata(meta) {
 function createInjectorDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$2));
-  definitionMap.set('version', literal('15.1.3'));
+  definitionMap.set('version', literal('15.2.0'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   definitionMap.set('providers', meta.providers);
@@ -57117,7 +57125,7 @@ function compileDeclareNgModuleFromMetadata(meta) {
 function createNgModuleDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION$1));
-  definitionMap.set('version', literal('15.1.3'));
+  definitionMap.set('version', literal('15.2.0'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   definitionMap.set('type', meta.internalType);
   // We only generate the keys in the metadata if the arrays contain values.
@@ -57172,7 +57180,7 @@ function compileDeclarePipeFromMetadata(meta) {
 function createPipeDefinitionMap(meta) {
   const definitionMap = new DefinitionMap();
   definitionMap.set('minVersion', literal(MINIMUM_PARTIAL_LINKER_VERSION));
-  definitionMap.set('version', literal('15.1.3'));
+  definitionMap.set('version', literal('15.2.0'));
   definitionMap.set('ngImport', importExpr(Identifiers.core));
   // e.g. `type: MyPipe`
   definitionMap.set('type', meta.internalType);
@@ -57593,7 +57601,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 8623);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 4514);
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -57984,9 +57992,7 @@ function getInheritedInjectableDef(type) {
   const def = type && (type[NG_PROV_DEF] || type[NG_INJECTABLE_DEF]);
   if (def) {
     const typeName = getTypeName(type);
-    // TODO(FW-1307): Re-add ngDevMode when closure can handle it
-    // ngDevMode &&
-    console.warn(`DEPRECATED: DI is instantiating a token "${typeName}" that inherits its @Injectable decorator but does not provide one itself.\n` + `This will become an error in a future version of Angular. Please add @Injectable() to the "${typeName}" class.`);
+    ngDevMode && console.warn(`DEPRECATED: DI is instantiating a token "${typeName}" that inherits its @Injectable decorator but does not provide one itself.\n` + `This will become an error in a future version of Angular. Please add @Injectable() to the "${typeName}" class.`);
     return def;
   } else {
     return null;
@@ -64376,69 +64382,18 @@ class DOMParserHelper {
   }
 }
 /**
- * Use an HTML5 `template` element, if supported, or an inert body element created via
- * `createHtmlDocument` to create and fill an inert DOM element.
+ * Use an HTML5 `template` element to create and fill an inert DOM element.
  * This is the fallback strategy if the browser does not support DOMParser.
  */
 class InertDocumentHelper {
   constructor(defaultDoc) {
     this.defaultDoc = defaultDoc;
     this.inertDocument = this.defaultDoc.implementation.createHTMLDocument('sanitization-inert');
-    if (this.inertDocument.body == null) {
-      // usually there should be only one body element in the document, but IE doesn't have any, so
-      // we need to create one.
-      const inertHtml = this.inertDocument.createElement('html');
-      this.inertDocument.appendChild(inertHtml);
-      const inertBodyElement = this.inertDocument.createElement('body');
-      inertHtml.appendChild(inertBodyElement);
-    }
   }
   getInertBodyElement(html) {
-    // Prefer using <template> element if supported.
     const templateEl = this.inertDocument.createElement('template');
-    if ('content' in templateEl) {
-      templateEl.innerHTML = trustedHTMLFromString(html);
-      return templateEl;
-    }
-    // Note that previously we used to do something like `this.inertDocument.body.innerHTML = html`
-    // and we returned the inert `body` node. This was changed, because IE seems to treat setting
-    // `innerHTML` on an inserted element differently, compared to one that hasn't been inserted
-    // yet. In particular, IE appears to split some of the text into multiple text nodes rather
-    // than keeping them in a single one which ends up messing with Ivy's i18n parsing further
-    // down the line. This has been worked around by creating a new inert `body` and using it as
-    // the root node in which we insert the HTML.
-    const inertBody = this.inertDocument.createElement('body');
-    inertBody.innerHTML = trustedHTMLFromString(html);
-    // Support: IE 11 only
-    // strip custom-namespaced attributes on IE<=11
-    if (this.defaultDoc.documentMode) {
-      this.stripCustomNsAttrs(inertBody);
-    }
-    return inertBody;
-  }
-  /**
-   * When IE11 comes across an unknown namespaced attribute e.g. 'xlink:foo' it adds 'xmlns:ns1'
-   * attribute to declare ns1 namespace and prefixes the attribute with 'ns1' (e.g.
-   * 'ns1:xlink:foo').
-   *
-   * This is undesirable since we don't want to allow any of these custom attributes. This method
-   * strips them all.
-   */
-  stripCustomNsAttrs(el) {
-    const elAttrs = el.attributes;
-    // loop backwards so that we can support removals.
-    for (let i = elAttrs.length - 1; 0 < i; i--) {
-      const attrib = elAttrs.item(i);
-      const attrName = attrib.name;
-      if (attrName === 'xmlns:ns1' || attrName.indexOf('ns1:') === 0) {
-        el.removeAttribute(attrName);
-      }
-    }
-    let childNode = el.firstChild;
-    while (childNode) {
-      if (childNode.nodeType === Node.ELEMENT_NODE) this.stripCustomNsAttrs(childNode);
-      childNode = childNode.nextSibling;
-    }
+    templateEl.innerHTML = trustedHTMLFromString(html);
+    return templateEl;
   }
 }
 /**
@@ -65770,7 +65725,7 @@ class Version {
 /**
  * @publicApi
  */
-const VERSION = new Version('15.1.3');
+const VERSION = new Version('15.2.0');
 
 // This default value is when checking the hierarchy for a token.
 //
@@ -84702,7 +84657,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ 4350);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 6942);
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -85580,8 +85535,6 @@ function toObservable(value) {
 }
 function mergeErrors(arrayOfErrors) {
   let res = {};
-  // Not using Array.reduce here due to a Chrome 80 bug
-  // https://bugs.chromium.org/p/chromium/issues/detail?id=1049982
   arrayOfErrors.forEach(errors => {
     res = errors != null ? {
       ...res,
@@ -89319,6 +89272,7 @@ class RadioControlValueAccessor extends BuiltInControlValueAccessor {
     super(renderer, elementRef);
     this._registry = _registry;
     this._injector = _injector;
+    this.setDisabledStateFired = false;
     /**
      * The registered callback function called when a change event occurs on the input element.
      * Note: we declare `onChange` here (also used as host listener) as a function with no arguments
@@ -89327,6 +89281,9 @@ class RadioControlValueAccessor extends BuiltInControlValueAccessor {
      * @nodoc
      */
     this.onChange = () => {};
+    this.callSetDisabledState = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(CALL_SET_DISABLED_STATE, {
+      optional: true
+    }) ?? setDisabledStateDefault;
   }
   /** @nodoc */
   ngOnInit() {
@@ -89356,6 +89313,31 @@ class RadioControlValueAccessor extends BuiltInControlValueAccessor {
       fn(this.value);
       this._registry.select(this);
     };
+  }
+  /** @nodoc */
+  setDisabledState(isDisabled) {
+    /**
+     * `setDisabledState` is supposed to be called whenever the disabled state of a control changes,
+     * including upon control creation. However, a longstanding bug caused the method to not fire
+     * when an *enabled* control was attached. This bug was fixed in v15 in #47576.
+     *
+     * This had a side effect: previously, it was possible to instantiate a reactive form control
+     * with `[attr.disabled]=true`, even though the the corresponding control was enabled in the
+     * model. This resulted in a mismatch between the model and the DOM. Now, because
+     * `setDisabledState` is always called, the value in the DOM will be immediately overwritten
+     * with the "correct" enabled value.
+     *
+     * However, the fix also created an exceptional case: radio buttons. Because Reactive Forms
+     * models the entire group of radio buttons as a single `FormControl`, there is no way to
+     * control the disabled state for individual radios, so they can no longer be configured as
+     * disabled. Thus, we keep the old behavior for radio buttons, so that `[attr.disabled]`
+     * continues to work. Specifically, we drop the first call to `setDisabledState` if `disabled`
+     * is `false`, and we are not in legacy mode.
+     */
+    if (this.setDisabledStateFired || isDisabled || this.callSetDisabledState === 'whenDisabledForLegacyCode') {
+      this.setProperty('disabled', isDisabled);
+    }
+    this.setDisabledStateFired = true;
   }
   /**
    * Sets the "value" on the radio input element and unchecks it.
@@ -92585,7 +92567,7 @@ UntypedFormBuilder.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODUL
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.3');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.2.0');
 
 /**
  * Exports the required providers and directives for template-driven forms,
@@ -92745,7 +92727,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -92951,7 +92933,7 @@ class CachedResourceLoader extends _angular_compiler__WEBPACK_IMPORTED_MODULE_0_
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.1.3');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.2.0');
 
 /**
  * @publicApi
@@ -93007,6 +92989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "HammerGestureConfig": () => (/* binding */ HammerGestureConfig),
 /* harmony export */   "HammerModule": () => (/* binding */ HammerModule),
 /* harmony export */   "Meta": () => (/* binding */ Meta),
+/* harmony export */   "REMOVE_STYLES_ON_COMPONENT_DESTROY": () => (/* binding */ REMOVE_STYLES_ON_COMPONENT_DESTROY),
 /* harmony export */   "Title": () => (/* binding */ Title),
 /* harmony export */   "TransferState": () => (/* binding */ TransferState),
 /* harmony export */   "VERSION": () => (/* binding */ VERSION),
@@ -93039,7 +93022,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 4666);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -93347,22 +93330,45 @@ class EventManagerPlugin {
 }
 class SharedStylesHost {
   constructor() {
-    /** @internal */
-    this._stylesSet = new Set();
+    this.usageCount = new Map();
   }
   addStyles(styles) {
-    const additions = new Set();
-    styles.forEach(style => {
-      if (!this._stylesSet.has(style)) {
-        this._stylesSet.add(style);
-        additions.add(style);
+    for (const style of styles) {
+      const usageCount = this.changeUsageCount(style, 1);
+      if (usageCount === 1) {
+        this.onStyleAdded(style);
       }
-    });
-    this.onStylesAdded(additions);
+    }
   }
-  onStylesAdded(additions) {}
+  removeStyles(styles) {
+    for (const style of styles) {
+      const usageCount = this.changeUsageCount(style, -1);
+      if (usageCount === 0) {
+        this.onStyleRemoved(style);
+      }
+    }
+  }
+  onStyleRemoved(style) {}
+  onStyleAdded(style) {}
   getAllStyles() {
-    return Array.from(this._stylesSet);
+    return this.usageCount.keys();
+  }
+  changeUsageCount(style, delta) {
+    const map = this.usageCount;
+    let usage = map.get(style) ?? 0;
+    usage += delta;
+    if (usage > 0) {
+      map.set(style, usage);
+    } else {
+      map.delete(style);
+    }
+    return usage;
+  }
+  ngOnDestroy() {
+    for (const style of this.getAllStyles()) {
+      this.onStyleRemoved(style);
+    }
+    this.usageCount.clear();
   }
 }
 SharedStylesHost.ɵfac = function SharedStylesHost_Factory(t) {
@@ -93378,39 +93384,55 @@ SharedStylesHost.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
   }], null, null);
 })();
 class DomSharedStylesHost extends SharedStylesHost {
-  constructor(_doc) {
+  constructor(doc) {
     super();
-    this._doc = _doc;
+    this.doc = doc;
     // Maps all registered host nodes to a list of style nodes that have been added to the host node.
-    this._hostNodes = new Map();
-    this._hostNodes.set(_doc.head, []);
+    this.styleRef = new Map();
+    this.hostNodes = new Set();
+    this.resetHostNodes();
   }
-  _addStylesToHost(styles, host, styleNodes) {
-    styles.forEach(style => {
-      const styleEl = this._doc.createElement('style');
-      styleEl.textContent = style;
-      styleNodes.push(host.appendChild(styleEl));
-    });
-  }
-  addHost(hostNode) {
-    const styleNodes = [];
-    this._addStylesToHost(this._stylesSet, hostNode, styleNodes);
-    this._hostNodes.set(hostNode, styleNodes);
-  }
-  removeHost(hostNode) {
-    const styleNodes = this._hostNodes.get(hostNode);
-    if (styleNodes) {
-      styleNodes.forEach(removeStyle);
+  onStyleAdded(style) {
+    for (const host of this.hostNodes) {
+      this.addStyleToHost(host, style);
     }
-    this._hostNodes.delete(hostNode);
   }
-  onStylesAdded(additions) {
-    this._hostNodes.forEach((styleNodes, hostNode) => {
-      this._addStylesToHost(additions, hostNode, styleNodes);
-    });
+  onStyleRemoved(style) {
+    const styleRef = this.styleRef;
+    const styleElements = styleRef.get(style);
+    styleElements?.forEach(e => e.remove());
+    styleRef.delete(style);
   }
   ngOnDestroy() {
-    this._hostNodes.forEach(styleNodes => styleNodes.forEach(removeStyle));
+    super.ngOnDestroy();
+    this.styleRef.clear();
+    this.resetHostNodes();
+  }
+  addHost(hostNode) {
+    this.hostNodes.add(hostNode);
+    for (const style of this.getAllStyles()) {
+      this.addStyleToHost(hostNode, style);
+    }
+  }
+  removeHost(hostNode) {
+    this.hostNodes.delete(hostNode);
+  }
+  addStyleToHost(host, style) {
+    const styleEl = this.doc.createElement('style');
+    styleEl.textContent = style;
+    host.appendChild(styleEl);
+    const styleElRef = this.styleRef.get(style);
+    if (styleElRef) {
+      styleElRef.push(styleEl);
+    } else {
+      this.styleRef.set(style, [styleEl]);
+    }
+  }
+  resetHostNodes() {
+    const hostNodes = this.hostNodes;
+    hostNodes.clear();
+    // Re-add the head element back since this is the default host.
+    hostNodes.add(this.doc.head);
   }
 }
 DomSharedStylesHost.ɵfac = function DomSharedStylesHost_Factory(t) {
@@ -93433,9 +93455,6 @@ DomSharedStylesHost.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
     }];
   }, null);
 })();
-function removeStyle(styleNode) {
-  (0,_angular_common__WEBPACK_IMPORTED_MODULE_0__["ɵgetDOM"])().remove(styleNode);
-}
 const NAMESPACE_URIS = {
   'svg': 'http://www.w3.org/2000/svg',
   'xhtml': 'http://www.w3.org/1999/xhtml',
@@ -93449,6 +93468,21 @@ const NG_DEV_MODE$1 = typeof ngDevMode === 'undefined' || !!ngDevMode;
 const COMPONENT_VARIABLE = '%COMP%';
 const HOST_ATTR = `_nghost-${COMPONENT_VARIABLE}`;
 const CONTENT_ATTR = `_ngcontent-${COMPONENT_VARIABLE}`;
+/**
+ * The default value for the `REMOVE_STYLES_ON_COMPONENT_DESTROY` DI token.
+ */
+const REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT = false;
+/**
+ * A [DI token](guide/glossary#di-token "DI token definition") that indicates whether styles
+ * of destroyed components should be removed from DOM.
+ *
+ * By default, the value is set to `false`. This will be changed in the next major version.
+ * @publicApi
+ */
+const REMOVE_STYLES_ON_COMPONENT_DESTROY = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.InjectionToken('RemoveStylesOnCompDestory', {
+  providedIn: 'root',
+  factory: () => REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT
+});
 function shimContentAttribute(componentShortId) {
   return CONTENT_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
@@ -93483,10 +93517,11 @@ function decoratePreventDefault(eventHandler) {
   };
 }
 class DomRendererFactory2 {
-  constructor(eventManager, sharedStylesHost, appId) {
+  constructor(eventManager, sharedStylesHost, appId, removeStylesOnCompDestory) {
     this.eventManager = eventManager;
     this.sharedStylesHost = sharedStylesHost;
     this.appId = appId;
+    this.removeStylesOnCompDestory = removeStylesOnCompDestory;
     this.rendererByCompId = new Map();
     this.defaultRenderer = new DefaultDomRenderer2(eventManager);
   }
@@ -93494,35 +93529,46 @@ class DomRendererFactory2 {
     if (!element || !type) {
       return this.defaultRenderer;
     }
-    switch (type.encapsulation) {
-      case _angular_core__WEBPACK_IMPORTED_MODULE_1__.ViewEncapsulation.Emulated:
-        {
-          let renderer = this.rendererByCompId.get(type.id);
-          if (!renderer) {
-            renderer = new EmulatedEncapsulationDomRenderer2(this.eventManager, this.sharedStylesHost, type, this.appId);
-            this.rendererByCompId.set(type.id, renderer);
-          }
-          renderer.applyToHost(element);
-          return renderer;
-        }
-      case _angular_core__WEBPACK_IMPORTED_MODULE_1__.ViewEncapsulation.ShadowDom:
-        return new ShadowDomRenderer(this.eventManager, this.sharedStylesHost, element, type);
-      default:
-        {
-          if (!this.rendererByCompId.has(type.id)) {
-            const styles = flattenStyles(type.id, type.styles);
-            this.sharedStylesHost.addStyles(styles);
-            this.rendererByCompId.set(type.id, this.defaultRenderer);
-          }
-          return this.defaultRenderer;
-        }
+    const renderer = this.getOrCreateRenderer(element, type);
+    // Renderers have different logic due to different encapsulation behaviours.
+    // Ex: for emulated, an attribute is added to the element.
+    if (renderer instanceof EmulatedEncapsulationDomRenderer2) {
+      renderer.applyToHost(element);
+    } else if (renderer instanceof NoneEncapsulationDomRenderer) {
+      renderer.applyStyles();
     }
+    return renderer;
+  }
+  getOrCreateRenderer(element, type) {
+    const rendererByCompId = this.rendererByCompId;
+    let renderer = rendererByCompId.get(type.id);
+    if (!renderer) {
+      const eventManager = this.eventManager;
+      const sharedStylesHost = this.sharedStylesHost;
+      const removeStylesOnCompDestory = this.removeStylesOnCompDestory;
+      switch (type.encapsulation) {
+        case _angular_core__WEBPACK_IMPORTED_MODULE_1__.ViewEncapsulation.Emulated:
+          renderer = new EmulatedEncapsulationDomRenderer2(eventManager, sharedStylesHost, type, this.appId, removeStylesOnCompDestory);
+          break;
+        case _angular_core__WEBPACK_IMPORTED_MODULE_1__.ViewEncapsulation.ShadowDom:
+          return new ShadowDomRenderer(eventManager, sharedStylesHost, element, type);
+        default:
+          renderer = new NoneEncapsulationDomRenderer(eventManager, sharedStylesHost, type, removeStylesOnCompDestory);
+          break;
+      }
+      renderer.onDestroy = () => rendererByCompId.delete(type.id);
+      rendererByCompId.set(type.id, renderer);
+    }
+    return renderer;
+  }
+  ngOnDestroy() {
+    this.rendererByCompId.clear();
   }
   begin() {}
   end() {}
 }
 DomRendererFactory2.ɵfac = function DomRendererFactory2_Factory(t) {
-  return new (t || DomRendererFactory2)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](EventManager), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](DomSharedStylesHost), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_ID));
+  return new (t || DomRendererFactory2)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](EventManager), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](DomSharedStylesHost), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_ID), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](REMOVE_STYLES_ON_COMPONENT_DESTROY));
 };
 DomRendererFactory2.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
   token: DomRendererFactory2,
@@ -93541,6 +93587,12 @@ DomRendererFactory2.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODU
       decorators: [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Inject,
         args: [_angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_ID]
+      }]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__.Inject,
+        args: [REMOVE_STYLES_ON_COMPONENT_DESTROY]
       }]
     }];
   }, null);
@@ -93677,24 +93729,6 @@ function checkNoSyntheticProp(name, nameKind) {
 function isTemplateNode(node) {
   return node.tagName === 'TEMPLATE' && node.content !== undefined;
 }
-class EmulatedEncapsulationDomRenderer2 extends DefaultDomRenderer2 {
-  constructor(eventManager, sharedStylesHost, component, appId) {
-    super(eventManager);
-    this.component = component;
-    const styles = flattenStyles(appId + '-' + component.id, component.styles);
-    sharedStylesHost.addStyles(styles);
-    this.contentAttr = shimContentAttribute(appId + '-' + component.id);
-    this.hostAttr = shimHostAttribute(appId + '-' + component.id);
-  }
-  applyToHost(element) {
-    super.setAttribute(element, this.hostAttr, '');
-  }
-  createElement(parent, name) {
-    const el = super.createElement(parent, name);
-    super.setAttribute(el, this.contentAttr, '');
-    return el;
-  }
-}
 class ShadowDomRenderer extends DefaultDomRenderer2 {
   constructor(eventManager, sharedStylesHost, hostEl, component) {
     super(eventManager);
@@ -93705,17 +93739,14 @@ class ShadowDomRenderer extends DefaultDomRenderer2 {
     });
     this.sharedStylesHost.addHost(this.shadowRoot);
     const styles = flattenStyles(component.id, component.styles);
-    for (let i = 0; i < styles.length; i++) {
+    for (const style of styles) {
       const styleEl = document.createElement('style');
-      styleEl.textContent = styles[i];
+      styleEl.textContent = style;
       this.shadowRoot.appendChild(styleEl);
     }
   }
   nodeOrShadowRoot(node) {
     return node === this.hostEl ? this.shadowRoot : node;
-  }
-  destroy() {
-    this.sharedStylesHost.removeHost(this.shadowRoot);
   }
   appendChild(parent, newChild) {
     return super.appendChild(this.nodeOrShadowRoot(parent), newChild);
@@ -93728,6 +93759,49 @@ class ShadowDomRenderer extends DefaultDomRenderer2 {
   }
   parentNode(node) {
     return this.nodeOrShadowRoot(super.parentNode(this.nodeOrShadowRoot(node)));
+  }
+  destroy() {
+    this.sharedStylesHost.removeHost(this.shadowRoot);
+  }
+}
+class NoneEncapsulationDomRenderer extends DefaultDomRenderer2 {
+  constructor(eventManager, sharedStylesHost, component, removeStylesOnCompDestory, compId = component.id) {
+    super(eventManager);
+    this.sharedStylesHost = sharedStylesHost;
+    this.removeStylesOnCompDestory = removeStylesOnCompDestory;
+    this.rendererUsageCount = 0;
+    this.styles = flattenStyles(compId, component.styles);
+  }
+  applyStyles() {
+    this.sharedStylesHost.addStyles(this.styles);
+    this.rendererUsageCount++;
+  }
+  destroy() {
+    if (!this.removeStylesOnCompDestory) {
+      return;
+    }
+    this.sharedStylesHost.removeStyles(this.styles);
+    this.rendererUsageCount--;
+    if (this.rendererUsageCount === 0) {
+      this.onDestroy?.();
+    }
+  }
+}
+class EmulatedEncapsulationDomRenderer2 extends NoneEncapsulationDomRenderer {
+  constructor(eventManager, sharedStylesHost, component, appId, removeStylesOnCompDestory) {
+    const compId = appId + '-' + component.id;
+    super(eventManager, sharedStylesHost, component, removeStylesOnCompDestory, compId);
+    this.contentAttr = shimContentAttribute(compId);
+    this.hostAttr = shimHostAttribute(compId);
+  }
+  applyToHost(element) {
+    this.applyStyles();
+    this.setAttribute(element, this.hostAttr, '');
+  }
+  createElement(parent, name) {
+    const el = super.createElement(parent, name);
+    super.setAttribute(el, this.contentAttr, '');
+    return el;
   }
 }
 class DomEventsPlugin extends EventManagerPlugin {
@@ -94130,7 +94204,7 @@ const BROWSER_MODULE_PROVIDERS = [{
 }, {
   provide: DomRendererFactory2,
   useClass: DomRendererFactory2,
-  deps: [EventManager, DomSharedStylesHost, _angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_ID]
+  deps: [EventManager, DomSharedStylesHost, _angular_core__WEBPACK_IMPORTED_MODULE_1__.APP_ID, REMOVE_STYLES_ON_COMPONENT_DESTROY]
 }, {
   provide: _angular_core__WEBPACK_IMPORTED_MODULE_1__.RendererFactory2,
   useExisting: DomRendererFactory2
@@ -95268,7 +95342,7 @@ DomSanitizerImpl.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.1.3');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.Version('15.2.0');
 
 /**
  * @module
@@ -95355,10 +95429,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "withEnabledBlockingInitialNavigation": () => (/* binding */ withEnabledBlockingInitialNavigation),
 /* harmony export */   "withHashLocation": () => (/* binding */ withHashLocation),
 /* harmony export */   "withInMemoryScrolling": () => (/* binding */ withInMemoryScrolling),
+/* harmony export */   "withNavigationErrorHandler": () => (/* binding */ withNavigationErrorHandler),
 /* harmony export */   "withPreloading": () => (/* binding */ withPreloading),
 /* harmony export */   "withRouterConfig": () => (/* binding */ withRouterConfig),
 /* harmony export */   "ɵEmptyOutletComponent": () => (/* binding */ ɵEmptyOutletComponent),
 /* harmony export */   "ɵROUTER_PROVIDERS": () => (/* binding */ ROUTER_PROVIDERS),
+/* harmony export */   "ɵafterNextNavigation": () => (/* binding */ afterNextNavigation),
 /* harmony export */   "ɵflatten": () => (/* binding */ flatten),
 /* harmony export */   "ɵwithPreloading": () => (/* binding */ withPreloading)
 /* harmony export */ });
@@ -95398,7 +95474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! rxjs/operators */ 6675);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/platform-browser */ 4497);
 /**
- * @license Angular v15.1.3
+ * @license Angular v15.2.0
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -97067,7 +97143,18 @@ const NG_DEV_MODE$9 = typeof ngDevMode === 'undefined' || ngDevMode;
 class LegacyCreateUrlTree {
   createUrlTree(relativeTo, currentState, currentUrlTree, commands, queryParams, fragment) {
     const a = relativeTo || currentState.root;
-    return createUrlTree(a, currentUrlTree, commands, queryParams, fragment);
+    const tree = createUrlTree(a, currentUrlTree, commands, queryParams, fragment);
+    if (NG_DEV_MODE$9) {
+      const treeFromSnapshotStrategy = new CreateUrlTreeUsingSnapshot().createUrlTree(relativeTo, currentState, currentUrlTree, commands, queryParams, fragment);
+      if (treeFromSnapshotStrategy.toString() !== tree.toString()) {
+        let warningString = `The navigation to ${tree.toString()} will instead go to ${treeFromSnapshotStrategy.toString()} in an upcoming version of Angular.`;
+        if (!!relativeTo) {
+          warningString += ' `relativeTo` might need to be removed from the `UrlCreationOptions`.';
+        }
+        tree._warnIfUsedForNavigation = warningString;
+      }
+    }
+    return tree;
   }
 }
 LegacyCreateUrlTree.ɵfac = function LegacyCreateUrlTree_Factory(t) {
@@ -97094,9 +97181,6 @@ class CreateUrlTreeUsingSnapshot {
       // Note: the difference between having this fallback for invalid `ActivatedRoute` setups and
       // just throwing is ~500 test failures. Fixing all of those tests by hand is not feasible at
       // the moment.
-      if (NG_DEV_MODE$9) {
-        console.warn(`The ActivatedRoute has an invalid structure. This is likely due to an incomplete mock in tests.`);
-      }
       if (typeof commands[0] !== 'string' || !commands[0].startsWith('/')) {
         // Navigations that were absolute in the old way of creating UrlTrees
         // would still work because they wouldn't attempt to match the
@@ -100483,6 +100567,8 @@ class Router {
      * A handler for navigation errors in this NgModule.
      *
      * @deprecated Subscribe to the `Router` events and watch for `NavigationError` instead.
+     *   `provideRouter` has the `withNavigationErrorHandler` feature to make this easier.
+     * @see `withNavigationErrorHandler`
      */
     this.errorHandler = this.options.errorHandler || defaultErrorHandler;
     /**
@@ -100491,8 +100577,8 @@ class Router {
      * The most common case is a `%` sign
      * that's not encoded and is not part of a percent encoded sequence.
      *
-     * @deprecated Configure this through `RouterModule.forRoot` instead:
-     *   `RouterModule.forRoot(routes, {malformedUriErrorHandler: myHandler})`
+     * @deprecated URI parsing errors should be handled in the `UrlSerializer`.
+     *
      * @see `RouterModule`
      */
     this.malformedUriErrorHandler = this.options.malformedUriErrorHandler || defaultMalformedUriErrorHandler;
@@ -100832,8 +100918,13 @@ class Router {
   navigateByUrl(url, extras = {
     skipLocationChange: false
   }) {
-    if (typeof ngDevMode === 'undefined' || ngDevMode && this.isNgZoneEnabled && !_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone.isInAngularZone()) {
-      this.console.warn(`Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'?`);
+    if (NG_DEV_MODE$2) {
+      if (this.isNgZoneEnabled && !_angular_core__WEBPACK_IMPORTED_MODULE_0__.NgZone.isInAngularZone()) {
+        this.console.warn(`Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'?`);
+      }
+      if (url instanceof UrlTree && url._warnIfUsedForNavigation) {
+        this.console.warn(url._warnIfUsedForNavigation);
+      }
     }
     const urlTree = isUrlTree(url) ? url : this.parseUrl(url);
     const mergedTree = this.urlHandlingStrategy.merge(urlTree, this.rawUrlTree);
@@ -101984,6 +102075,32 @@ RouterScroller.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0_
     }];
   }, null);
 })();
+var NavigationResult;
+(function (NavigationResult) {
+  NavigationResult[NavigationResult["COMPLETE"] = 0] = "COMPLETE";
+  NavigationResult[NavigationResult["FAILED"] = 1] = "FAILED";
+  NavigationResult[NavigationResult["REDIRECTING"] = 2] = "REDIRECTING";
+})(NavigationResult || (NavigationResult = {}));
+/**
+ * Performs the given action once the router finishes its next/current navigation.
+ *
+ * The navigation is considered complete under the following conditions:
+ * - `NavigationCancel` event emits and the code is not `NavigationCancellationCode.Redirect` or
+ * `NavigationCancellationCode.SupersededByNewNavigation`. In these cases, the
+ * redirecting/superseding navigation must finish.
+ * - `NavigationError`, `NavigationEnd`, or `NavigationSkipped` event emits
+ */
+function afterNextNavigation(router, action) {
+  router.events.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(e => e instanceof NavigationEnd || e instanceof NavigationCancel || e instanceof NavigationError || e instanceof NavigationSkipped), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(e => {
+    if (e instanceof NavigationEnd || e instanceof NavigationSkipped) {
+      return NavigationResult.COMPLETE;
+    }
+    const redirecting = e instanceof NavigationCancel ? e.code === 0 /* NavigationCancellationCode.Redirect */ || e.code === 1 /* NavigationCancellationCode.SupersededByNewNavigation */ : false;
+    return redirecting ? NavigationResult.REDIRECTING : NavigationResult.FAILED;
+  }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(result => result !== NavigationResult.REDIRECTING), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.take)(1)).subscribe(() => {
+    action();
+  });
+}
 const NG_DEV_MODE$1 = typeof ngDevMode === 'undefined' || ngDevMode;
 /**
  * Sets up providers necessary to enable `Router` functionality for the application.
@@ -102202,31 +102319,12 @@ function withEnabledBlockingInitialNavigation() {
     deps: [_angular_core__WEBPACK_IMPORTED_MODULE_0__.Injector],
     useFactory: injector => {
       const locationInitialized = injector.get(_angular_common__WEBPACK_IMPORTED_MODULE_33__.LOCATION_INITIALIZED, Promise.resolve());
-      /**
-       * Performs the given action once the router finishes its next/current navigation.
-       *
-       * If the navigation is canceled or errors without a redirect, the navigation is considered
-       * complete. If the `NavigationEnd` event emits, the navigation is also considered complete.
-       */
-      function afterNextNavigation(action) {
-        const router = injector.get(Router);
-        router.events.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(e => e instanceof NavigationEnd || e instanceof NavigationCancel || e instanceof NavigationError), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(e => {
-          if (e instanceof NavigationEnd) {
-            // Navigation assumed to succeed if we get `ActivationStart`
-            return true;
-          }
-          const redirecting = e instanceof NavigationCancel ? e.code === 0 /* NavigationCancellationCode.Redirect */ || e.code === 1 /* NavigationCancellationCode.SupersededByNewNavigation */ : false;
-          return redirecting ? null : false;
-        }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_10__.filter)(result => result !== null), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_8__.take)(1)).subscribe(() => {
-          action();
-        });
-      }
       return () => {
         return locationInitialized.then(() => {
           return new Promise(resolve => {
             const router = injector.get(Router);
             const bootstrapDone = injector.get(BOOTSTRAP_DONE);
-            afterNextNavigation(() => {
+            afterNextNavigation(router, () => {
               // Unblock APP_INITIALIZER in case the initial navigation was canceled or errored
               // without a redirect.
               resolve(true);
@@ -102437,6 +102535,50 @@ function withHashLocation() {
     useClass: _angular_common__WEBPACK_IMPORTED_MODULE_33__.HashLocationStrategy
   }];
   return routerFeature(5 /* RouterFeatureKind.RouterConfigurationFeature */, providers);
+}
+/**
+ * Subscribes to the Router's navigation events and calls the given function when a
+ * `NavigationError` happens.
+ *
+ * This function is run inside application's injection context so you can use the `inject` function.
+ *
+ * @usageNotes
+ *
+ * Basic example of how you can use the error handler option:
+ * ```
+ * const appRoutes: Routes = [];
+ * bootstrapApplication(AppComponent,
+ *   {
+ *     providers: [
+ *       provideRouter(appRoutes, withNavigationErrorHandler((e: NavigationError) =>
+ * inject(MyErrorTracker).trackError(e)))
+ *     ]
+ *   }
+ * );
+ * ```
+ *
+ * @see `NavigationError`
+ * @see `inject`
+ * @see `EnvironmentInjector#runInContext`
+ *
+ * @returns A set of providers for use with `provideRouter`.
+ *
+ * @publicApi
+ */
+function withNavigationErrorHandler(fn) {
+  const providers = [{
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_0__.ENVIRONMENT_INITIALIZER,
+    multi: true,
+    useValue: () => {
+      const injector = (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(_angular_core__WEBPACK_IMPORTED_MODULE_0__.EnvironmentInjector);
+      (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(Router).events.subscribe(e => {
+        if (e instanceof NavigationError) {
+          injector.runInContext(() => fn(e));
+        }
+      });
+    }
+  }];
+  return routerFeature(7 /* RouterFeatureKind.NavigationErrorHandlerFeature */, providers);
 }
 const NG_DEV_MODE = typeof ngDevMode === 'undefined' || ngDevMode;
 /**
@@ -102664,7 +102806,7 @@ function provideRouterInitializer() {
 /**
  * @publicApi
  */
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.1.3');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('15.2.0');
 
 /**
  * @module

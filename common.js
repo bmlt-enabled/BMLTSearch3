@@ -882,9 +882,9 @@ const hapticImpact = options => {
 
 /***/ }),
 
-/***/ 2880:
+/***/ 7309:
 /*!*************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/index-175a9345.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/index-2bcb741c.js ***!
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -917,7 +917,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
-/* Ionicons v6.1.1, ES Modules */
+/* Ionicons v6.1.3, ES Modules */
 const arrowBackSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path stroke-linecap='square' stroke-miterlimit='10' stroke-width='48' d='M244 400L100 256l144-144M120 256h292' class='ionicon-fill-none'/></svg>";
 const arrowDown = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 268l144 144 144-144M256 392V100' class='ionicon-fill-none'/></svg>";
 const caretBackSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path d='M368 64L144 256l224 192V64z'/></svg>";
@@ -1467,9 +1467,9 @@ const SPINNERS = spinners;
 
 /***/ }),
 
-/***/ 1118:
+/***/ 5861:
 /*!******************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/swipe-back-a896f0bc.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm/swipe-back-e35bd7d6.js ***!
   \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1491,7 +1491,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandler, onEndHandler) => {
   const win = el.ownerDocument.defaultView;
-  const rtl = (0,_dir_e8b767a8_js__WEBPACK_IMPORTED_MODULE_1__.i)(el);
+  let rtl = (0,_dir_e8b767a8_js__WEBPACK_IMPORTED_MODULE_1__.i)(el);
   /**
    * Determine if a gesture is near the edge
    * of the screen. If true, then the swipe
@@ -1514,6 +1514,12 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
     return rtl ? -detail.velocityX : detail.velocityX;
   };
   const canStart = detail => {
+    /**
+     * The user's locale can change mid-session,
+     * so we need to check text direction at
+     * the beginning of every gesture.
+     */
+    rtl = (0,_dir_e8b767a8_js__WEBPACK_IMPORTED_MODULE_1__.i)(el);
     return isAtEdge(detail) && canStartHandler();
   };
   const onMove = detail => {

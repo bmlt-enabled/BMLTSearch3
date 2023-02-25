@@ -120,7 +120,7 @@ let AppComponent = class AppComponent {
     }, {
       title: 'VIRTUAL_MEETINGS',
       url: 'virt-tabs',
-      icon: 'globe-outline'
+      icon: 'globe'
     }, {
       title: 'DOIHAVETHEBMLT',
       url: 'do-i-have-the-bmlt',
@@ -135,7 +135,9 @@ let AppComponent = class AppComponent {
   initializeApp() {
     return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
       this.platform.ready().then(() => {
-        this.statusBar.backgroundColorByHexString("#dddddd");
+        this.statusBar.overlaysWebView(false);
+        this.statusBar.backgroundColorByHexString("#f5f5f5");
+        this.statusBar.styleDefault();
         this.splashScreen.hide();
       });
       this.translate.setDefaultLang('en');
@@ -613,7 +615,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <!--  the side menu  -->\n    <ion-menu contentId=\"main-content\">\n      <ion-header>\n        <ion-toolbar color=\"primary\">\n          <ion-title>{{'MENU' | translate }}</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content class=\"ion-padding\">\n        <ion-list class=\"no-padding\">\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item (click)=\"selectedIndex = i\" routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" [class.selected]=\"selectedIndex == i\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title | translate }}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n\n    <!-- the main content -->\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>";
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <!--  the side menu  -->\n    <ion-menu contentId=\"main-content\">\n      <ion-header>\n        <ion-toolbar color=\"primary\">\n          <ion-title>{{'MENU' | translate }}</ion-title>\n        </ion-toolbar>\n      </ion-header>\n      <ion-content class=\"ion-padding\">\n        <ion-list class=\"no-padding\">\n\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\n            <ion-item routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" routerLinkActive=\"selected\">\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\n              <ion-label>{{ p.title | translate }}</ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n\n      </ion-content>\n    </ion-menu>\n\n    <!-- the main content -->\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n";
 
 /***/ })
 

@@ -802,7 +802,7 @@ VirtFormatsProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_ang
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var moment = module.exports = __webpack_require__(/*! ./moment-timezone */ 4769);
-moment.tz.load(__webpack_require__(/*! ./data/packed/latest.json */ 1128));
+moment.tz.load(__webpack_require__(/*! ./data/packed/latest.json */ 5610));
 
 /***/ }),
 
@@ -813,7 +813,7 @@ moment.tz.load(__webpack_require__(/*! ./data/packed/latest.json */ 1128));
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone.js
-//! version : 0.5.40
+//! version : 0.5.41
 //! Copyright (c) JS Foundation and other contributors
 //! license : MIT
 //! github.com/moment/moment-timezone
@@ -844,7 +844,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   // 	return moment;
   // }
 
-  var VERSION = "0.5.40",
+  var VERSION = "0.5.41",
     zones = {},
     links = {},
     countries = {},
@@ -20123,7 +20123,7 @@ module.exports = "<div>\n  <ion-list>\n    <ion-item>\n      <ion-text>\n       
 
 /***/ }),
 
-/***/ 1128:
+/***/ 5610:
 /*!**************************************************************!*\
   !*** ./node_modules/moment-timezone/data/packed/latest.json ***!
   \**************************************************************/
