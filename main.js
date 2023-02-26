@@ -135,9 +135,14 @@ let AppComponent = class AppComponent {
   initializeApp() {
     return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
       this.platform.ready().then(() => {
-        this.statusBar.overlaysWebView(false);
-        this.statusBar.backgroundColorByHexString("#f5f5f5");
         this.statusBar.styleDefault();
+        if (this.platform.is('android')) {
+          this.statusBar.backgroundColorByHexString("#d5d5d5");
+        }
+        // } else if (this.platform.is('ios')) {
+        //   this.statusBar.overlaysWebView(true);
+        //   this.statusBar.backgroundColorByHexString("#f5f5f5");
+        // }
         this.splashScreen.hide();
       });
       this.translate.setDefaultLang('en');
