@@ -139,10 +139,6 @@ let AppComponent = class AppComponent {
         if (this.platform.is('android')) {
           this.statusBar.backgroundColorByHexString("#d5d5d5");
         }
-        // } else if (this.platform.is('ios')) {
-        //   this.statusBar.overlaysWebView(true);
-        //   this.statusBar.backgroundColorByHexString("#f5f5f5");
-        // }
         this.splashScreen.hide();
       });
       this.translate.setDefaultLang('en');
