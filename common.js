@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
-/***/ 8167:
+/***/ 4431:
 /*!*******************************************!*\
   !*** ./src/app/pages/modal/modal.page.ts ***!
   \*******************************************/
@@ -9,18 +9,21 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ModalPage": () => (/* binding */ ModalPage)
+/* harmony export */   ModalPage: () => (/* binding */ ModalPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _modal_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal.page.html?ngResource */ 1769);
-/* harmony import */ var _modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal.page.scss?ngResource */ 8061);
-/* harmony import */ var _modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 7122);
-/* harmony import */ var _providers_tomato_formats_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/tomato-formats.service */ 5246);
-/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/storage.service */ 7852);
+/* harmony import */ var _home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _modal_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal.page.html?ngResource */ 1769);
+/* harmony import */ var _modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal.page.scss?ngResource */ 8061);
+/* harmony import */ var _modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 2288);
+/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 8418);
+/* harmony import */ var _providers_tomato_formats_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/tomato-formats.service */ 4545);
+/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../providers/storage.service */ 9031);
+
+var _class;
 
 
 
@@ -30,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let ModalPage = class ModalPage {
+let ModalPage = (_class = class ModalPage {
   constructor(translate, navParams, modalController, iab, tomatoFormatsService, storage) {
     this.translate = translate;
     this.navParams = navParams;
@@ -50,9 +53,10 @@ let ModalPage = class ModalPage {
     this.tomatoFormatsService.setExplodedFormatsOnMeetingList(this.meetingList, this.formatLanguage);
   }
   dismiss() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
-      yield this.modalController.dismiss();
-    });
+    var _this = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      yield _this.modalController.dismiss();
+    })();
   }
   openMapsLink(destLatitude, destLongitude) {
     const browser = this.iab.create('https://www.google.com/maps/search/?api=1&query=' + destLatitude + ',' + destLongitude, '_system');
@@ -82,30 +86,29 @@ let ModalPage = class ModalPage {
     console.log("exploding formats");
     this.tomatoFormatsService.setExplodedFormatsOnMeetingList([meeting], this.formatLanguage);
   }
-};
-ModalPage.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__.TranslateService
 }, {
   type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.NavParams
 }, {
   type: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.ModalController
 }, {
-  type: _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_2__.InAppBrowser
+  type: _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_3__.InAppBrowser
 }, {
-  type: _providers_tomato_formats_service__WEBPACK_IMPORTED_MODULE_3__.TomatoFormatsService
+  type: _providers_tomato_formats_service__WEBPACK_IMPORTED_MODULE_4__.TomatoFormatsService
 }, {
-  type: _providers_storage_service__WEBPACK_IMPORTED_MODULE_4__.StorageService
-}];
-ModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
+  type: _providers_storage_service__WEBPACK_IMPORTED_MODULE_5__.StorageService
+}], _class);
+ModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
   selector: 'app-modal',
-  template: _modal_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  styles: [(_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+  template: _modal_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
+  styles: [(_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
 })], ModalPage);
 
 
 /***/ }),
 
-/***/ 5890:
+/***/ 425:
 /*!*****************************************************!*\
   !*** ./src/app/providers/service-groups.service.ts ***!
   \*****************************************************/
@@ -114,12 +117,15 @@ ModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([(0,_angular_core_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ServiceGroupsProvider": () => (/* binding */ ServiceGroupsProvider)
+/* harmony export */   ServiceGroupsProvider: () => (/* binding */ ServiceGroupsProvider)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 8987);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 9067);
+/* harmony import */ var _home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 4860);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 142);
+
+var _class;
 
 
 
@@ -130,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-let ServiceGroupsProvider = class ServiceGroupsProvider {
+let ServiceGroupsProvider = (_class = class ServiceGroupsProvider {
   constructor(http, httpCors) {
     this.http = http;
     this.httpCors = httpCors;
@@ -141,23 +147,23 @@ let ServiceGroupsProvider = class ServiceGroupsProvider {
     return this.http.get(this.getApiUrlServiceGroups);
   }
   getAllVirtServiceGroups() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
-      const data = yield this.httpCors.get(this.getApiUrlVirtServiceGroups, {}, {});
+    var _this = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const data = yield _this.httpCors.get(_this.getApiUrlVirtServiceGroups, {}, {});
       return JSON.parse(data.data);
-    });
+    })();
   }
-};
-ServiceGroupsProvider.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient
 }, {
-  type: _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_0__.HTTP
-}];
-ServiceGroupsProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)()], ServiceGroupsProvider);
+  type: _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_1__.HTTP
+}], _class);
+ServiceGroupsProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)()], ServiceGroupsProvider);
 
 
 /***/ }),
 
-/***/ 5626:
+/***/ 2140:
 /*!************************************************************************!*\
   !*** ./node_modules/@awesome-cordova-plugins/geolocation/ngx/index.js ***!
   \************************************************************************/
@@ -166,12 +172,12 @@ ServiceGroupsProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_a
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Geolocation": () => (/* binding */ Geolocation)
+/* harmony export */   Geolocation: () => (/* binding */ Geolocation)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _awesome_cordova_plugins_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @awesome-cordova-plugins/core */ 9471);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 2378);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _awesome_cordova_plugins_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @awesome-cordova-plugins/core */ 6211);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 3064);
 
 
 
@@ -244,7 +250,7 @@ var Geolocation = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 7122:
+/***/ 8418:
 /*!***************************************************************************!*\
   !*** ./node_modules/@awesome-cordova-plugins/in-app-browser/ngx/index.js ***!
   \***************************************************************************/
@@ -253,13 +259,13 @@ var Geolocation = /** @class */function (_super) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "InAppBrowser": () => (/* binding */ InAppBrowser),
-/* harmony export */   "InAppBrowserObject": () => (/* binding */ InAppBrowserObject)
+/* harmony export */   InAppBrowser: () => (/* binding */ InAppBrowser),
+/* harmony export */   InAppBrowserObject: () => (/* binding */ InAppBrowserObject)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _awesome_cordova_plugins_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @awesome-cordova-plugins/core */ 9471);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 2378);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _awesome_cordova_plugins_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @awesome-cordova-plugins/core */ 6211);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 3064);
 
 
 
@@ -393,7 +399,7 @@ var InAppBrowser = /** @class */function (_super) {
 
 /***/ }),
 
-/***/ 5539:
+/***/ 2338:
 /*!*********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/button-active-a4d897e8.js ***!
   \*********************************************************************/
@@ -402,11 +408,11 @@ var InAppBrowser = /** @class */function (_super) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "c": () => (/* binding */ createButtonActiveGesture)
+/* harmony export */   c: () => (/* binding */ createButtonActiveGesture)
 /* harmony export */ });
-/* harmony import */ var _index_8e692445_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-8e692445.js */ 1559);
-/* harmony import */ var _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-029a46f6.js */ 2815);
-/* harmony import */ var _index_422b6e83_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-422b6e83.js */ 8759);
+/* harmony import */ var _index_8e692445_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-8e692445.js */ 3293);
+/* harmony import */ var _haptic_029a46f6_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./haptic-029a46f6.js */ 8229);
+/* harmony import */ var _index_422b6e83_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-422b6e83.js */ 37);
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
@@ -475,7 +481,7 @@ const createButtonActiveGesture = (el, isButton) => {
 
 /***/ }),
 
-/***/ 7481:
+/***/ 5094:
 /*!***********************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/dir-e8b767a8.js ***!
   \***********************************************************/
@@ -484,7 +490,7 @@ const createButtonActiveGesture = (el, isButton) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "i": () => (/* binding */ isRTL)
+/* harmony export */   i: () => (/* binding */ isRTL)
 /* harmony export */ });
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -506,7 +512,7 @@ const isRTL = hostEl => {
 
 /***/ }),
 
-/***/ 9118:
+/***/ 1569:
 /*!*********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/focus-visible-bd02518b.js ***!
   \*********************************************************************/
@@ -515,7 +521,7 @@ const isRTL = hostEl => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "startFocusVisible": () => (/* binding */ startFocusVisible)
+/* harmony export */   startFocusVisible: () => (/* binding */ startFocusVisible)
 /* harmony export */ });
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -581,7 +587,7 @@ const startFocusVisible = rootEl => {
 
 /***/ }),
 
-/***/ 539:
+/***/ 961:
 /*!**************************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/framework-delegate-c3305a28.js ***!
   \**************************************************************************/
@@ -590,12 +596,12 @@ const startFocusVisible = rootEl => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "C": () => (/* binding */ CoreDelegate),
-/* harmony export */   "a": () => (/* binding */ attachComponent),
-/* harmony export */   "d": () => (/* binding */ detachComponent)
+/* harmony export */   C: () => (/* binding */ CoreDelegate),
+/* harmony export */   a: () => (/* binding */ attachComponent),
+/* harmony export */   d: () => (/* binding */ detachComponent)
 /* harmony export */ });
 /* harmony import */ var _home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
+/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 1542);
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -727,7 +733,7 @@ const CoreDelegate = () => {
 
 /***/ }),
 
-/***/ 2815:
+/***/ 8229:
 /*!**************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/haptic-029a46f6.js ***!
   \**************************************************************/
@@ -736,11 +742,11 @@ const CoreDelegate = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "a": () => (/* binding */ hapticSelectionStart),
-/* harmony export */   "b": () => (/* binding */ hapticSelectionChanged),
-/* harmony export */   "c": () => (/* binding */ hapticSelection),
-/* harmony export */   "d": () => (/* binding */ hapticImpact),
-/* harmony export */   "h": () => (/* binding */ hapticSelectionEnd)
+/* harmony export */   a: () => (/* binding */ hapticSelectionStart),
+/* harmony export */   b: () => (/* binding */ hapticSelectionChanged),
+/* harmony export */   c: () => (/* binding */ hapticSelection),
+/* harmony export */   d: () => (/* binding */ hapticImpact),
+/* harmony export */   h: () => (/* binding */ hapticSelectionEnd)
 /* harmony export */ });
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -882,7 +888,7 @@ const hapticImpact = options => {
 
 /***/ }),
 
-/***/ 7309:
+/***/ 1065:
 /*!*************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/index-2bcb741c.js ***!
   \*************************************************************/
@@ -891,28 +897,28 @@ const hapticImpact = options => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "a": () => (/* binding */ arrowBackSharp),
-/* harmony export */   "b": () => (/* binding */ closeCircle),
-/* harmony export */   "c": () => (/* binding */ chevronBack),
-/* harmony export */   "d": () => (/* binding */ closeSharp),
-/* harmony export */   "e": () => (/* binding */ searchSharp),
-/* harmony export */   "f": () => (/* binding */ checkmarkOutline),
-/* harmony export */   "g": () => (/* binding */ ellipseOutline),
-/* harmony export */   "h": () => (/* binding */ caretBackSharp),
-/* harmony export */   "i": () => (/* binding */ arrowDown),
-/* harmony export */   "j": () => (/* binding */ reorderThreeOutline),
-/* harmony export */   "k": () => (/* binding */ reorderTwoSharp),
-/* harmony export */   "l": () => (/* binding */ chevronDown),
-/* harmony export */   "m": () => (/* binding */ chevronForwardOutline),
-/* harmony export */   "n": () => (/* binding */ ellipsisHorizontal),
-/* harmony export */   "o": () => (/* binding */ chevronForward),
-/* harmony export */   "p": () => (/* binding */ caretUpSharp),
-/* harmony export */   "q": () => (/* binding */ caretDownSharp),
-/* harmony export */   "r": () => (/* binding */ removeOutline),
-/* harmony export */   "s": () => (/* binding */ searchOutline),
-/* harmony export */   "t": () => (/* binding */ close),
-/* harmony export */   "u": () => (/* binding */ menuOutline),
-/* harmony export */   "v": () => (/* binding */ menuSharp)
+/* harmony export */   a: () => (/* binding */ arrowBackSharp),
+/* harmony export */   b: () => (/* binding */ closeCircle),
+/* harmony export */   c: () => (/* binding */ chevronBack),
+/* harmony export */   d: () => (/* binding */ closeSharp),
+/* harmony export */   e: () => (/* binding */ searchSharp),
+/* harmony export */   f: () => (/* binding */ checkmarkOutline),
+/* harmony export */   g: () => (/* binding */ ellipseOutline),
+/* harmony export */   h: () => (/* binding */ caretBackSharp),
+/* harmony export */   i: () => (/* binding */ arrowDown),
+/* harmony export */   j: () => (/* binding */ reorderThreeOutline),
+/* harmony export */   k: () => (/* binding */ reorderTwoSharp),
+/* harmony export */   l: () => (/* binding */ chevronDown),
+/* harmony export */   m: () => (/* binding */ chevronForwardOutline),
+/* harmony export */   n: () => (/* binding */ ellipsisHorizontal),
+/* harmony export */   o: () => (/* binding */ chevronForward),
+/* harmony export */   p: () => (/* binding */ caretUpSharp),
+/* harmony export */   q: () => (/* binding */ caretDownSharp),
+/* harmony export */   r: () => (/* binding */ removeOutline),
+/* harmony export */   s: () => (/* binding */ searchOutline),
+/* harmony export */   t: () => (/* binding */ close),
+/* harmony export */   u: () => (/* binding */ menuOutline),
+/* harmony export */   v: () => (/* binding */ menuSharp)
 /* harmony export */ });
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -944,7 +950,7 @@ const searchSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
 
 /***/ }),
 
-/***/ 4311:
+/***/ 1472:
 /*!*************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/index-e6d1a8be.js ***!
   \*************************************************************/
@@ -953,21 +959,21 @@ const searchSharp = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "I": () => (/* binding */ ION_CONTENT_ELEMENT_SELECTOR),
-/* harmony export */   "a": () => (/* binding */ findIonContent),
-/* harmony export */   "b": () => (/* binding */ ION_CONTENT_CLASS_SELECTOR),
-/* harmony export */   "c": () => (/* binding */ scrollByPoint),
-/* harmony export */   "d": () => (/* binding */ disableContentScrollY),
-/* harmony export */   "f": () => (/* binding */ findClosestIonContent),
-/* harmony export */   "g": () => (/* binding */ getScrollElement),
-/* harmony export */   "i": () => (/* binding */ isIonContent),
-/* harmony export */   "p": () => (/* binding */ printIonContentErrorMsg),
-/* harmony export */   "r": () => (/* binding */ resetContentScrollY),
-/* harmony export */   "s": () => (/* binding */ scrollToTop)
+/* harmony export */   I: () => (/* binding */ ION_CONTENT_ELEMENT_SELECTOR),
+/* harmony export */   a: () => (/* binding */ findIonContent),
+/* harmony export */   b: () => (/* binding */ ION_CONTENT_CLASS_SELECTOR),
+/* harmony export */   c: () => (/* binding */ scrollByPoint),
+/* harmony export */   d: () => (/* binding */ disableContentScrollY),
+/* harmony export */   f: () => (/* binding */ findClosestIonContent),
+/* harmony export */   g: () => (/* binding */ getScrollElement),
+/* harmony export */   i: () => (/* binding */ isIonContent),
+/* harmony export */   p: () => (/* binding */ printIonContentErrorMsg),
+/* harmony export */   r: () => (/* binding */ resetContentScrollY),
+/* harmony export */   s: () => (/* binding */ scrollToTop)
 /* harmony export */ });
 /* harmony import */ var _home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
-/* harmony import */ var _index_c4b11676_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-c4b11676.js */ 9273);
+/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 1542);
+/* harmony import */ var _index_c4b11676_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-c4b11676.js */ 1230);
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -1102,7 +1108,7 @@ const resetContentScrollY = (contentEl, initialScrollY) => {
 
 /***/ }),
 
-/***/ 512:
+/***/ 737:
 /*!****************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/keyboard-282b81b8.js ***!
   \****************************************************************/
@@ -1111,17 +1117,17 @@ const resetContentScrollY = (contentEl, initialScrollY) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "KEYBOARD_DID_CLOSE": () => (/* binding */ KEYBOARD_DID_CLOSE),
-/* harmony export */   "KEYBOARD_DID_OPEN": () => (/* binding */ KEYBOARD_DID_OPEN),
-/* harmony export */   "copyVisualViewport": () => (/* binding */ copyVisualViewport),
-/* harmony export */   "keyboardDidClose": () => (/* binding */ keyboardDidClose),
-/* harmony export */   "keyboardDidOpen": () => (/* binding */ keyboardDidOpen),
-/* harmony export */   "keyboardDidResize": () => (/* binding */ keyboardDidResize),
-/* harmony export */   "resetKeyboardAssist": () => (/* binding */ resetKeyboardAssist),
-/* harmony export */   "setKeyboardClose": () => (/* binding */ setKeyboardClose),
-/* harmony export */   "setKeyboardOpen": () => (/* binding */ setKeyboardOpen),
-/* harmony export */   "startKeyboardAssist": () => (/* binding */ startKeyboardAssist),
-/* harmony export */   "trackViewportChanges": () => (/* binding */ trackViewportChanges)
+/* harmony export */   KEYBOARD_DID_CLOSE: () => (/* binding */ KEYBOARD_DID_CLOSE),
+/* harmony export */   KEYBOARD_DID_OPEN: () => (/* binding */ KEYBOARD_DID_OPEN),
+/* harmony export */   copyVisualViewport: () => (/* binding */ copyVisualViewport),
+/* harmony export */   keyboardDidClose: () => (/* binding */ keyboardDidClose),
+/* harmony export */   keyboardDidOpen: () => (/* binding */ keyboardDidOpen),
+/* harmony export */   keyboardDidResize: () => (/* binding */ keyboardDidResize),
+/* harmony export */   resetKeyboardAssist: () => (/* binding */ resetKeyboardAssist),
+/* harmony export */   setKeyboardClose: () => (/* binding */ setKeyboardClose),
+/* harmony export */   setKeyboardOpen: () => (/* binding */ setKeyboardOpen),
+/* harmony export */   startKeyboardAssist: () => (/* binding */ startKeyboardAssist),
+/* harmony export */   trackViewportChanges: () => (/* binding */ trackViewportChanges)
 /* harmony export */ });
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -1253,7 +1259,7 @@ const copyVisualViewport = visualViewport => {
 
 /***/ }),
 
-/***/ 3963:
+/***/ 4504:
 /*!***************************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/keyboard-controller-73af62b2.js ***!
   \***************************************************************************/
@@ -1262,9 +1268,9 @@ const copyVisualViewport = visualViewport => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "c": () => (/* binding */ createKeyboardController)
+/* harmony export */   c: () => (/* binding */ createKeyboardController)
 /* harmony export */ });
-/* harmony import */ var _index_33ffec25_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-33ffec25.js */ 2286);
+/* harmony import */ var _index_33ffec25_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-33ffec25.js */ 5383);
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
@@ -1309,7 +1315,7 @@ const createKeyboardController = keyboardChangeCallback => {
 
 /***/ }),
 
-/***/ 3844:
+/***/ 2853:
 /*!***********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/spinner-configs-5d6b6fe7.js ***!
   \***********************************************************************/
@@ -1318,7 +1324,7 @@ const createKeyboardController = keyboardChangeCallback => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "S": () => (/* binding */ SPINNERS)
+/* harmony export */   S: () => (/* binding */ SPINNERS)
 /* harmony export */ });
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -1467,7 +1473,7 @@ const SPINNERS = spinners;
 
 /***/ }),
 
-/***/ 5861:
+/***/ 3523:
 /*!******************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/swipe-back-e35bd7d6.js ***!
   \******************************************************************/
@@ -1476,12 +1482,12 @@ const SPINNERS = spinners;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createSwipeBackGesture": () => (/* binding */ createSwipeBackGesture)
+/* harmony export */   createSwipeBackGesture: () => (/* binding */ createSwipeBackGesture)
 /* harmony export */ });
-/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 9259);
-/* harmony import */ var _dir_e8b767a8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dir-e8b767a8.js */ 7481);
-/* harmony import */ var _index_422b6e83_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-422b6e83.js */ 8759);
-/* harmony import */ var _gesture_controller_17060b7c_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gesture-controller-17060b7c.js */ 6379);
+/* harmony import */ var _helpers_3b390e48_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers-3b390e48.js */ 1542);
+/* harmony import */ var _dir_e8b767a8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dir-e8b767a8.js */ 5094);
+/* harmony import */ var _index_422b6e83_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-422b6e83.js */ 37);
+/* harmony import */ var _gesture_controller_17060b7c_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gesture-controller-17060b7c.js */ 1247);
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
  */
@@ -1567,11 +1573,11 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 9579);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 931);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

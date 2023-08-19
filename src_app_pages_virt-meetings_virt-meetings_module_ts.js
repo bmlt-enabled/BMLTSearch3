@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_pages_virt-meetings_virt-meetings_module_ts"],{
 
-/***/ 810:
+/***/ 1707:
 /*!*********************************************************************!*\
   !*** ./src/app/pages/virt-meetings/virt-meetings-routing.module.ts ***!
   \*********************************************************************/
@@ -9,12 +9,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VirtMeetingsPageRoutingModule": () => (/* binding */ VirtMeetingsPageRoutingModule)
+/* harmony export */   VirtMeetingsPageRoutingModule: () => (/* binding */ VirtMeetingsPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _virt_meetings_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./virt-meetings.page */ 1361);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 7947);
+/* harmony import */ var _virt_meetings_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./virt-meetings.page */ 5897);
 
 
 
@@ -32,7 +32,7 @@ VirtMeetingsPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate
 
 /***/ }),
 
-/***/ 2763:
+/***/ 8541:
 /*!*************************************************************!*\
   !*** ./src/app/pages/virt-meetings/virt-meetings.module.ts ***!
   \*************************************************************/
@@ -41,23 +41,23 @@ VirtMeetingsPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VirtMeetingsPageModule": () => (/* binding */ VirtMeetingsPageModule)
+/* harmony export */   VirtMeetingsPageModule: () => (/* binding */ VirtMeetingsPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _virt_meetings_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./virt-meetings-routing.module */ 810);
-/* harmony import */ var _virt_meetings_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./virt-meetings.page */ 1361);
-/* harmony import */ var src_app_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/pipes/pipes.module */ 5503);
-/* harmony import */ var _components_component_component_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/component/component.module */ 8671);
-/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 346);
-/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 7122);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 9067);
-/* harmony import */ var src_app_providers_service_groups_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/providers/service-groups.service */ 5890);
-/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/providers/storage.service */ 7852);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ 8849);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic/angular */ 2288);
+/* harmony import */ var _virt_meetings_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./virt-meetings-routing.module */ 1707);
+/* harmony import */ var _virt_meetings_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./virt-meetings.page */ 5897);
+/* harmony import */ var src_app_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/pipes/pipes.module */ 2898);
+/* harmony import */ var _components_component_component_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/component/component.module */ 6394);
+/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 4073);
+/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 8418);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 142);
+/* harmony import */ var src_app_providers_service_groups_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/providers/service-groups.service */ 425);
+/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/providers/storage.service */ 9031);
 
 
 
@@ -83,7 +83,7 @@ VirtMeetingsPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_
 
 /***/ }),
 
-/***/ 1361:
+/***/ 5897:
 /*!***********************************************************!*\
   !*** ./src/app/pages/virt-meetings/virt-meetings.page.ts ***!
   \***********************************************************/
@@ -92,21 +92,22 @@ VirtMeetingsPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VirtMeetingsPage": () => (/* binding */ VirtMeetingsPage)
+/* harmony export */   VirtMeetingsPage: () => (/* binding */ VirtMeetingsPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _virt_meetings_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./virt-meetings.page.html?ngResource */ 1768);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _virt_meetings_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./virt-meetings.page.html?ngResource */ 8516);
 /* harmony import */ var _virt_meetings_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./virt-meetings.page.scss?ngResource */ 9678);
 /* harmony import */ var _virt_meetings_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_virt_meetings_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/storage.service */ 7852);
-/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/loading.service */ 9817);
-/* harmony import */ var _providers_service_groups_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/service-groups.service */ 5890);
-/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 346);
-/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 7122);
-/* harmony import */ var thenby__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! thenby */ 5037);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/storage.service */ 9031);
+/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/loading.service */ 2521);
+/* harmony import */ var _providers_service_groups_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/service-groups.service */ 425);
+/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 4073);
+/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 8418);
+/* harmony import */ var thenby__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! thenby */ 6747);
 /* harmony import */ var thenby__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(thenby__WEBPACK_IMPORTED_MODULE_7__);
+var _class;
 
 
 
@@ -118,7 +119,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let VirtMeetingsPage = class VirtMeetingsPage {
+let VirtMeetingsPage = (_class = class VirtMeetingsPage {
   constructor(meetingListProvider, serviceGroupsProvider, loaderCtrl, translate, storage, iab) {
     this.meetingListProvider = meetingListProvider;
     this.serviceGroupsProvider = serviceGroupsProvider;
@@ -254,8 +255,7 @@ let VirtMeetingsPage = class VirtMeetingsPage {
   openLink(url) {
     const browser = this.iab.create(url, '_system');
   }
-};
-VirtMeetingsPage.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_5__.MeetingListProvider
 }, {
   type: _providers_service_groups_service__WEBPACK_IMPORTED_MODULE_4__.ServiceGroupsProvider
@@ -267,7 +267,7 @@ VirtMeetingsPage.ctorParameters = () => [{
   type: _providers_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService
 }, {
   type: _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_6__.InAppBrowser
-}];
+}], _class);
 VirtMeetingsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
   selector: 'app-virt-meetings',
   template: _virt_meetings_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
@@ -284,18 +284,18 @@ VirtMeetingsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angula
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 9579);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 931);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 
 /***/ }),
 
-/***/ 1768:
+/***/ 8516:
 /*!************************************************************************!*\
   !*** ./src/app/pages/virt-meetings/virt-meetings.page.html?ngResource ***!
   \************************************************************************/

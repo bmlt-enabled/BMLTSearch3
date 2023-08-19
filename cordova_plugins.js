@@ -687,7 +687,7 @@ module.exports.metadata =
     "cordova-plugin-ionic-webview": "5.0.0",
     "cordova-plugin-inappbrowser": "5.0.0",
     "cordova-plugin-geolocation": "4.1.0",
-    "cordova-plugin-file": "7.0.0",
+    "cordova-plugin-file": "8.0.0",
     "cordova-plugin-advanced-http": "3.3.1"
 }
 // BOTTOM OF METADATA

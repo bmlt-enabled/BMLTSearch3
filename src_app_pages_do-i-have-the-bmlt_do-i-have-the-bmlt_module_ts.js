@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_pages_do-i-have-the-bmlt_do-i-have-the-bmlt_module_ts"],{
 
-/***/ 662:
+/***/ 3572:
 /*!*******************************************************************************!*\
   !*** ./src/app/pages/do-i-have-the-bmlt/do-i-have-the-bmlt-routing.module.ts ***!
   \*******************************************************************************/
@@ -9,12 +9,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DoIHaveTheBmltPageRoutingModule": () => (/* binding */ DoIHaveTheBmltPageRoutingModule)
+/* harmony export */   DoIHaveTheBmltPageRoutingModule: () => (/* binding */ DoIHaveTheBmltPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _do_i_have_the_bmlt_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./do-i-have-the-bmlt.page */ 3958);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 7947);
+/* harmony import */ var _do_i_have_the_bmlt_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./do-i-have-the-bmlt.page */ 9165);
 
 
 
@@ -32,7 +32,7 @@ DoIHaveTheBmltPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decora
 
 /***/ }),
 
-/***/ 7996:
+/***/ 1402:
 /*!***********************************************************************!*\
   !*** ./src/app/pages/do-i-have-the-bmlt/do-i-have-the-bmlt.module.ts ***!
   \***********************************************************************/
@@ -41,21 +41,21 @@ DoIHaveTheBmltPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decora
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DoIHaveTheBmltPageModule": () => (/* binding */ DoIHaveTheBmltPageModule)
+/* harmony export */   DoIHaveTheBmltPageModule: () => (/* binding */ DoIHaveTheBmltPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _do_i_have_the_bmlt_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./do-i-have-the-bmlt-routing.module */ 662);
-/* harmony import */ var _do_i_have_the_bmlt_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./do-i-have-the-bmlt.page */ 3958);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 7122);
-/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 346);
-/* harmony import */ var src_app_providers_service_groups_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/service-groups.service */ 5890);
-/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 5626);
-/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/providers/storage.service */ 7852);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 8849);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 2288);
+/* harmony import */ var _do_i_have_the_bmlt_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./do-i-have-the-bmlt-routing.module */ 3572);
+/* harmony import */ var _do_i_have_the_bmlt_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./do-i-have-the-bmlt.page */ 9165);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 8418);
+/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 4073);
+/* harmony import */ var src_app_providers_service_groups_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/service-groups.service */ 425);
+/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 2140);
+/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/providers/storage.service */ 9031);
 
 
 
@@ -79,7 +79,7 @@ DoIHaveTheBmltPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0
 
 /***/ }),
 
-/***/ 3958:
+/***/ 9165:
 /*!*********************************************************************!*\
   !*** ./src/app/pages/do-i-have-the-bmlt/do-i-have-the-bmlt.page.ts ***!
   \*********************************************************************/
@@ -88,20 +88,21 @@ DoIHaveTheBmltPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DoIHaveTheBmltPage": () => (/* binding */ DoIHaveTheBmltPage)
+/* harmony export */   DoIHaveTheBmltPage: () => (/* binding */ DoIHaveTheBmltPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 2321);
 /* harmony import */ var _do_i_have_the_bmlt_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./do-i-have-the-bmlt.page.html?ngResource */ 4120);
 /* harmony import */ var _do_i_have_the_bmlt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./do-i-have-the-bmlt.page.scss?ngResource */ 6029);
 /* harmony import */ var _do_i_have_the_bmlt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_do_i_have_the_bmlt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 346);
-/* harmony import */ var _providers_service_groups_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/service-groups.service */ 5890);
-/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/storage.service */ 7852);
-/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 5626);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 7122);
-/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../providers/loading.service */ 9817);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 4073);
+/* harmony import */ var _providers_service_groups_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/service-groups.service */ 425);
+/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/storage.service */ 9031);
+/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 2140);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 8418);
+/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../providers/loading.service */ 2521);
+var _class;
 
 
 
@@ -113,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let DoIHaveTheBmltPage = class DoIHaveTheBmltPage {
+let DoIHaveTheBmltPage = (_class = class DoIHaveTheBmltPage {
   constructor(MeetingLists, ServiceGroups, loaderCtrl, translate, storage, geolocation, iab) {
     this.MeetingLists = MeetingLists;
     this.ServiceGroups = ServiceGroups;
@@ -200,8 +201,7 @@ let DoIHaveTheBmltPage = class DoIHaveTheBmltPage {
   openLink(url) {
     const browser = this.iab.create(url, '_system');
   }
-};
-DoIHaveTheBmltPage.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_2__.MeetingListProvider
 }, {
   type: _providers_service_groups_service__WEBPACK_IMPORTED_MODULE_3__.ServiceGroupsProvider
@@ -215,7 +215,7 @@ DoIHaveTheBmltPage.ctorParameters = () => [{
   type: _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__.Geolocation
 }, {
   type: _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_6__.InAppBrowser
-}];
+}], _class);
 DoIHaveTheBmltPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
   selector: 'app-do-i-have-the-bmlt',
   template: _do_i_have_the_bmlt_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
@@ -225,7 +225,7 @@ DoIHaveTheBmltPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angu
 
 /***/ }),
 
-/***/ 9817:
+/***/ 2521:
 /*!**********************************************!*\
   !*** ./src/app/providers/loading.service.ts ***!
   \**********************************************/
@@ -234,52 +234,56 @@ DoIHaveTheBmltPage = (0,tslib__WEBPACK_IMPORTED_MODULE_9__.__decorate)([(0,_angu
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LoadingService": () => (/* binding */ LoadingService)
+/* harmony export */   LoadingService: () => (/* binding */ LoadingService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var _home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ 2288);
+
+var _class;
 
 
 
-let LoadingService = class LoadingService {
+let LoadingService = (_class = class LoadingService {
   constructor(loadingController) {
     this.loadingController = loadingController;
     this.isLoading = false;
   }
   present(text) {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
-      this.isLoading = true;
-      return yield this.loadingController.create({
+    var _this = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      _this.isLoading = true;
+      return yield _this.loadingController.create({
         spinner: 'circles',
         message: text
       }).then(a => {
         a.present().then(() => {
-          if (!this.isLoading) {
+          if (!_this.isLoading) {
             a.dismiss();
           }
         });
       });
-    });
+    })();
   }
   dismiss() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
-      this.isLoading = false;
-      return yield this.loadingController.dismiss();
-    });
+    var _this2 = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      _this2.isLoading = false;
+      return yield _this2.loadingController.dismiss();
+    })();
   }
-};
-LoadingService.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _ionic_angular__WEBPACK_IMPORTED_MODULE_1__.LoadingController
-}];
-LoadingService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+}], _class);
+LoadingService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
   providedIn: 'root'
 })], LoadingService);
 
 
 /***/ }),
 
-/***/ 346:
+/***/ 4073:
 /*!***************************************************!*\
   !*** ./src/app/providers/meeting-list.service.ts ***!
   \***************************************************/
@@ -288,17 +292,20 @@ LoadingService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([(0,_angular_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "MeetingListProvider": () => (/* binding */ MeetingListProvider)
+/* harmony export */   MeetingListProvider: () => (/* binding */ MeetingListProvider)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 8987);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 9067);
+/* harmony import */ var _home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ 4860);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 142);
+
+var _class;
 
 
 
 
-let MeetingListProvider = class MeetingListProvider {
+let MeetingListProvider = (_class = class MeetingListProvider {
   constructor(http, httpCors) {
     this.http = http;
     this.httpCors = httpCors;
@@ -308,16 +315,18 @@ let MeetingListProvider = class MeetingListProvider {
     this.getAllVirtMtgs = 'https://bmlt.virtual-na.org/main_server/client_interface/json/?switcher=GetSearchResults&data_field_key=location_postal_code_1,duration_time,start_time,time_zone,weekday_tinyint,service_body_bigint,longitude,latitude,location_province,location_municipality,location_street,location_info,location_text,location_neighborhood,formats,format_shared_id_list,comments,meeting_name,location_sub_province,worldid_mixed,root_server_uri,id_bigint,meeting_name,location_text,formatted_address,formatted_location_info,formatted_comments,contact_name_1,contact_phone_1,contact_email_1,contact_name_2,contact_phone_2,contact_email_2&services[]=4&recursive=1&sort_keys=start_time';
   }
   getVirtualMeetings() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
-      const data = yield this.httpCors.get(this.getApiUrlVirt, {}, {});
+    var _this = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const data = yield _this.httpCors.get(_this.getApiUrlVirt, {}, {});
       return JSON.parse(data.data);
-    });
+    })();
   }
   getAllVirtualMeetings() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
-      const data = yield this.httpCors.get(this.getAllVirtMtgs, {}, {});
+    var _this2 = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const data = yield _this2.httpCors.get(_this2.getAllVirtMtgs, {}, {});
       return JSON.parse(data.data);
-    });
+    })();
   }
   getAutoRadiusMeetings(lat, long, radius) {
     const getAutoRadiusMeetingsURL = this.tomatoBMLT + '?switcher=GetSearchResults&geo_width_km=' + '-' + radius + '&long_val=' + long + '&lat_val=' + lat + '&sort_keys=longitude,latitude&callingApp=bmlt_search_3_ionic';
@@ -340,23 +349,23 @@ let MeetingListProvider = class MeetingListProvider {
     return this.http.get(getMeetingsByAreaURL);
   }
   getMeetingsByVirtArea(areaID) {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
-      const getMeetingsByVirtAreaURL = this.virtualBMLT + '?switcher=GetSearchResults&services=' + areaID + '&sort_keys=weekday_tinyint,start_time&callingApp=bmlt_search_3_ionic';
-      const data = yield this.httpCors.get(getMeetingsByVirtAreaURL, {}, {});
+    var _this3 = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const getMeetingsByVirtAreaURL = _this3.virtualBMLT + '?switcher=GetSearchResults&services=' + areaID + '&sort_keys=weekday_tinyint,start_time&callingApp=bmlt_search_3_ionic';
+      const data = yield _this3.httpCors.get(getMeetingsByVirtAreaURL, {}, {});
       return JSON.parse(data.data);
-    });
+    })();
   }
   getSingleMeetingByID(id) {
     const getSingleMeetingByIDURL = this.tomatoBMLT + '?switcher=GetSearchResults&meeting_ids[]=' + id;
     return this.http.get(getSingleMeetingByIDURL);
   }
-};
-MeetingListProvider.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient
 }, {
-  type: _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_0__.HTTP
-}];
-MeetingListProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)()], MeetingListProvider);
+  type: _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_1__.HTTP
+}], _class);
+MeetingListProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)()], MeetingListProvider);
 
 
 /***/ }),
@@ -368,11 +377,11 @@ MeetingListProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_ang
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 9579);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 931);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

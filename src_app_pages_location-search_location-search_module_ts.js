@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_pages_location-search_location-search_module_ts"],{
 
-/***/ 8053:
+/***/ 6586:
 /*!*************************************************************************!*\
   !*** ./src/app/pages/location-search/location-search-routing.module.ts ***!
   \*************************************************************************/
@@ -9,12 +9,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LocationSearchPageRoutingModule": () => (/* binding */ LocationSearchPageRoutingModule)
+/* harmony export */   LocationSearchPageRoutingModule: () => (/* binding */ LocationSearchPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _location_search_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./location-search.page */ 5341);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 7947);
+/* harmony import */ var _location_search_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./location-search.page */ 4517);
 
 
 
@@ -32,7 +32,7 @@ LocationSearchPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decora
 
 /***/ }),
 
-/***/ 3031:
+/***/ 3113:
 /*!*****************************************************************!*\
   !*** ./src/app/pages/location-search/location-search.module.ts ***!
   \*****************************************************************/
@@ -41,24 +41,24 @@ LocationSearchPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decora
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LocationSearchPageModule": () => (/* binding */ LocationSearchPageModule)
+/* harmony export */   LocationSearchPageModule: () => (/* binding */ LocationSearchPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _location_search_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./location-search-routing.module */ 8053);
-/* harmony import */ var _location_search_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./location-search.page */ 5341);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 346);
-/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 7122);
-/* harmony import */ var src_app_providers_geolocate_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/geolocate.service */ 7868);
-/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 5626);
-/* harmony import */ var src_app_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/pipes/pipes.module */ 5503);
-/* harmony import */ var _components_component_component_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/component/component.module */ 8671);
-/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 9067);
-/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/providers/storage.service */ 7852);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ 8849);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/angular */ 2288);
+/* harmony import */ var _location_search_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./location-search-routing.module */ 6586);
+/* harmony import */ var _location_search_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./location-search.page */ 4517);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 4073);
+/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 8418);
+/* harmony import */ var src_app_providers_geolocate_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/providers/geolocate.service */ 5570);
+/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 2140);
+/* harmony import */ var src_app_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/pipes/pipes.module */ 2898);
+/* harmony import */ var _components_component_component_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/component/component.module */ 6394);
+/* harmony import */ var _awesome_cordova_plugins_http_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @awesome-cordova-plugins/http/ngx */ 142);
+/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/providers/storage.service */ 9031);
 
 
 
@@ -85,7 +85,7 @@ LocationSearchPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([(
 
 /***/ }),
 
-/***/ 5341:
+/***/ 4517:
 /*!***************************************************************!*\
   !*** ./src/app/pages/location-search/location-search.page.ts ***!
   \***************************************************************/
@@ -94,19 +94,20 @@ LocationSearchPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LocationSearchPage": () => (/* binding */ LocationSearchPage)
+/* harmony export */   LocationSearchPage: () => (/* binding */ LocationSearchPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 2321);
 /* harmony import */ var _location_search_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./location-search.page.html?ngResource */ 420);
 /* harmony import */ var _location_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./location-search.page.scss?ngResource */ 2273);
 /* harmony import */ var _location_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_location_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/storage.service */ 7852);
-/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 346);
-/* harmony import */ var _providers_geolocate_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/geolocate.service */ 7868);
-/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 5626);
-/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../providers/loading.service */ 9817);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/storage.service */ 9031);
+/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 4073);
+/* harmony import */ var _providers_geolocate_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/geolocate.service */ 5570);
+/* harmony import */ var _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @awesome-cordova-plugins/geolocation/ngx */ 2140);
+/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../providers/loading.service */ 2521);
+var _class;
 
 
 
@@ -117,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let LocationSearchPage = class LocationSearchPage {
+let LocationSearchPage = (_class = class LocationSearchPage {
   constructor(MeetingListProvider, loaderCtrl, storage, translate, GeolocateProvider, geolocation) {
     this.MeetingListProvider = MeetingListProvider;
     this.loaderCtrl = loaderCtrl;
@@ -214,8 +215,7 @@ let LocationSearchPage = class LocationSearchPage {
       this.dismissLoader();
     });
   }
-};
-LocationSearchPage.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_3__.MeetingListProvider
 }, {
   type: _providers_loading_service__WEBPACK_IMPORTED_MODULE_6__.LoadingService
@@ -227,7 +227,7 @@ LocationSearchPage.ctorParameters = () => [{
   type: _providers_geolocate_service__WEBPACK_IMPORTED_MODULE_4__.GeolocateProvider
 }, {
   type: _awesome_cordova_plugins_geolocation_ngx__WEBPACK_IMPORTED_MODULE_5__.Geolocation
-}];
+}], _class);
 LocationSearchPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
   selector: 'app-location-search',
   template: _location_search_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
@@ -237,7 +237,7 @@ LocationSearchPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angu
 
 /***/ }),
 
-/***/ 7868:
+/***/ 5570:
 /*!************************************************!*\
   !*** ./src/app/providers/geolocate.service.ts ***!
   \************************************************/
@@ -246,11 +246,12 @@ LocationSearchPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angu
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GeolocateProvider": () => (/* binding */ GeolocateProvider)
+/* harmony export */   GeolocateProvider: () => (/* binding */ GeolocateProvider)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 8987);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 4860);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+var _class;
 
 
 
@@ -260,7 +261,7 @@ __webpack_require__.r(__webpack_exports__);
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-let GeolocateProvider = class GeolocateProvider {
+let GeolocateProvider = (_class = class GeolocateProvider {
   constructor(http) {
     this.http = http;
     this.googleAPIKey = '&key=AIzaSyDg5AKBNjMvoBBlLgXpy-dLxLAcVJYpOq8';
@@ -275,10 +276,9 @@ let GeolocateProvider = class GeolocateProvider {
     const url = this.convertAddressUrl + address + this.googleAPIKey;
     return this.http.get(url);
   }
-};
-GeolocateProvider.ctorParameters = () => [{
+}, _class.ctorParameters = () => [{
   type: _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient
-}];
+}], _class);
 GeolocateProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)()], GeolocateProvider);
 
 
@@ -291,11 +291,11 @@ GeolocateProvider = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angul
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 9579);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 931);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

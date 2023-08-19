@@ -1,6 +1,6 @@
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["src_app_pages_map-search_map-search_module_ts"],{
 
-/***/ 6193:
+/***/ 5665:
 /*!***************************************************************!*\
   !*** ./src/app/pages/map-search/map-search-routing.module.ts ***!
   \***************************************************************/
@@ -9,12 +9,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "MapSearchPageRoutingModule": () => (/* binding */ MapSearchPageRoutingModule)
+/* harmony export */   MapSearchPageRoutingModule: () => (/* binding */ MapSearchPageRoutingModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 124);
-/* harmony import */ var _map_search_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map-search.page */ 164);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 7947);
+/* harmony import */ var _map_search_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map-search.page */ 4345);
 
 
 
@@ -32,7 +32,7 @@ MapSearchPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 
 /***/ }),
 
-/***/ 5079:
+/***/ 1342:
 /*!*******************************************************!*\
   !*** ./src/app/pages/map-search/map-search.module.ts ***!
   \*******************************************************/
@@ -41,22 +41,22 @@ MapSearchPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "MapSearchPageModule": () => (/* binding */ MapSearchPageModule)
+/* harmony export */   MapSearchPageModule: () => (/* binding */ MapSearchPageModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ 4666);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ 2508);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _map_search_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map-search-routing.module */ 6193);
-/* harmony import */ var _map_search_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map-search.page */ 164);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/base64/ngx */ 9604);
-/* harmony import */ var _modal_modal_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modal/modal.page */ 8167);
-/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 7122);
-/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 346);
-/* harmony import */ var _components_component_component_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/component/component.module */ 8671);
-/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/providers/storage.service */ 7852);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ 8849);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 2288);
+/* harmony import */ var _map_search_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map-search-routing.module */ 5665);
+/* harmony import */ var _map_search_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map-search.page */ 4345);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/base64/ngx */ 1030);
+/* harmony import */ var _modal_modal_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modal/modal.page */ 4431);
+/* harmony import */ var _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @awesome-cordova-plugins/in-app-browser/ngx */ 8418);
+/* harmony import */ var src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/providers/meeting-list.service */ 4073);
+/* harmony import */ var _components_component_component_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/component/component.module */ 6394);
+/* harmony import */ var src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/providers/storage.service */ 9031);
 
 
 
@@ -79,14 +79,16 @@ let MapSearchPageModule = class MapSearchPageModule {};
 MapSearchPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.NgModule)({
   imports: [_angular_common__WEBPACK_IMPORTED_MODULE_10__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_11__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.IonicModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_13__.TranslateModule, _map_search_routing_module__WEBPACK_IMPORTED_MODULE_0__.MapSearchPageRoutingModule, _components_component_component_module__WEBPACK_IMPORTED_MODULE_6__.ComponentModule],
   declarations: [_map_search_page__WEBPACK_IMPORTED_MODULE_1__.MapSearchPage, _modal_modal_page__WEBPACK_IMPORTED_MODULE_3__.ModalPage],
-  entryComponents: [_modal_modal_page__WEBPACK_IMPORTED_MODULE_3__.ModalPage],
+  // entryComponents: [
+  //   ModalPage
+  // ],
   providers: [_ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_2__.Base64, _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_4__.InAppBrowser, src_app_providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_5__.MeetingListProvider, src_app_providers_storage_service__WEBPACK_IMPORTED_MODULE_7__.StorageService]
 })], MapSearchPageModule);
 
 
 /***/ }),
 
-/***/ 164:
+/***/ 4345:
 /*!*****************************************************!*\
   !*** ./src/app/pages/map-search/map-search.page.ts ***!
   \*****************************************************/
@@ -95,21 +97,24 @@ MapSearchPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_ang
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "MapSearchPage": () => (/* binding */ MapSearchPage)
+/* harmony export */   MapSearchPage: () => (/* binding */ MapSearchPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _map_search_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map-search.page.html?ngResource */ 924);
-/* harmony import */ var _map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map-search.page.scss?ngResource */ 312);
-/* harmony import */ var _map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../providers/storage.service */ 7852);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 346);
-/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/loading.service */ 9817);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ngx-translate/core */ 8699);
-/* harmony import */ var _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/google-maps/ngx */ 7767);
-/* harmony import */ var _modal_modal_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../modal/modal.page */ 8167);
-/* harmony import */ var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/base64/ngx */ 9604);
+/* harmony import */ var _home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _map_search_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map-search.page.html?ngResource */ 924);
+/* harmony import */ var _map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./map-search.page.scss?ngResource */ 312);
+/* harmony import */ var _map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _providers_storage_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../providers/storage.service */ 9031);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 2288);
+/* harmony import */ var _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../providers/meeting-list.service */ 4073);
+/* harmony import */ var _providers_loading_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../providers/loading.service */ 2521);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ngx-translate/core */ 5939);
+/* harmony import */ var _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/google-maps/ngx */ 2734);
+/* harmony import */ var _modal_modal_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../modal/modal.page */ 4431);
+/* harmony import */ var _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/base64/ngx */ 1030);
+
+var _class;
 
 
 
@@ -122,7 +127,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let MapSearchPage = class MapSearchPage {
+let MapSearchPage = (_class = class MapSearchPage {
   constructor(meetingListProvider, loadingCtrl, storage, platform, translate, zone, modalCtrl, base64) {
     this.meetingListProvider = meetingListProvider;
     this.loadingCtrl = loadingCtrl;
@@ -158,58 +163,59 @@ let MapSearchPage = class MapSearchPage {
     console.log('Map page constructor');
   }
   ngOnInit() {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
-      this.filePathMarkerRed = './assets/markercluster/MarkerRed.png';
-      this.base64.encodeFile(this.filePathMarkerRed).then(base64imageR => {
-        this.Base64MarkerRed = base64imageR;
+    var _this = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      _this.filePathMarkerRed = './assets/markercluster/MarkerRed.png';
+      _this.base64.encodeFile(_this.filePathMarkerRed).then(base64imageR => {
+        _this.Base64MarkerRed = base64imageR;
       });
-      this.filePathMarkerBlue = './assets/markercluster/MarkerBlue.png';
-      this.base64.encodeFile(this.filePathMarkerBlue).then(base64imageB => {
-        this.Base64MarkerBlue = base64imageB;
+      _this.filePathMarkerBlue = './assets/markercluster/MarkerBlue.png';
+      _this.base64.encodeFile(_this.filePathMarkerBlue).then(base64imageB => {
+        _this.Base64MarkerBlue = base64imageB;
       });
-      this.filePathMarkerZero = './assets/markercluster/FFFFFF-0.png';
-      this.base64.encodeFile(this.filePathMarkerZero).then(base64imageZ => {
-        this.Base64MarkerZero = base64imageZ;
+      _this.filePathMarkerZero = './assets/markercluster/FFFFFF-0.png';
+      _this.base64.encodeFile(_this.filePathMarkerZero).then(base64imageZ => {
+        _this.Base64MarkerZero = base64imageZ;
       });
       const filePathCusterMarkerM1 = '../../../assets/markercluster/m1.png';
-      this.base64.encodeFile(filePathCusterMarkerM1).then(base64imageM1 => {
-        this.Base64ClusterMarkerM1 = base64imageM1;
+      _this.base64.encodeFile(filePathCusterMarkerM1).then(base64imageM1 => {
+        _this.Base64ClusterMarkerM1 = base64imageM1;
       });
       const filePathCusterMarkerM2 = '../../../assets/markercluster/m2.png';
-      this.base64.encodeFile(filePathCusterMarkerM2).then(base64imageM2 => {
-        this.Base64ClusterMarkerM2 = base64imageM2;
+      _this.base64.encodeFile(filePathCusterMarkerM2).then(base64imageM2 => {
+        _this.Base64ClusterMarkerM2 = base64imageM2;
       });
       const filePathCusterMarkerM3 = '../../../assets/markercluster/m3.png';
-      this.base64.encodeFile(filePathCusterMarkerM3).then(base64imageM3 => {
-        this.Base64ClusterMarkerM3 = base64imageM3;
+      _this.base64.encodeFile(filePathCusterMarkerM3).then(base64imageM3 => {
+        _this.Base64ClusterMarkerM3 = base64imageM3;
       });
       const filePathCusterMarkerM4 = '../../../assets/markercluster/m4.png';
-      this.base64.encodeFile(filePathCusterMarkerM4).then(base64imageM4 => {
-        this.Base64ClusterMarkerM4 = base64imageM4;
+      _this.base64.encodeFile(filePathCusterMarkerM4).then(base64imageM4 => {
+        _this.Base64ClusterMarkerM4 = base64imageM4;
       });
       const filePathCusterMarkerM5 = '../../../assets/markercluster/m5.png';
-      this.base64.encodeFile(filePathCusterMarkerM5).then(base64imageM5 => {
-        this.Base64ClusterMarkerM5 = base64imageM5;
+      _this.base64.encodeFile(filePathCusterMarkerM5).then(base64imageM5 => {
+        _this.Base64ClusterMarkerM5 = base64imageM5;
       });
-      this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
-      this.autocomplete = {
+      _this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+      _this.autocomplete = {
         input: ''
       };
-      this.autocompleteItems = [];
-      yield this.platform.ready();
-      yield this.loadMap();
-    });
+      _this.autocompleteItems = [];
+      yield _this.platform.ready();
+      yield _this.loadMap();
+    })();
   }
   loadMap() {
-    _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.Environment.setEnv({
+    _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.Environment.setEnv({
       API_KEY_FOR_BROWSER_RELEASE: 'AIzaSyAiowBMk_xPfnzaq7wZzcbyuCDpKqzZkyA',
       API_KEY_FOR_BROWSER_DEBUG: 'AIzaSyAiowBMk_xPfnzaq7wZzcbyuCDpKqzZkyA'
     });
     this.translate.get('LOCATING').subscribe(value => {
       this.presentLoader(value);
     });
-    if (_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.LocationService.hasPermission()) {
-      _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.LocationService.getMyLocation().then(myLocation => {
+    if (_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.LocationService.hasPermission()) {
+      _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.LocationService.getMyLocation().then(myLocation => {
         this.mapLatitude = this.eagerMapLat = myLocation.latLng.lat;
         this.mapLongitude = this.eagerMapLng = myLocation.latLng.lng;
         this.drawMap();
@@ -258,20 +264,20 @@ let MapSearchPage = class MapSearchPage {
         }
       }
     };
-    this.map = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMaps.create('map_canvas', options);
-    this.map.one(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.MAP_READY).then(this.onMapReady.bind(this));
+    this.map = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMaps.create('map_canvas', options);
+    this.map.one(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.MAP_READY).then(this.onMapReady.bind(this));
   }
   onMapReady() {
-    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.MAP_DRAG_START).subscribe(params => {
+    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.MAP_DRAG_START).subscribe(params => {
       this.mapDragInProgress = true;
     });
-    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.MAP_DRAG_END).subscribe(params => {
+    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.MAP_DRAG_END).subscribe(params => {
       this.mapDragInProgress = false;
     });
-    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.CAMERA_MOVE_START).subscribe(params => {
+    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.CAMERA_MOVE_START).subscribe(params => {
       this.cameraMoveInProgress = true;
     });
-    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.CAMERA_MOVE_END).subscribe(params => {
+    this.map.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.CAMERA_MOVE_END).subscribe(params => {
       if (this.mapDragInProgress === false) {
         this.cameraMoveInProgress = false;
         this.translate.get('FINDING_MTGS').subscribe(value => {
@@ -284,7 +290,7 @@ let MapSearchPage = class MapSearchPage {
         this.targLocation.lat = params[0].target.lat;
         this.targLocation.lng = params[0].target.lng;
         this.targZoom = params[0].zoom;
-        const mapMovementDistance = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.Spherical.computeDistanceBetween(this.origLocation, this.targLocation) / 1000;
+        const mapMovementDistance = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.Spherical.computeDistanceBetween(this.origLocation, this.targLocation) / 1000;
         const newSearchTriggerDistance = this.autoRadius / 11;
         if (mapMovementDistance > newSearchTriggerDistance || this.targZoom < this.origZoom) {
           this.deleteCluster();
@@ -429,7 +435,7 @@ let MapSearchPage = class MapSearchPage {
     };
     this.map.addMarkerCluster(markerClusterOptions).then(markerCluster => {
       this.markerCluster = markerCluster;
-      this.markerCluster.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.MARKER_CLICK).subscribe(params => {
+      this.markerCluster.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.MARKER_CLICK).subscribe(params => {
         const marker = params[1];
         this.openMeetingModal(marker.get('ID'));
       });
@@ -453,7 +459,7 @@ let MapSearchPage = class MapSearchPage {
     this.mapLongitude = params[0].target.lng;
     this.eagerMapLng = this.mapLongitude;
     this.origZoom = params[0].zoom;
-    this.autoRadius = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.Spherical.computeDistanceBetween(params[0].target, params[0].farLeft) / 1000;
+    this.autoRadius = _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.Spherical.computeDistanceBetween(params[0].target, params[0].farLeft) / 1000;
     // Eagerly load 10% around screen area
     this.autoRadius = this.autoRadius * 1.1;
     this.meetingListProvider.getRadiusMeetings(this.mapLatitude, this.mapLongitude, this.autoRadius).subscribe(data => {
@@ -598,7 +604,7 @@ let MapSearchPage = class MapSearchPage {
     this.autocompleteItems = [];
     this.autocomplete.input = item.description;
     // Address -> latitude,longitude
-    _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.Geocoder.geocode({
+    _ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.Geocoder.geocode({
       address: item.description
     }).then(results => {
       // Add a marker
@@ -609,8 +615,8 @@ let MapSearchPage = class MapSearchPage {
         position: results[0].position,
         title: item.description
       });
-      this.searchMarker.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.MARKER_CLICK).subscribe(this.onMarkerClick);
-      this.searchMarker.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_5__.GoogleMapsEvent.INFO_CLICK).subscribe(this.onMarkerClick);
+      this.searchMarker.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.MARKER_CLICK).subscribe(this.onMarkerClick);
+      this.searchMarker.on(_ionic_native_google_maps_ngx__WEBPACK_IMPORTED_MODULE_6__.GoogleMapsEvent.INFO_CLICK).subscribe(this.onMarkerClick);
       // Move to the position
       this.map.moveCamera({
         target: results[0].position,
@@ -650,16 +656,17 @@ let MapSearchPage = class MapSearchPage {
     });
   }
   openModal(meeting) {
-    return (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__awaiter)(this, void 0, void 0, function* () {
-      const modal = yield this.modalCtrl.create({
-        component: _modal_modal_page__WEBPACK_IMPORTED_MODULE_6__.ModalPage,
+    var _this2 = this;
+    return (0,_home_runner_work_BMLTSearch3_BMLTSearch3_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const modal = yield _this2.modalCtrl.create({
+        component: _modal_modal_page__WEBPACK_IMPORTED_MODULE_7__.ModalPage,
         componentProps: {
-          data: this.meeting
+          data: _this2.meeting
         }
       });
       modal.onDidDismiss().then(dataReturned => {});
       return yield modal.present();
-    });
+    })();
   }
   openMapsLink(destLatitude, destLongitude) {
     window.open('https://www.google.com/maps/search/?api=1&query=' + destLatitude + '%2C' + destLongitude + ')', '_system');
@@ -671,13 +678,12 @@ let MapSearchPage = class MapSearchPage {
     timeString = h + timeString.substr(2, 3) + ampm;
     return timeString;
   }
-};
-MapSearchPage.ctorParameters = () => [{
-  type: _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_3__.MeetingListProvider
+}, _class.ctorParameters = () => [{
+  type: _providers_meeting_list_service__WEBPACK_IMPORTED_MODULE_4__.MeetingListProvider
 }, {
-  type: _providers_loading_service__WEBPACK_IMPORTED_MODULE_4__.LoadingService
+  type: _providers_loading_service__WEBPACK_IMPORTED_MODULE_5__.LoadingService
 }, {
-  type: _providers_storage_service__WEBPACK_IMPORTED_MODULE_2__.StorageService
+  type: _providers_storage_service__WEBPACK_IMPORTED_MODULE_3__.StorageService
 }, {
   type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.Platform
 }, {
@@ -687,32 +693,31 @@ MapSearchPage.ctorParameters = () => [{
 }, {
   type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ModalController
 }, {
-  type: _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_7__.Base64
-}];
-MapSearchPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
+  type: _ionic_native_base64_ngx__WEBPACK_IMPORTED_MODULE_8__.Base64
+}], _class);
+MapSearchPage = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_11__.Component)({
   selector: 'app-map-search',
-  template: _map_search_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
-  styles: [(_map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+  template: _map_search_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
+  styles: [(_map_search_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
 })], MapSearchPage);
 
 
 /***/ }),
 
-/***/ 9604:
-/*!*********************************************************************!*\
-  !*** ./node_modules/@ionic-native/base64/__ivy_ngcc__/ngx/index.js ***!
-  \*********************************************************************/
+/***/ 1030:
+/*!********************************************************!*\
+  !*** ./node_modules/@ionic-native/base64/ngx/index.js ***!
+  \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Base64": () => (/* binding */ Base64)
+/* harmony export */   Base64: () => (/* binding */ Base64)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _ionic_native_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic-native/core */ 8751);
-
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 2321);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _ionic_native_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic-native/core */ 9128);
 
 
 
@@ -729,39 +734,25 @@ var Base64 = /** @class */function (_super) {
   Base64.pluginRef = "plugins.Base64";
   Base64.repo = "https://github.com/hazemhagrass/phonegap-base64";
   Base64.platforms = ["Android", "iOS"];
-  Base64.ɵfac = /*@__PURE__*/function () {
-    var ɵBase64_BaseFactory;
-    return function Base64_Factory(t) {
-      return (ɵBase64_BaseFactory || (ɵBase64_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetInheritedFactory"](Base64)))(t || Base64);
-    };
-  }();
-  Base64.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
-    token: Base64,
-    factory: function (t) {
-      return Base64.ɵfac(t);
-    }
-  });
-  (function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵsetClassMetadata"](Base64, [{
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable
-    }], null, null);
-  })();
+  Base64.decorators = [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable
+  }];
   return Base64;
 }(_ionic_native_core__WEBPACK_IMPORTED_MODULE_0__.IonicNativePlugin);
 
 
 /***/ }),
 
-/***/ 8544:
-/*!*******************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/bootstrap.js ***!
-  \*******************************************************************/
+/***/ 8958:
+/*!******************************************************!*\
+  !*** ./node_modules/@ionic-native/core/bootstrap.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkReady": () => (/* binding */ checkReady)
+/* harmony export */   checkReady: () => (/* binding */ checkReady)
 /* harmony export */ });
 function checkReady() {
   if (typeof process === 'undefined') {
@@ -787,33 +778,33 @@ function checkReady() {
 
 /***/ }),
 
-/***/ 8467:
-/*!***************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/decorators/common.js ***!
-  \***************************************************************************/
+/***/ 5086:
+/*!**************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/decorators/common.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ERR_CORDOVA_NOT_AVAILABLE": () => (/* binding */ ERR_CORDOVA_NOT_AVAILABLE),
-/* harmony export */   "ERR_PLUGIN_NOT_INSTALLED": () => (/* binding */ ERR_PLUGIN_NOT_INSTALLED),
-/* harmony export */   "callCordovaPlugin": () => (/* binding */ callCordovaPlugin),
-/* harmony export */   "callInstance": () => (/* binding */ callInstance),
-/* harmony export */   "checkAvailability": () => (/* binding */ checkAvailability),
-/* harmony export */   "cordovaWarn": () => (/* binding */ cordovaWarn),
-/* harmony export */   "get": () => (/* binding */ get),
-/* harmony export */   "getPlugin": () => (/* binding */ getPlugin),
-/* harmony export */   "getPromise": () => (/* binding */ getPromise),
-/* harmony export */   "instanceAvailability": () => (/* binding */ instanceAvailability),
-/* harmony export */   "pluginWarn": () => (/* binding */ pluginWarn),
-/* harmony export */   "setIndex": () => (/* binding */ setIndex),
-/* harmony export */   "wrap": () => (/* binding */ wrap),
-/* harmony export */   "wrapInstance": () => (/* binding */ wrapInstance),
-/* harmony export */   "wrapPromise": () => (/* binding */ wrapPromise)
+/* harmony export */   ERR_CORDOVA_NOT_AVAILABLE: () => (/* binding */ ERR_CORDOVA_NOT_AVAILABLE),
+/* harmony export */   ERR_PLUGIN_NOT_INSTALLED: () => (/* binding */ ERR_PLUGIN_NOT_INSTALLED),
+/* harmony export */   callCordovaPlugin: () => (/* binding */ callCordovaPlugin),
+/* harmony export */   callInstance: () => (/* binding */ callInstance),
+/* harmony export */   checkAvailability: () => (/* binding */ checkAvailability),
+/* harmony export */   cordovaWarn: () => (/* binding */ cordovaWarn),
+/* harmony export */   get: () => (/* binding */ get),
+/* harmony export */   getPlugin: () => (/* binding */ getPlugin),
+/* harmony export */   getPromise: () => (/* binding */ getPromise),
+/* harmony export */   instanceAvailability: () => (/* binding */ instanceAvailability),
+/* harmony export */   pluginWarn: () => (/* binding */ pluginWarn),
+/* harmony export */   setIndex: () => (/* binding */ setIndex),
+/* harmony export */   wrap: () => (/* binding */ wrap),
+/* harmony export */   wrapInstance: () => (/* binding */ wrapInstance),
+/* harmony export */   wrapPromise: () => (/* binding */ wrapPromise)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 2378);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 6312);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 3064);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 3190);
 
 var ERR_CORDOVA_NOT_AVAILABLE = {
   error: 'cordova_not_available'
@@ -1239,19 +1230,19 @@ function wrapInstance(pluginObj, methodName, opts) {
 
 /***/ }),
 
-/***/ 2149:
-/*!**********************************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/decorators/cordova-function-override.js ***!
-  \**********************************************************************************************/
+/***/ 9370:
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/decorators/cordova-function-override.js ***!
+  \*********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cordovaFunctionOverride": () => (/* binding */ cordovaFunctionOverride)
+/* harmony export */   cordovaFunctionOverride: () => (/* binding */ cordovaFunctionOverride)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 2378);
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 8467);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 3064);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 5086);
 
 
 function overrideFunction(pluginObj, methodName) {
@@ -1278,18 +1269,18 @@ function cordovaFunctionOverride(pluginObj, methodName, args) {
 
 /***/ }),
 
-/***/ 5982:
-/*!*************************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/decorators/cordova-instance.js ***!
-  \*************************************************************************************/
+/***/ 1669:
+/*!************************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/decorators/cordova-instance.js ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cordovaInstance": () => (/* binding */ cordovaInstance)
+/* harmony export */   cordovaInstance: () => (/* binding */ cordovaInstance)
 /* harmony export */ });
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 8467);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 5086);
 
 function cordovaInstance(pluginObj, methodName, config, args) {
   args = Array.from(args);
@@ -1298,19 +1289,19 @@ function cordovaInstance(pluginObj, methodName, config, args) {
 
 /***/ }),
 
-/***/ 9184:
-/*!*************************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/decorators/cordova-property.js ***!
-  \*************************************************************************************/
+/***/ 860:
+/*!************************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/decorators/cordova-property.js ***!
+  \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cordovaPropertyGet": () => (/* binding */ cordovaPropertyGet),
-/* harmony export */   "cordovaPropertySet": () => (/* binding */ cordovaPropertySet)
+/* harmony export */   cordovaPropertyGet: () => (/* binding */ cordovaPropertyGet),
+/* harmony export */   cordovaPropertySet: () => (/* binding */ cordovaPropertySet)
 /* harmony export */ });
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 8467);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 5086);
 
 function cordovaPropertyGet(pluginObj, key) {
   if ((0,_common__WEBPACK_IMPORTED_MODULE_0__.checkAvailability)(pluginObj, key) === true) {
@@ -1326,18 +1317,18 @@ function cordovaPropertySet(pluginObj, key, value) {
 
 /***/ }),
 
-/***/ 6314:
-/*!****************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/decorators/cordova.js ***!
-  \****************************************************************************/
+/***/ 5921:
+/*!***************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/decorators/cordova.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "cordova": () => (/* binding */ cordova)
+/* harmony export */   cordova: () => (/* binding */ cordova)
 /* harmony export */ });
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 8467);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ 5086);
 
 function cordova(pluginObj, methodName, config, args) {
   return (0,_common__WEBPACK_IMPORTED_MODULE_0__.wrap)(pluginObj, methodName, config).apply(this, args);
@@ -1345,17 +1336,17 @@ function cordova(pluginObj, methodName, config, args) {
 
 /***/ }),
 
-/***/ 548:
-/*!**************************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/decorators/instance-property.js ***!
-  \**************************************************************************************/
+/***/ 2465:
+/*!*************************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/decorators/instance-property.js ***!
+  \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "instancePropertyGet": () => (/* binding */ instancePropertyGet),
-/* harmony export */   "instancePropertySet": () => (/* binding */ instancePropertySet)
+/* harmony export */   instancePropertyGet: () => (/* binding */ instancePropertyGet),
+/* harmony export */   instancePropertySet: () => (/* binding */ instancePropertySet)
 /* harmony export */ });
 function instancePropertyGet(pluginObj, key) {
   if (pluginObj._objectInstance && pluginObj._objectInstance[key]) {
@@ -1371,10 +1362,10 @@ function instancePropertySet(pluginObj, key, value) {
 
 /***/ }),
 
-/***/ 7542:
-/*!*******************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/decorators/interfaces.js ***!
-  \*******************************************************************************/
+/***/ 8370:
+/*!******************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/decorators/interfaces.js ***!
+  \******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1383,37 +1374,37 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 8751:
-/*!***************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/index.js ***!
-  \***************************************************************/
+/***/ 9128:
+/*!**************************************************!*\
+  !*** ./node_modules/@ionic-native/core/index.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IonicNativePlugin": () => (/* reexport safe */ _ionic_native_plugin__WEBPACK_IMPORTED_MODULE_1__.IonicNativePlugin),
-/* harmony export */   "checkAvailability": () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.checkAvailability),
-/* harmony export */   "cordova": () => (/* reexport safe */ _decorators_cordova__WEBPACK_IMPORTED_MODULE_3__.cordova),
-/* harmony export */   "cordovaFunctionOverride": () => (/* reexport safe */ _decorators_cordova_function_override__WEBPACK_IMPORTED_MODULE_4__.cordovaFunctionOverride),
-/* harmony export */   "cordovaInstance": () => (/* reexport safe */ _decorators_cordova_instance__WEBPACK_IMPORTED_MODULE_5__.cordovaInstance),
-/* harmony export */   "cordovaPropertyGet": () => (/* reexport safe */ _decorators_cordova_property__WEBPACK_IMPORTED_MODULE_6__.cordovaPropertyGet),
-/* harmony export */   "cordovaPropertySet": () => (/* reexport safe */ _decorators_cordova_property__WEBPACK_IMPORTED_MODULE_6__.cordovaPropertySet),
-/* harmony export */   "getPromise": () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.getPromise),
-/* harmony export */   "instanceAvailability": () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.instanceAvailability),
-/* harmony export */   "instancePropertyGet": () => (/* reexport safe */ _decorators_instance_property__WEBPACK_IMPORTED_MODULE_7__.instancePropertyGet),
-/* harmony export */   "instancePropertySet": () => (/* reexport safe */ _decorators_instance_property__WEBPACK_IMPORTED_MODULE_7__.instancePropertySet),
-/* harmony export */   "wrap": () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.wrap)
+/* harmony export */   IonicNativePlugin: () => (/* reexport safe */ _ionic_native_plugin__WEBPACK_IMPORTED_MODULE_1__.IonicNativePlugin),
+/* harmony export */   checkAvailability: () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.checkAvailability),
+/* harmony export */   cordova: () => (/* reexport safe */ _decorators_cordova__WEBPACK_IMPORTED_MODULE_3__.cordova),
+/* harmony export */   cordovaFunctionOverride: () => (/* reexport safe */ _decorators_cordova_function_override__WEBPACK_IMPORTED_MODULE_4__.cordovaFunctionOverride),
+/* harmony export */   cordovaInstance: () => (/* reexport safe */ _decorators_cordova_instance__WEBPACK_IMPORTED_MODULE_5__.cordovaInstance),
+/* harmony export */   cordovaPropertyGet: () => (/* reexport safe */ _decorators_cordova_property__WEBPACK_IMPORTED_MODULE_6__.cordovaPropertyGet),
+/* harmony export */   cordovaPropertySet: () => (/* reexport safe */ _decorators_cordova_property__WEBPACK_IMPORTED_MODULE_6__.cordovaPropertySet),
+/* harmony export */   getPromise: () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.getPromise),
+/* harmony export */   instanceAvailability: () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.instanceAvailability),
+/* harmony export */   instancePropertyGet: () => (/* reexport safe */ _decorators_instance_property__WEBPACK_IMPORTED_MODULE_7__.instancePropertyGet),
+/* harmony export */   instancePropertySet: () => (/* reexport safe */ _decorators_instance_property__WEBPACK_IMPORTED_MODULE_7__.instancePropertySet),
+/* harmony export */   wrap: () => (/* reexport safe */ _decorators_common__WEBPACK_IMPORTED_MODULE_2__.wrap)
 /* harmony export */ });
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ 8544);
-/* harmony import */ var _ionic_native_plugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-native-plugin */ 3562);
-/* harmony import */ var _decorators_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./decorators/common */ 8467);
-/* harmony import */ var _decorators_cordova__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./decorators/cordova */ 6314);
-/* harmony import */ var _decorators_cordova_function_override__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./decorators/cordova-function-override */ 2149);
-/* harmony import */ var _decorators_cordova_instance__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./decorators/cordova-instance */ 5982);
-/* harmony import */ var _decorators_cordova_property__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./decorators/cordova-property */ 9184);
-/* harmony import */ var _decorators_instance_property__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./decorators/instance-property */ 548);
-/* harmony import */ var _decorators_interfaces__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./decorators/interfaces */ 7542);
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ 8958);
+/* harmony import */ var _ionic_native_plugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ionic-native-plugin */ 7277);
+/* harmony import */ var _decorators_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./decorators/common */ 5086);
+/* harmony import */ var _decorators_cordova__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./decorators/cordova */ 5921);
+/* harmony import */ var _decorators_cordova_function_override__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./decorators/cordova-function-override */ 9370);
+/* harmony import */ var _decorators_cordova_instance__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./decorators/cordova-instance */ 1669);
+/* harmony import */ var _decorators_cordova_property__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./decorators/cordova-property */ 860);
+/* harmony import */ var _decorators_instance_property__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./decorators/instance-property */ 2465);
+/* harmony import */ var _decorators_interfaces__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./decorators/interfaces */ 8370);
 
 
 // Decorators
@@ -1428,19 +1419,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 3562:
-/*!*****************************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/ionic-native-plugin.js ***!
-  \*****************************************************************************/
+/***/ 7277:
+/*!****************************************************************!*\
+  !*** ./node_modules/@ionic-native/core/ionic-native-plugin.js ***!
+  \****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "IonicNativePlugin": () => (/* binding */ IonicNativePlugin)
+/* harmony export */   IonicNativePlugin: () => (/* binding */ IonicNativePlugin)
 /* harmony export */ });
-/* harmony import */ var _decorators_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./decorators/common */ 8467);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util */ 7632);
+/* harmony import */ var _decorators_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./decorators/common */ 5086);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util */ 2558);
 
 
 var IonicNativePlugin = /** @class */function () {
@@ -1502,17 +1493,17 @@ var IonicNativePlugin = /** @class */function () {
 
 /***/ }),
 
-/***/ 7632:
-/*!**************************************************************!*\
-  !*** ./node_modules/@ionic-native/core/__ivy_ngcc__/util.js ***!
-  \**************************************************************/
+/***/ 2558:
+/*!*************************************************!*\
+  !*** ./node_modules/@ionic-native/core/util.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "get": () => (/* binding */ get),
-/* harmony export */   "getPromise": () => (/* binding */ getPromise)
+/* harmony export */   get: () => (/* binding */ get),
+/* harmony export */   getPromise: () => (/* binding */ getPromise)
 /* harmony export */ });
 /**
  * @private
@@ -1549,7 +1540,7 @@ function getPromise(callback) {
 
 /***/ }),
 
-/***/ 7767:
+/***/ 2734:
 /*!*************************************************************!*\
   !*** ./node_modules/@ionic-native/google-maps/ngx/index.js ***!
   \*************************************************************/
@@ -1558,38 +1549,38 @@ function getPromise(callback) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BaseArrayClass": () => (/* binding */ BaseArrayClass),
-/* harmony export */   "BaseClass": () => (/* binding */ BaseClass),
-/* harmony export */   "Circle": () => (/* binding */ Circle),
-/* harmony export */   "Encoding": () => (/* binding */ Encoding),
-/* harmony export */   "Environment": () => (/* binding */ Environment),
-/* harmony export */   "Geocoder": () => (/* binding */ Geocoder),
-/* harmony export */   "GoogleMap": () => (/* binding */ GoogleMap),
-/* harmony export */   "GoogleMaps": () => (/* binding */ GoogleMaps),
-/* harmony export */   "GoogleMapsAnimation": () => (/* binding */ GoogleMapsAnimation),
-/* harmony export */   "GoogleMapsEvent": () => (/* binding */ GoogleMapsEvent),
-/* harmony export */   "GoogleMapsMapTypeId": () => (/* binding */ GoogleMapsMapTypeId),
-/* harmony export */   "GroundOverlay": () => (/* binding */ GroundOverlay),
-/* harmony export */   "HtmlInfoWindow": () => (/* binding */ HtmlInfoWindow),
-/* harmony export */   "KmlOverlay": () => (/* binding */ KmlOverlay),
-/* harmony export */   "LatLng": () => (/* binding */ LatLng),
-/* harmony export */   "LatLngBounds": () => (/* binding */ LatLngBounds),
-/* harmony export */   "LocationService": () => (/* binding */ LocationService),
-/* harmony export */   "Marker": () => (/* binding */ Marker),
-/* harmony export */   "MarkerCluster": () => (/* binding */ MarkerCluster),
-/* harmony export */   "Poly": () => (/* binding */ Poly),
-/* harmony export */   "Polygon": () => (/* binding */ Polygon),
-/* harmony export */   "Polyline": () => (/* binding */ Polyline),
-/* harmony export */   "Spherical": () => (/* binding */ Spherical),
-/* harmony export */   "StreetViewPanorama": () => (/* binding */ StreetViewPanorama),
-/* harmony export */   "StreetViewSource": () => (/* binding */ StreetViewSource),
-/* harmony export */   "TileOverlay": () => (/* binding */ TileOverlay),
-/* harmony export */   "VisibleRegion": () => (/* binding */ VisibleRegion),
+/* harmony export */   BaseArrayClass: () => (/* binding */ BaseArrayClass),
+/* harmony export */   BaseClass: () => (/* binding */ BaseClass),
+/* harmony export */   Circle: () => (/* binding */ Circle),
+/* harmony export */   Encoding: () => (/* binding */ Encoding),
+/* harmony export */   Environment: () => (/* binding */ Environment),
+/* harmony export */   Geocoder: () => (/* binding */ Geocoder),
+/* harmony export */   GoogleMap: () => (/* binding */ GoogleMap),
+/* harmony export */   GoogleMaps: () => (/* binding */ GoogleMaps),
+/* harmony export */   GoogleMapsAnimation: () => (/* binding */ GoogleMapsAnimation),
+/* harmony export */   GoogleMapsEvent: () => (/* binding */ GoogleMapsEvent),
+/* harmony export */   GoogleMapsMapTypeId: () => (/* binding */ GoogleMapsMapTypeId),
+/* harmony export */   GroundOverlay: () => (/* binding */ GroundOverlay),
+/* harmony export */   HtmlInfoWindow: () => (/* binding */ HtmlInfoWindow),
+/* harmony export */   KmlOverlay: () => (/* binding */ KmlOverlay),
+/* harmony export */   LatLng: () => (/* binding */ LatLng),
+/* harmony export */   LatLngBounds: () => (/* binding */ LatLngBounds),
+/* harmony export */   LocationService: () => (/* binding */ LocationService),
+/* harmony export */   Marker: () => (/* binding */ Marker),
+/* harmony export */   MarkerCluster: () => (/* binding */ MarkerCluster),
+/* harmony export */   Poly: () => (/* binding */ Poly),
+/* harmony export */   Polygon: () => (/* binding */ Polygon),
+/* harmony export */   Polyline: () => (/* binding */ Polyline),
+/* harmony export */   Spherical: () => (/* binding */ Spherical),
+/* harmony export */   StreetViewPanorama: () => (/* binding */ StreetViewPanorama),
+/* harmony export */   StreetViewSource: () => (/* binding */ StreetViewSource),
+/* harmony export */   TileOverlay: () => (/* binding */ TileOverlay),
+/* harmony export */   VisibleRegion: () => (/* binding */ VisibleRegion),
 /* harmony export */   "ɵ0": () => (/* binding */ ɵ0),
 /* harmony export */   "ɵ1": () => (/* binding */ ɵ1)
 /* harmony export */ });
-/* harmony import */ var _ionic_native_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic-native/core */ 8751);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 2378);
+/* harmony import */ var _ionic_native_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic-native/core */ 9128);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 3064);
 var __extends = undefined && undefined.__extends || function () {
   var extendStatics = function (d, b) {
     extendStatics = Object.setPrototypeOf || {
@@ -4252,11 +4243,14 @@ var KmlOverlay = /** @class */function (_super) {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 9579);
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 931);
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 2487);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 1386);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#map_canvas {\n  width: 100%;\n  height: 100%;\n}", "",{"version":3,"sources":["webpack://./src/app/pages/map-search/map-search.page.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,YAAA;AACJ","sourcesContent":["#map_canvas {\n    width: 100%;\n    height: 100%;\n  }"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `#map_canvas {
+  width: 100%;
+  height: 100%;
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/map-search/map-search.page.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,YAAA;AACJ","sourcesContent":["#map_canvas {\n    width: 100%;\n    height: 100%;\n  }"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
