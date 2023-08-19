@@ -642,13 +642,11 @@ let MapSearchPage = (_class = class MapSearchPage {
   }
   dismissLoader() {
     if (this.loader) {
-      console.log('Dismissing loader..');
       this.loader = this.loadingCtrl.dismiss();
       this.loader = null;
     }
   }
   openMeetingModal(meetingID) {
-    console.log('openMeetingModal()');
     this.meetingListProvider.getSingleMeetingByID(meetingID).subscribe(meeting => {
       this.meeting = meeting;
       this.meeting.filter(i => i.start_time_raw = this.convertTo12Hr(i.start_time));

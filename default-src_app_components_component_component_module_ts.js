@@ -77,6 +77,7 @@ let MeetingCardComponent = (_class = class MeetingCardComponent {
   ngAfterContentInit() {
     this.meeting = this.data;
     this.meetingType = this.MeetingType;
+    this.setMeetingEnd();
   }
   openMapsLink(destLatitude, destLongitude) {
     const browser = this.iab.create('https://www.google.com/maps/search/?api=1&query=' + destLatitude + ',' + destLongitude, '_system');
@@ -120,6 +121,10 @@ let MeetingCardComponent = (_class = class MeetingCardComponent {
     } else if (!meeting.formats.includes("VM") && meeting.formats.includes("TC") && !meeting.formats.includes("HY")) {
       return "TEMPCLOSED";
     }
+  }
+  setMeetingEnd() {
+    var duration = this.meeting.duration_time.split(":");
+    this.meeting.end_time_formatted = this.meeting.start_time_moment.clone().add(duration[0], 'hours').add(duration[1], 'minutes').format("h:mm a");
   }
 }, _class.ctorParameters = () => [{
   type: _awesome_cordova_plugins_in_app_browser_ngx__WEBPACK_IMPORTED_MODULE_2__.InAppBrowser
@@ -316,8 +321,6 @@ let MeetingListComponent = (_class = class MeetingListComponent {
           second: 0
         }).isoWeekday(parseInt(meeting.weekday_tinyint, 10) === 1 ? 7 : parseInt(meeting.weekday_tinyint, 10) - 1);
         meeting.start_time_raw = this.convertTo12Hr(meeting.start_time);
-        var duration = meeting.duration_time.split(":");
-        meeting.end_time_formatted = meeting.start_time_moment.clone().add(duration[0], 'hours').add(duration[1], 'minutes').format("h:mm a");
       }
     }
   }
@@ -20138,7 +20141,7 @@ module.exports = "\n<ion-card text-wrap>\n\n  <ion-card-header>\n    <div ngSwit
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<div>\n  <ion-list>\n    <ion-item>\n      <ion-text>\n        <p class=\"ion-1x\">&nbsp; {{ selectedDay | translate }} : {{ displayLower }} - {{ displayUpper }} </p>\n      </ion-text>\n    </ion-item>\n    <ion-item class=\"ion-1x\">\n      <ion-select [(ngModel)]=\"selectedDay\" (ionChange)=setDay() interface=\"popover\" cancelText=\"{{'CANCEL' | translate}}\">\n        <ion-select-option *ngFor=\"let selectedDay of days\" [value]=\"selectedDay\" >{{ selectedDay | translate }}</ion-select-option>\n      </ion-select>\n      <ion-range \n        [(ngModel)]=\"hourRangeValues\" \n        (ionChange)=setHourRangeValues() \n        dualKnobs=\"true\" \n        min=\"00\" \n        max=\"23\" \n        step=\"1\" \n        snaps=\"true\" \n        pin=\"true\" \n        debounce=\"350\">\n        <ion-icon slot=\"start\" name=\"time-outline\"></ion-icon>\n        <ion-icon slot=\"end\" name=\"time-outline\"></ion-icon>\n      </ion-range>\n    </ion-item>\n  </ion-list>\n</div>\n\n<div *ngFor=\"let dailyList of meetingListGroupedByDay; let i = index\" (click)=\"toggleDay(i)\" [ngClass]=\"{active: isDayShown(i)}\">\n  <ion-item-divider sticky=\"true\" [color]=\"isToday(dailyList[0].weekday_tinyint) ? 'secondary' : 'primary'\">\n    <div ngSwitch=\"{{ dailyList[0].weekday_tinyint }}\">\n      <div *ngSwitchCase=\"'1'\">\n        <h3>{{'SUNDAY' | translate}} ({{dayCount[0]}})</h3></div>\n      <div *ngSwitchCase=\"'2'\">\n        <h3>{{'MONDAY' | translate}} ({{dayCount[1]}})</h3></div>\n      <div *ngSwitchCase=\"'3'\">\n        <h3>{{'TUESDAY' | translate}} ({{dayCount[2]}})</h3></div>\n      <div *ngSwitchCase=\"'4'\">\n        <h3>{{'WEDNESDAY' | translate}} ({{dayCount[3]}})</h3></div>\n      <div *ngSwitchCase=\"'5'\">\n        <h3>{{'THURSDAY' | translate}} ({{dayCount[4]}})</h3></div>\n      <div *ngSwitchCase=\"'6'\">\n        <h3>{{'FRIDAY' | translate}} ({{dayCount[5]}})</h3></div>\n      <div *ngSwitchCase=\"'7'\">\n        <h3>{{'SATURDAY' | translate}} ({{dayCount[6]}})</h3></div>\n      <div *ngSwitchDefault>Nothing Found.</div>\n    </div>\n    <ion-icon size=\"large\" slot=\"end\" [name]=\"isDayShown(i) ? 'close-circle' : 'add-circle'\"></ion-icon>\n\n  </ion-item-divider>\n\n  <div *ngIf=\"isDayShown(i)\">\n    <ion-list *ngFor=\"let meeting of dailyList; let j = index\">\n      <app-meeting-card [data]=\"meeting\" MeetingType=\"{{ localMeetingType }}\"></app-meeting-card>\n    </ion-list>\n  </div>\n</div>\n";
+module.exports = "<div>\n  <ion-list>\n    <ion-item>\n      <ion-text>\n        <p class=\"ion-1x\">&nbsp; {{ selectedDay | translate }} : {{ displayLower }} - {{ displayUpper }} </p>\n      </ion-text>\n    </ion-item>\n    <ion-item class=\"ion-1x\">\n      <ion-select [(ngModel)]=\"selectedDay\" (ionChange)=setDay() interface=\"popover\" cancelText=\"{{'CANCEL' | translate}}\">\n        <ion-select-option *ngFor=\"let selectedDay of days\" [value]=\"selectedDay\" >{{ selectedDay | translate }}</ion-select-option>\n      </ion-select>\n      <ion-range \n        [(ngModel)]=\"hourRangeValues\" \n        (ionChange)=setHourRangeValues() \n        dualKnobs=\"true\" \n        min=\"00\" \n        max=\"23\" \n        step=\"1\" \n        snaps=\"true\" \n        pin=\"true\" \n        debounce=\"350\">\n        <ion-icon slot=\"start\" name=\"time-outline\"></ion-icon>\n        <ion-icon slot=\"end\" name=\"time-outline\"></ion-icon>\n      </ion-range>\n    </ion-item>\n  </ion-list>\n</div>\n\n<div *ngFor=\"let dailyList of meetingListGroupedByDay; let i = index\" (click)=\"toggleDay(i)\" [ngClass]=\"{active: isDayShown(i)}\">\n  <ion-item-divider sticky=\"true\" [color]=\"isToday(dailyList[0].weekday_tinyint) ? 'secondary' : 'primary'\">\n    <div ngSwitch=\"{{ dailyList[0].weekday_tinyint }}\">\n      <div *ngSwitchCase=\"'1'\">\n        <h3>{{'SUNDAY' | translate}} ({{dayCount[0]}})</h3></div>\n      <div *ngSwitchCase=\"'2'\">\n        <h3>{{'MONDAY' | translate}} ({{dayCount[1]}})</h3></div>\n      <div *ngSwitchCase=\"'3'\">\n        <h3>{{'TUESDAY' | translate}} ({{dayCount[2]}})</h3></div>\n      <div *ngSwitchCase=\"'4'\">\n        <h3>{{'WEDNESDAY' | translate}} ({{dayCount[3]}})</h3></div>\n      <div *ngSwitchCase=\"'5'\">\n        <h3>{{'THURSDAY' | translate}} ({{dayCount[4]}})</h3></div>\n      <div *ngSwitchCase=\"'6'\">\n        <h3>{{'FRIDAY' | translate}} ({{dayCount[5]}})</h3></div>\n      <div *ngSwitchCase=\"'7'\">\n        <h3>{{'SATURDAY' | translate}} ({{dayCount[6]}})</h3></div>\n      <div *ngSwitchDefault>Nothing Found.</div>\n    </div>\n    <ion-icon size=\"large\" slot=\"end\" [name]=\"isDayShown(i) ? 'close-circle' : 'add-circle'\"></ion-icon>\n\n  </ion-item-divider>\n\n  <div *ngIf=\"isDayShown(i)\">\n    <ion-list *ngFor=\"let meeting of dailyList; let j = index\">\n      <app-meeting-card [data]=\"meeting\" MeetingType=\"{{ localMeetingType }}\"></app-meeting-card>\n    </ion-list>\n  </div>\n</div>\n\n<ion-footer>\n  <ion-toolbar>\n    <div *ngIf=\"areaName != ''\">\n      <ion-title>{{ areaName }}</ion-title>\n    </div>\n  </ion-toolbar>\n</ion-footer>";
 
 /***/ }),
 
