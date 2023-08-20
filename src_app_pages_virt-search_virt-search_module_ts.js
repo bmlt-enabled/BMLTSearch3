@@ -190,7 +190,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n\n    <ion-title>\n      virtual-na.org \n    </ion-title>\n\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n<div *ngIf=\"isLoaded\">\n  <app-meeting-list [data]=\"allVirtMeetings\" meetingType='virt'></app-meeting-list>\n</div>\n\n</ion-content>\n";
+module.exports = "\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n\n    <ion-title>\n      virtual-na.org \n    </ion-title>\n\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n<div *ngIf=\"isLoaded\">\n  <app-meeting-list [data]=\"allVirtMeetings\" meetingType='virt' expandAll='false'></app-meeting-list>\n</div>\n\n</ion-content>\n";
 
 /***/ })
 

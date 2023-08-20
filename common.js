@@ -1590,7 +1590,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      {{'MEETING_DETAILS' | translate}}\n    </ion-title>\n\n    <ion-buttons slot=\"end\">\n      <ion-button color=\"primary\" (click)=\"dismiss()\">Close</ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-meeting-list [data]=\"meetingList\" meetingType='regular'></app-meeting-list>\n</ion-content>";
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      {{'MEETING_DETAILS' | translate}}\n    </ion-title>\n\n    <ion-buttons slot=\"end\">\n      <ion-button color=\"primary\" (click)=\"dismiss()\">Close</ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <app-meeting-list [data]=\"meetingList\" meetingType='regular' expandAll='true'></app-meeting-list>\n</ion-content>";
 
 /***/ })
 
