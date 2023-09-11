@@ -139,7 +139,7 @@ let ServiceGroupsProvider = (_class = class ServiceGroupsProvider {
   constructor(http, httpCors) {
     this.http = http;
     this.httpCors = httpCors;
-    this.getApiUrlServiceGroups = 'https://tomato.bmltenabled.org/main_server/client_interface/json/?switcher=GetServiceBodies&callingApp=bmlt_search_3_ionic';
+    this.getApiUrlServiceGroups = 'https://aggregator.bmltenabled.org/main_server/client_interface/json/?switcher=GetServiceBodies&callingApp=bmlt_search_3_ionic';
     this.getApiUrlVirtServiceGroups = 'https://bmlt.virtual-na.org/main_server/client_interface/json/?switcher=GetServiceBodies&callingApp=bmlt_search_3_ionic';
   }
   getAllServiceGroups() {

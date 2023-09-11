@@ -652,7 +652,7 @@ let MeetingListProvider = (_class = class MeetingListProvider {
   constructor(http, httpCors) {
     this.http = http;
     this.httpCors = httpCors;
-    this.tomatoBMLT = 'https://tomato.bmltenabled.org/main_server/client_interface/json/';
+    this.tomatoBMLT = 'https://aggregator.bmltenabled.org/main_server/client_interface/json/';
     this.virtualBMLT = 'https://bmlt.virtual-na.org/main_server/client_interface/json/';
     this.getApiUrlVirt = 'https://bmlt.virtual-na.org/main_server/client_interface/json/?switcher=GetSearchResults&sort_keys=weekday_tinyint,start_time';
     this.getAllVirtMtgs = 'https://bmlt.virtual-na.org/main_server/client_interface/json/?switcher=GetSearchResults&data_field_key=location_postal_code_1,duration_time,start_time,time_zone,weekday_tinyint,service_body_bigint,longitude,latitude,location_province,location_municipality,location_street,location_info,location_text,location_neighborhood,formats,format_shared_id_list,comments,meeting_name,location_sub_province,worldid_mixed,root_server_uri,id_bigint,meeting_name,location_text,formatted_address,formatted_location_info,formatted_comments,contact_name_1,contact_phone_1,contact_email_1,contact_name_2,contact_phone_2,contact_email_2,virtual_meeting_link&services[]=4&recursive=1&sort_keys=start_time';
@@ -736,7 +736,7 @@ var _class;
 let TomatoFormatsService = (_class = class TomatoFormatsService {
   constructor(httpCors) {
     this.httpCors = httpCors;
-    this.tomatoBMLT = 'https://tomato.bmltenabled.org/main_server/client_interface/json/?switcher=GetFormats&show_all=1&format_ids=';
+    this.tomatoBMLT = 'https://aggregator.bmltenabled.org/main_server/client_interface/json/?switcher=GetFormats&show_all=1&format_ids=';
   }
   getFormatNamesByID(uniqueIDs, language) {
     var _this = this;
