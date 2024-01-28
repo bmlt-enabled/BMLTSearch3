@@ -1,7 +1,7 @@
 ﻿{
     "MENU"              : "Menu",
     "HOME"              : "Home",
-    "LOCATIONSEARCH"    : "Update Current Location",
+    "LOCATIONSEARCH"    : "Current Location Search",
     "LOADINGMAP"        : "Loading map...",
     "LOCATION"          : "",
     "NO_LOCATION"       : "Location not set",
