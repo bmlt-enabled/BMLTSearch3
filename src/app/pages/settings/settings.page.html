@@ -15,6 +15,7 @@
     <ion-item>
       <ion-select label="{{'LANGUAGE' | translate}}" aria-label="Language" [(ngModel)]="language" (ionChange)=selectLanguage() cancelText="{{'CANCEL' | translate}}">
         <ion-select-option aria-label="English" value="en">{{'ENGLISH' | translate}}</ion-select-option>
+        <ion-select-option aria-label="French" value="fr">{{'FRENCH' | translate}}</ion-select-option>
         <ion-select-option aria-label="Italian" value="it">{{'ITALIAN' | translate}}</ion-select-option>
         <ion-select-option aria-label="Spanish" value="es">{{'SPANISH' | translate}}</ion-select-option>
         <ion-select-option aria-label="Danish" value="da">{{'DANISH' | translate}}</ion-select-option>
@@ -28,13 +29,13 @@
       <div class="ion-text-wrap">
       <ion-label>{{'SEARCHRANGESETTING' | translate}} = {{searchRange}} {{'MEETINGS' | translate }}</ion-label>
     </div>
-      <ion-range 
-        aria-label="Search Range" 
-        id="RadiusRange" 
-        min="5" 
-        max="50" 
-        [(ngModel)]="searchRange" 
-        (ionBlur)="selectSearchRange()" 
+      <ion-range
+        aria-label="Search Range"
+        id="RadiusRange"
+        min="5"
+        max="50"
+        [(ngModel)]="searchRange"
+        (ionBlur)="selectSearchRange()"
         pin="true">
       </ion-range>
     </ion-item>
