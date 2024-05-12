@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkapp=self.webpackChunkapp||[]).push([[9799],{9799:(u,n,e)=>{e.r(n),e.d(n,{SplashScreenWeb:()=>_});var r=e(9204),s=e(4070);class _ extends s.E_{show(o){return(0,r.A)(function*(){})()}hide(o){return(0,r.A)(function*(){})()}}}}]);
+//# sourceMappingURL=9799.2792f7046b2382b3.js.map

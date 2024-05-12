@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkapp=self.webpackChunkapp||[]).push([[8945],{8945:(l,r,e)=>{e.r(r),e.d(r,{ShareWeb:()=>u});var t=e(1670),n=e(8626);class u extends n.Uw{canShare(){return(0,t.Z)(function*(){return typeof navigator>"u"||!navigator.share?{value:!1}:{value:!0}})()}share(a){var s=this;return(0,t.Z)(function*(){if(typeof navigator>"u"||!navigator.share)throw s.unavailable("Share API not available in this browser");return yield navigator.share({title:a.title,text:a.text,url:a.url}),{}})()}}}}]);
-//# sourceMappingURL=8945.b623f5708f6c4d96.js.map

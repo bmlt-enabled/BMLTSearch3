@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkapp=self.webpackChunkapp||[]).push([[8791,1172],{1172:(D,t,_)=>{_.d(t,{Q:()=>C});var E=_(316),M=_(1752),l=_(4111),u=_(4456),o=_(8559);let C=(()=>{var n;class a{}return(n=a).\u0275fac=function(s){return new(s||n)},n.\u0275mod=o.$C({type:n}),n.\u0275inj=o.G2t({imports:[E.MD,l.bv,M.h,u.YN]}),a})()}}]);
+//# sourceMappingURL=8791.c492a45939fddaa2.js.map
