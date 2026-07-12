@@ -26,76 +26,16 @@
 
   <div *ngIf="HTMLGrouping == 'areas'">
     <ion-accordion-group>
-    <div *ngFor="let L1 of serviceGroupHierarchy">
-      <div *ngIf="L1.childServiceGroup;else L1_no_children">
-        <ion-accordion  class="no-padding">
-          <ion-item slot="header">{{ L1.name }}</ion-item>
-          <div class="ion-padding" slot="content">
-
-            <ion-accordion-group>
-
-            <div *ngFor="let L2 of L1.childServiceGroup">
-              <div *ngIf="L2.childServiceGroup;else L2_no_children">
-                <ion-accordion>
-                  <ion-item slot="header">{{ L2.name }}</ion-item>
-
-                  <div class="ion-padding" slot="content">
-                    <ion-accordion-group>
-                    <div *ngFor="let L3 of L2.childServiceGroup">
-                      <div *ngIf="L3.childServiceGroup;else L3_no_children">
-                        <ion-accordion>
-                          <ion-item slot="header">{{ L3.name }}</ion-item>
-        
-                          <div class="ion-padding" slot="content">
-        
-                            <div *ngFor="let L4 of L3.childServiceGroup">
-                              <div *ngIf="L4.childServiceGroup;else L4_no_children">
-                                <ion-accordion>
-                                  <ion-item slot="header">{{ L4.name }}</ion-item>
-                
-                                  <div class="ion-padding" slot="content">
-                
-                
-                
-                                  </div>
-                
-                                </ion-accordion>
-                              </div>
-                              <ng-template #L4_no_children>
-                                  <ion-item slot="content" (click)="getMeetingsByArea(L4.id, L4.name)">{{ L4.name }} </ion-item>
-                              </ng-template>
-                            </div>        
-
-  
-                          </div>
-        
-                        </ion-accordion>
-                      </div>
-                      <ng-template #L3_no_children>
-                          <ion-item slot="content" (click)="getMeetingsByArea(L3.id, L3.name)">{{ L3.name }} </ion-item>
-                      </ng-template>
-                    </div>
-                  </ion-accordion-group>
-                  </div>
-
-                </ion-accordion>
-              </div>
-              <ng-template #L2_no_children>
-                  <ion-item slot="content" (click)="getMeetingsByArea(L2.id, L2.name)">{{ L2.name }} </ion-item>
-              </ng-template>
-            </div>
-
-          </ion-accordion-group>
-
-          </div>
-        </ion-accordion>
-      </div>
-      <ng-template #L1_no_children>
-          <ion-item slot="header" (click)="getMeetingsByArea(L1.id, L1.name)">{{ L1.name }} </ion-item>
-      </ng-template>
-
-
-    </div>
+      <ng-container *ngFor="let node of serviceGroupHierarchy">
+        <app-service-group-node
+          *ngIf="node.childServiceGroup; else root_leaf"
+          [node]="node"
+          (areaSelected)="getMeetingsByArea($event.id, $event.name)">
+        </app-service-group-node>
+        <ng-template #root_leaf>
+          <ion-item (click)="getMeetingsByArea(node.id, node.name)">{{ node.name }}</ion-item>
+        </ng-template>
+      </ng-container>
     </ion-accordion-group>
   </div>
 

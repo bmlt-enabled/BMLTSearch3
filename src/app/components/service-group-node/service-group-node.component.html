@@ -1,0 +1,19 @@
+<ion-accordion class="no-padding">
+  <ion-item slot="header">{{ node.name }}</ion-item>
+  <div class="ion-padding" slot="content">
+    <ion-accordion-group>
+      <ng-container *ngFor="let child of node.childServiceGroup">
+        <app-service-group-node
+          *ngIf="child.childServiceGroup; else leaf"
+          [node]="child"
+          (areaSelected)="areaSelected.emit($event)">
+        </app-service-group-node>
+        <ng-template #leaf>
+          <ion-item (click)="areaSelected.emit({ id: child.id, name: child.name })">
+            {{ child.name }}
+          </ion-item>
+        </ng-template>
+      </ng-container>
+    </ion-accordion-group>
+  </div>
+</ion-accordion>

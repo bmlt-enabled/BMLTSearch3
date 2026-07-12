@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MeetingCardComponent } from '../meeting-card/meeting-card.component';
 import { MeetingListComponent } from '../meeting-list/meeting-list.component';
+import { ServiceGroupNodeComponent } from '../service-group-node/service-group-node.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +15,8 @@ import { ParseFloatPipe } from 'src/app/pipes/parse-float.pipe';
 @NgModule({
   declarations: [
     MeetingCardComponent,
-    MeetingListComponent
+    MeetingListComponent,
+    ServiceGroupNodeComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ParseFloatPipe } from 'src/app/pipes/parse-float.pipe';
   ],
   exports: [
     MeetingCardComponent,
-    MeetingListComponent
+    MeetingListComponent,
+    ServiceGroupNodeComponent
   ]
 })
 export class ComponentModule { }
