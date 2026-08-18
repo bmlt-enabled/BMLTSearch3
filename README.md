@@ -1,6 +1,9 @@
 # BMLT Meeting Search
 
-This app is built for Andoid and Apple devices using the Ionic Framework (For more details see https://ionicframework.com/)
+> [!NOTE]
+> Repo is archived and has moved to the new svelte version [https://github.com/bmlt-enabled/BMLTSearch](https://github.com/bmlt-enabled/BMLTSearch)
+
+This app is built for Android and Apple devices using the Ionic Framework (For more details see https://ionicframework.com/)
 
 The app can also be viewed on a browser at https://bmltsearch.bmlt.app 
 
