@@ -1,7 +1,9 @@
 # BMLT Meeting Search
 
-> [!NOTE]
-> Repo is archived and has moved to the new svelte version [https://github.com/bmlt-enabled/BMLTSearch](https://github.com/bmlt-enabled/BMLTSearch)
+That works, but I’d tighten the wording a little:
+
+> [!WARNING]
+> This repository is archived. Development has moved to the new Svelte version: [https://github.com/bmlt-enabled/BMLTSearch](https://github.com/bmlt-enabled/BMLTSearch)
 
 This app is built for Android and Apple devices using the Ionic Framework (For more details see https://ionicframework.com/)
 
