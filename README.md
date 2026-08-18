@@ -1,9 +1,10 @@
-# BMLT Meeting Search
-
-That works, but I’d tighten the wording a little:
-
 > [!WARNING]
 > This repository is archived. Development has moved to the new Svelte version: [https://github.com/bmlt-enabled/BMLTSearch](https://github.com/bmlt-enabled/BMLTSearch)
+
+
+---
+
+# BMLT Meeting Search
 
 This app is built for Android and Apple devices using the Ionic Framework (For more details see https://ionicframework.com/)
 
